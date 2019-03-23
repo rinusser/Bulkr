@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stetic-interface>
+  <configuration>
+    <images-root-path>..</images-root-path>
+  </configuration>
+  <import>
+    <widget-library name="../../../artifacts/Gui/bin/Debug/Bulkr.exe" internal="true" />
+  </import>
+  <widget class="Gtk.Window" id="MainWindow" design-size="640 480">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Bulkr</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
+    <child>
+      <placeholder />
+    </child>
+  </widget>
+</stetic-interface>

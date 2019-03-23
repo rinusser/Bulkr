@@ -1,0 +1,50 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gui", "src\Gui\Gui.csproj", "{9F236978-58AA-4FBC-9D46-2AD359683852}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.csproj", "{433080A4-8B09-478A-BF93-68C493ABA8FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_Tests", "tests\Core_Tests\Core_Tests.csproj", "{1B353B95-AD73-4C52-948F-AE2A68D3CFD6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F236978-58AA-4FBC-9D46-2AD359683852}.Debug|x86.ActiveCfg = Debug|x86
+		{9F236978-58AA-4FBC-9D46-2AD359683852}.Debug|x86.Build.0 = Debug|x86
+		{9F236978-58AA-4FBC-9D46-2AD359683852}.Release|x86.ActiveCfg = Release|x86
+		{9F236978-58AA-4FBC-9D46-2AD359683852}.Release|x86.Build.0 = Release|x86
+		{433080A4-8B09-478A-BF93-68C493ABA8FD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{433080A4-8B09-478A-BF93-68C493ABA8FD}.Debug|x86.Build.0 = Debug|Any CPU
+		{433080A4-8B09-478A-BF93-68C493ABA8FD}.Release|x86.ActiveCfg = Release|Any CPU
+		{433080A4-8B09-478A-BF93-68C493ABA8FD}.Release|x86.Build.0 = Release|Any CPU
+		{1B353B95-AD73-4C52-948F-AE2A68D3CFD6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1B353B95-AD73-4C52-948F-AE2A68D3CFD6}.Debug|x86.Build.0 = Debug|Any CPU
+		{1B353B95-AD73-4C52-948F-AE2A68D3CFD6}.Release|x86.ActiveCfg = Release|Any CPU
+		{1B353B95-AD73-4C52-948F-AE2A68D3CFD6}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.TabWidth = 2
+		$1.IndentWidth = 2
+		$1.NoTabsAfterNonTabs = True
+		$1.EolMarker = Unix
+		$1.scope = text/plain
+		$0.TextStylePolicy = $2
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.SpaceAfterControlFlowStatementKeyword = False
+		$3.SpacesIgnoreAroundVariableDeclaration = True
+		$3.SpaceAfterComma = False
+		$3.SpaceAfterSemicolonsInForStatement = False
+		$3.SpacingAroundBinaryOperator = Remove
+		$3.scope = text/x-csharp
+		$0.StandardHeader = $4
+		$4.Text = @Copyright 2019 Richard Nusser\nLicensed under GPLv3 (see http://www.gnu.org/licenses/)
+	EndGlobalSection
+EndGlobal
