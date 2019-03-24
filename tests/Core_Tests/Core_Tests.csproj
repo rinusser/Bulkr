@@ -27,12 +27,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\TallyTest.cs" />
+    <Compile Include="Services\FoodServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">

@@ -49,11 +49,11 @@ In IDEs you just need to to run the application.
 
 In the CLI you can invoke it with:
 
-| Environment                        | Command-Line                                   |
-| ---------------------------------- | ---------------------------------------------- |
-| Windows (.NET SDK / Visual Studio) | `artifacts\Bulkr.Gui\bin\Debug\Bulkr.exe`      |
-| Windows (Mono)                     | `mono artifacts\Bulkr.Gui\bin\Debug\Bulkr.exe` |
-| Linux (Mono)                       | `mono artifacts/Bulkr.Gui/bin/Debug/Bulkr.exe` |
+| Environment                        | Command Line                                     |
+| ---------------------------------- | ------------------------------------------------ |
+| Windows (.NET SDK / Visual Studio) | `artifacts\Bulkr.Gui\bin\Release\Bulkr.exe`      |
+| Windows (Mono)                     | `mono artifacts\Bulkr.Gui\bin\Release\Bulkr.exe` |
+| Linux (Mono)                       | `mono artifacts/Bulkr.Gui/bin/Release/Bulkr.exe` |
 
 If you built the "Debug" configuration, use the "Debug" directory instead of "Release".
 
