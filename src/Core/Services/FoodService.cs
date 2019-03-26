@@ -46,5 +46,18 @@ namespace Bulkr.Core.Services
 			DatabaseContext.SaveChanges();
 			return food;
 		}
+
+		public Food Update(Food food)
+		{
+			DatabaseContext.Update(food);
+			DatabaseContext.SaveChanges();
+			return food;
+		}
+
+		public void Delete(Food food)
+		{
+			DatabaseContext.Remove(food);
+			DatabaseContext.SaveChanges();
+		}
 	}
 }
