@@ -366,11 +366,7 @@
                   <widget class="Gtk.ComboBox" id="food_referencesize_value">
                     <property name="MemberName" />
                     <property name="IsTextCombo">True</property>
-                    <property name="Items" translatable="yes">Please Select...
-100 g
-100 ml
-1 piece</property>
-                    <property name="Active">0</property>
+                    <property name="Items" translatable="yes" />
                   </widget>
                   <packing>
                     <property name="TopAttach">1</property>

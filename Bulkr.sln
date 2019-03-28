@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core_Tests", "tests\Core_Tests\Core_Tests.csproj", "{1B353B95-AD73-4C52-948F-AE2A68D3CFD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gui_Tests", "tests\Gui_Tests\Gui_Tests.csproj", "{546C0872-33CE-4DE6-8FD1-DFE4BC5CE9BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -25,6 +27,14 @@ Global
 		{1B353B95-AD73-4C52-948F-AE2A68D3CFD6}.Debug|x86.Build.0 = Debug|Any CPU
 		{1B353B95-AD73-4C52-948F-AE2A68D3CFD6}.Release|x86.ActiveCfg = Release|Any CPU
 		{1B353B95-AD73-4C52-948F-AE2A68D3CFD6}.Release|x86.Build.0 = Release|Any CPU
+		{DBBDD364-D4E3-4578-A275-822FF737A243}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DBBDD364-D4E3-4578-A275-822FF737A243}.Debug|x86.Build.0 = Debug|Any CPU
+		{DBBDD364-D4E3-4578-A275-822FF737A243}.Release|x86.ActiveCfg = Release|Any CPU
+		{DBBDD364-D4E3-4578-A275-822FF737A243}.Release|x86.Build.0 = Release|Any CPU
+		{546C0872-33CE-4DE6-8FD1-DFE4BC5CE9BD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{546C0872-33CE-4DE6-8FD1-DFE4BC5CE9BD}.Debug|x86.Build.0 = Debug|Any CPU
+		{546C0872-33CE-4DE6-8FD1-DFE4BC5CE9BD}.Release|x86.ActiveCfg = Release|Any CPU
+		{546C0872-33CE-4DE6-8FD1-DFE4BC5CE9BD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

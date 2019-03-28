@@ -275,12 +275,7 @@ public partial class MainWindow
 		w15.YOptions = ((global::Gtk.AttachOptions)(4));
 		// Container child table1.Gtk.Table+TableChild
 		this.food_referencesize_value = global::Gtk.ComboBox.NewText();
-		this.food_referencesize_value.AppendText(global::Mono.Unix.Catalog.GetString("Please Select..."));
-		this.food_referencesize_value.AppendText(global::Mono.Unix.Catalog.GetString("100 g"));
-		this.food_referencesize_value.AppendText(global::Mono.Unix.Catalog.GetString("100 ml"));
-		this.food_referencesize_value.AppendText(global::Mono.Unix.Catalog.GetString("1 piece"));
 		this.food_referencesize_value.Name = "food_referencesize_value";
-		this.food_referencesize_value.Active = 0;
 		this.table1.Add(this.food_referencesize_value);
 		global::Gtk.Table.TableChild w16 = ((global::Gtk.Table.TableChild)(this.table1[this.food_referencesize_value]));
 		w16.TopAttach = ((uint)(1));

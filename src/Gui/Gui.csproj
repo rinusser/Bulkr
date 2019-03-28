@@ -68,9 +68,16 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Bulkr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Form\Element\NutritionalValue.cs" />
-    <Compile Include="Form\Element\InputException.cs" />
-    <Compile Include="Form\Element\ReferenceSize.cs" />
+    <Compile Include="Forms\Field\Number.cs" />
+    <Compile Include="Forms\Field\InputException.cs" />
+    <Compile Include="Forms\Form.cs" />
+    <Compile Include="Forms\Field\Field.cs" />
+    <Compile Include="Forms\Field\Text.cs" />
+    <Compile Include="Forms\Field\ID.cs" />
+    <Compile Include="Forms\Field\DropDown.cs" />
+    <Compile Include="Components\FoodComponent_MainWindow.cs" />
+    <Compile Include="Components\FoodComponent.cs" />
+    <Compile Include="Components\Component.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -82,8 +89,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Form\" />
-    <Folder Include="Form\Element\" />
+    <Folder Include="Forms\" />
+    <Folder Include="Forms\Field\" />
+    <Folder Include="Components\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,7 +4,7 @@
 using System;
 namespace Bulkr.Core.Models
 {
-	public abstract class NutritionalData
+	public abstract class NutritionalData : Model
 	{
 		public float Energy { get; set; }
 		public float? TotalFat { get; set; }

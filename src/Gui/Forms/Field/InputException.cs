@@ -2,7 +2,7 @@
 // Licensed under GPLv3 (see http://www.gnu.org/licenses/)
 
 using System;
-namespace Bulkr.Gui.Form.Element
+namespace Bulkr.Gui.Forms.Field
 {
 	class InputException : ArgumentException
 	{
