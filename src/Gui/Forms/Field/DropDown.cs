@@ -4,43 +4,16 @@
 using System;
 using System.Collections.Generic;
 
+using Bulkr.Gui.Utils;
+
 namespace Bulkr.Gui.Forms.Field
 {
 	public class DropDown<TYPE> : Field
 	{
+		/// <summary>
+		///   The label for <c>null</c> values in dropdown fields.
+		/// </summary>
 		public static readonly string NULL_LABEL="Please select...";
-
-
-		public static void ForEach(Gtk.ComboBox widget,Func<GLib.Value,Gtk.TreeIter,bool> func)
-		{
-			Gtk.TreeIter iter;
-			widget.Model.GetIterFirst(out iter);
-			do
-			{
-				GLib.Value current=new GLib.Value();
-				widget.Model.GetValue(iter,0,ref current);
-				if(!func(current,iter))
-					return;
-			}
-			while(widget.Model.IterNext(ref iter));
-		}
-
-
-		public static void SelectLabelIn(Gtk.ComboBox widget,string value)
-		{
-			bool found=false;
-			ForEach(widget,(entry,iter) =>
-			{
-				if((string)entry.Val!=value)
-					return true;
-				widget.SetActiveIter(iter);
-				found=true;
-				return false;
-			});
-
-			if(!found)
-				throw new ArgumentException(string.Format("value {0} not found in ComboBox {1}",value,widget.Name));
-		}
 
 
 		protected IDictionary<TYPE,string> Map { get; set; }
@@ -96,12 +69,7 @@ namespace Bulkr.Gui.Forms.Field
 			object value=GetModelValue(model);
 			if(value!=null&&!(value is TYPE))
 				throw new Exception("wrong data type"); //TODO: improve
-			SelectLabel(value!=null ? Map[(TYPE)value] : NULL_LABEL);
-		}
-
-		protected void SelectLabel(string value)
-		{
-			SelectLabelIn((Gtk.ComboBox)Widget,value);
+			((Gtk.ComboBox)Widget).SelectLabel(value!=null ? Map[(TYPE)value] : NULL_LABEL);
 		}
 	}
 }

@@ -5,6 +5,7 @@ using System.Reflection;
 using NUnit.Framework;
 
 using Bulkr.Gui.Forms.Field;
+using Bulkr.Gui.Utils;
 using Bulkr.Gui_Tests.TestTargets;
 
 namespace Bulkr.Gui_Tests.Components
@@ -147,8 +148,8 @@ namespace Bulkr.Gui_Tests.Components
 			window.targetmodel_optionalstring_value.Text=OptionalString??"";
 			window.targetmodel_requiredfloat_value.Text=RequiredFloat??"";
 			window.targetmodel_optionalfloat_value.Text=OptionalFloat??"";
-			DropDown<TargetEnum>.SelectLabelIn(window.targetmodel_requiredenum_value,RequiredEnum??DropDown<TargetEnum>.NULL_LABEL);
-			DropDown<TargetEnum>.SelectLabelIn(window.targetmodel_optionalenum_value,OptionalEnum??DropDown<TargetEnum>.NULL_LABEL);
+			window.targetmodel_requiredenum_value.SelectLabel(RequiredEnum??DropDown<TargetEnum>.NULL_LABEL);
+			window.targetmodel_optionalenum_value.SelectLabel(OptionalEnum??DropDown<TargetEnum>.NULL_LABEL);
 		}
 
 		public void TestModel(TargetModel candidate)

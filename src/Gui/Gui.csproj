@@ -82,6 +82,7 @@
     <Compile Include="Utils\WidgetUtils.cs" />
     <Compile Include="Utils\WidgetLogger.cs" />
     <Compile Include="Utils\ApplicationWindow.cs" />
+    <Compile Include="Utils\ComboBoxExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

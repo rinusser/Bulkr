@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 
 using Bulkr.Gui.Forms.Field;
+using Bulkr.Gui.Utils;
 using Bulkr.Gui_Tests.TestTargets;
 
 namespace Bulkr.Gui_Tests.Components
@@ -29,7 +30,7 @@ namespace Bulkr.Gui_Tests.Components
 			};
 
 			var actual=new List<string>();
-			DropDown<TargetEnum>.ForEach(widget,(v,i) =>
+			widget.ForEach((v,i) =>
 			{
 				actual.Add((string)v.Val);
 				return true;

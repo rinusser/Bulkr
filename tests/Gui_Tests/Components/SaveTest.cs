@@ -5,6 +5,7 @@ using NUnit.Framework;
 using System;
 
 using Bulkr.Gui.Forms.Field;
+using Bulkr.Gui.Utils;
 using Bulkr.Gui_Tests.TestTargets;
 
 namespace Bulkr.Gui_Tests.Components
@@ -135,7 +136,7 @@ namespace Bulkr.Gui_Tests.Components
 
 		private void RunValidationFailureTestWithInputAs(Gtk.ComboBox field,string input)
 		{
-			RunValidationFailureTestWith(() => DropDown<TargetEnum>.SelectLabelIn(field,input??DropDown<TargetEnum>.NULL_LABEL));
+			RunValidationFailureTestWith(() => field.SelectLabel(input??DropDown<TargetEnum>.NULL_LABEL));
 		}
 
 		private void RunValidationFailureTestWithInputAs(Gtk.Entry field,string input)
