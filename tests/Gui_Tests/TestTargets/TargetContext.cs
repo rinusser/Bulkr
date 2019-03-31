@@ -3,7 +3,7 @@
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Bulkr.Gui_Tests.Components
+namespace Bulkr.Gui_Tests.TestTargets
 {
 	public class TargetContext : DbContext
 	{

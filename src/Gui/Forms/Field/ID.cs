@@ -18,9 +18,9 @@ namespace Bulkr.Gui.Forms.Field
 		public override void PopulateFrom(object model)
 		{
 			object value=GetModelValue(model);
-			if(!(value is int))
+			if(value!=null&&!(value is int))
 				throw new Exception("wrong data type"); //TODO: improve
-			int id=(int)value;
+			int id=value!=null ? (int)value : 0;
 			((Gtk.Label)Widget).Text=id>0 ? id.ToString() : "";
 		}
 	}

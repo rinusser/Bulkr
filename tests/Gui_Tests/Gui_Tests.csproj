@@ -98,20 +98,34 @@
     <Reference Include="Microsoft.EntityFrameworkCore.InMemory">
       <HintPath>..\..\packages\Microsoft.EntityFrameworkCore.InMemory.2.2.3\lib\netstandard2.0\Microsoft.EntityFrameworkCore.InMemory.dll</HintPath>
     </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>glib-sharp-2.0</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\ComponentTest.cs" />
-    <Compile Include="Components\TargetModel.cs" />
-    <Compile Include="Components\TargetComponent.cs" />
-    <Compile Include="Components\TargetEnum.cs" />
-    <Compile Include="Components\TargetService.cs" />
-    <Compile Include="Components\TargetContext.cs" />
+    <Compile Include="Components\ComponentTestBase.cs" />
+    <Compile Include="TestTargets\TargetComponent.cs" />
+    <Compile Include="TestTargets\TargetContext.cs" />
+    <Compile Include="TestTargets\TargetEnum.cs" />
+    <Compile Include="TestTargets\TargetModel.cs" />
+    <Compile Include="TestTargets\TargetService.cs" />
+    <Compile Include="TestTargets\TargetWindow.cs" />
+    <Compile Include="Utils\WidgetUtilsTest.cs" />
+    <Compile Include="Components\TestCase.cs" />
+    <Compile Include="Components\NewTest.cs" />
+    <Compile Include="Components\SaveTest.cs" />
+    <Compile Include="Components\NavigationTest.cs" />
+    <Compile Include="Components\RevertTest.cs" />
+    <Compile Include="Components\FieldsTest.cs" />
+    <Compile Include="Components\DeleteTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
+    <Folder Include="TestTargets\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Gui\Gui.csproj">

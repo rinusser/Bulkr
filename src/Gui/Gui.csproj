@@ -78,6 +78,10 @@
     <Compile Include="Components\FoodComponent_MainWindow.cs" />
     <Compile Include="Components\FoodComponent.cs" />
     <Compile Include="Components\Component.cs" />
+    <Compile Include="Utils\WidgetFinder.cs" />
+    <Compile Include="Utils\WidgetUtils.cs" />
+    <Compile Include="Utils\WidgetLogger.cs" />
+    <Compile Include="Utils\ApplicationWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -92,6 +96,7 @@
     <Folder Include="Forms\" />
     <Folder Include="Forms\Field\" />
     <Folder Include="Components\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

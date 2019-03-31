@@ -7,12 +7,13 @@ using Bulkr.Core.Models;
 using Bulkr.Core.Services;
 using Bulkr.Gui.Forms;
 using Bulkr.Gui.Forms.Field;
+using Bulkr.Gui.Utils;
 
 namespace Bulkr.Gui.Components
 {
 	public class FoodComponent : Component<Food>
 	{
-		public FoodComponent(MainWindow window) : base(window)
+		public FoodComponent(ApplicationWindow window) : base(window)
 		{
 		}
 

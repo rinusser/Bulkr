@@ -25,7 +25,7 @@ namespace Bulkr.Gui.Forms.Field
 
 		protected object GetModelValue(object model)
 		{
-			return model.GetType().GetProperty(PropertyName).GetValue(model);
+			return model?.GetType().GetProperty(PropertyName).GetValue(model);
 		}
 
 		protected bool IsNullableIn(object model)

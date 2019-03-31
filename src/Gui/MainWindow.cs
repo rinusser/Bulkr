@@ -2,10 +2,11 @@
 // Licensed under GPLv3 (see http://www.gnu.org/licenses/)
 
 using System;
-using System.Reflection;
 using Gtk;
 
-public partial class MainWindow : Gtk.Window
+using Bulkr.Gui.Utils;
+
+public partial class MainWindow : Gtk.Window, WidgetFinder, WidgetLogger
 {
 	public MainWindow() : base(Gtk.WindowType.Toplevel)
 	{
@@ -22,7 +23,7 @@ public partial class MainWindow : Gtk.Window
 
 	public Gtk.Widget GetWidget(string name)
 	{
-		return (Gtk.Widget)GetType().GetField(name,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic).GetValue(this);
+		return WidgetUtils.GetWidgetFieldByName(this,name);
 	}
 
 	public void AddLogEntry(string text)

@@ -3,8 +3,9 @@
 
 using System;
 using Bulkr.Gui.Components;
+using Bulkr.Gui.Utils;
 
-public partial class MainWindow
+public partial class MainWindow : ApplicationWindow
 {
 	private FoodComponent FoodComponent { get; set; }
 

@@ -5,12 +5,13 @@ using Bulkr.Core.Models;
 using Bulkr.Core.Services;
 using Bulkr.Gui.Forms;
 using Bulkr.Gui.Forms.Field;
+using Bulkr.Gui.Utils;
 
 namespace Bulkr.Gui.Components
 {
 	public abstract class Component<MODEL> where MODEL : Model, new()
 	{
-		protected MainWindow Window { get; } //XXX could add new interface so other windows can be used later
+		protected ApplicationWindow Window { get; }
 		protected Form<MODEL> Form { get; set; }
 		protected MODEL CurrentItem { get; set; }
 		protected Service<MODEL> Service { get; set; }
@@ -19,7 +20,7 @@ namespace Bulkr.Gui.Components
 		private string WidgetNamePrefix { get; }
 
 
-		protected Component(MainWindow window)
+		protected Component(ApplicationWindow window)
 		{
 			Window=window;
 			CurrentItem=new MODEL();
@@ -42,16 +43,21 @@ namespace Bulkr.Gui.Components
 			CurrentItem=new MODEL();
 			CurrentEntryNumber=TotalCount;
 			UpdateNavInfo();
-			PopulateWithCurrentItem();
+			Form.Populate(null);
 		}
 
 		public void Revert()
 		{
 			if(CurrentItem.ID>0)
+			{
 				CurrentItem=Service.GetByID(CurrentItem.ID);
+				PopulateWithCurrentItem();
+			}
 			else
+			{
 				CurrentItem=new MODEL();
-			PopulateWithCurrentItem();
+				Form.Populate(null);
+			}
 		}
 
 		public void Save()
@@ -104,7 +110,7 @@ namespace Bulkr.Gui.Components
 		}
 
 
-		protected void NavTo(int number)
+		public void NavTo(int number)
 		{
 			var items=Service.GetAll();
 
