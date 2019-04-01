@@ -78,9 +78,7 @@
     <Compile Include="Components\FoodComponent_MainWindow.cs" />
     <Compile Include="Components\FoodComponent.cs" />
     <Compile Include="Components\Component.cs" />
-    <Compile Include="Utils\WidgetFinder.cs" />
-    <Compile Include="Utils\WidgetUtils.cs" />
-    <Compile Include="Utils\WidgetLogger.cs" />
+    <Compile Include="Utils\ApplicationWindowExtensions.cs" />
     <Compile Include="Utils\ApplicationWindow.cs" />
     <Compile Include="Utils\ComboBoxExtensions.cs" />
   </ItemGroup>

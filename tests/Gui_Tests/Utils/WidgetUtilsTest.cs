@@ -16,10 +16,10 @@ namespace Bulkr.Gui_Tests.Utils
 		{
 			var window=new TargetWindow();
 			window.InitializeOptionalWidgets();
-			Assert.AreEqual(TargetWindow.PUBLIC_NAME,WidgetUtils.GetWidgetFieldByName(window,"PublicWidget").Name);
-			Assert.AreEqual(TargetWindow.PROTECTED_NAME,WidgetUtils.GetWidgetFieldByName(window,"ProtectedWidget").Name);
-			Assert.AreEqual(TargetWindow.INTERNAL_NAME,WidgetUtils.GetWidgetFieldByName(window,"InternalWidget").Name);
-			Assert.AreEqual(TargetWindow.PRIVATE_NAME,WidgetUtils.GetWidgetFieldByName(window,"PrivateWidget").Name);
+			Assert.AreEqual(TargetWindow.PUBLIC_NAME,window.GetWidget("PublicWidget").Name);
+			Assert.AreEqual(TargetWindow.PROTECTED_NAME,window.GetWidget("ProtectedWidget").Name);
+			Assert.AreEqual(TargetWindow.INTERNAL_NAME,window.GetWidget("InternalWidget").Name);
+			Assert.AreEqual(TargetWindow.PRIVATE_NAME,window.GetWidget("PrivateWidget").Name);
 		}
 	}
 }

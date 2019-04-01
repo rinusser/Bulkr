@@ -8,15 +8,15 @@ namespace Bulkr.Gui.Utils
 	/// <summary>
 	///   Utility functions related to Gtk widgets.
 	/// </summary>
-	public static class WidgetUtils
+	public static class ApplicationWindowExtensions
 	{
 		/// <summary>
-		///   Finds a widget by name in a target object, usually a window.
+		///   Finds a widget in the window by its field name.
 		/// </summary>
-		/// <param name="target">The widget container to look in, e.g. an ApplicationWindow instance.</param>
+		/// <param name="target">The widget container to look in.</param>
 		/// <param name="name">The widget's name.</param>
 		/// <returns>The widget field.</returns>
-		public static Gtk.Widget GetWidgetFieldByName(object target,string name)
+		public static Gtk.Widget GetWidget(this ApplicationWindow target,string name)
 		{
 			return (Gtk.Widget)target.GetType().GetField(name,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic).GetValue(target);
 		}

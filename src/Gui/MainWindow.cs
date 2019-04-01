@@ -9,7 +9,7 @@ using Bulkr.Gui.Utils;
 /// <summary>
 ///   Main window for the application.
 /// </summary>
-public partial class MainWindow : Gtk.Window, WidgetFinder, WidgetLogger
+public partial class MainWindow : Gtk.Window, ApplicationWindow
 {
 	/// <summary>
 	///   Default constructor, gets invoked by Gtk.
@@ -32,15 +32,6 @@ public partial class MainWindow : Gtk.Window, WidgetFinder, WidgetLogger
 		a.RetVal=true;
 	}
 
-	/// <summary>
-	///   Fetches a Gtk.Widget type field by name.
-	/// </summary>
-	/// <param name="name">The field name to look up.</param>
-	/// <returns>The widget.</returns>
-	public Gtk.Widget GetWidget(string name)
-	{
-		return WidgetUtils.GetWidgetFieldByName(this,name);
-	}
 
 	/// <summary>
 	///   Adds a message to the application's log output.

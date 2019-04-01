@@ -62,10 +62,5 @@ namespace Bulkr.Gui_Tests.TestTargets
 		{
 			LogMessages.Add(text);
 		}
-
-		public Gtk.Widget GetWidget(string name)
-		{
-			return WidgetUtils.GetWidgetFieldByName(this,name);
-		}
 	}
 }
