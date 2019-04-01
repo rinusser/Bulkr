@@ -3,8 +3,14 @@
 
 namespace Bulkr.Core.Models
 {
+	/// <summary>
+	///   Base class for models.
+	/// </summary>
 	public abstract class Model
 	{
+		/// <summary>
+		///   ID field for models. Entity Framework will use this as the primary key.
+		/// </summary>
 		public int ID { get; set; }
 	}
 }

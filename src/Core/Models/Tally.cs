@@ -4,8 +4,14 @@
 using System;
 namespace Bulkr.Core.Models
 {
+	/// <summary>
+	///   Model for adding up nutritional values.
+	/// </summary>
 	public class Tally : NutritionalData
 	{
+		/// <summary>
+		///   Initializes a new instance with all values set to 0.
+		/// </summary>
 		public Tally()
 		{
 			Energy=0;
@@ -17,7 +23,21 @@ namespace Bulkr.Core.Models
 			Fiber=0;
 		}
 
-		public void AddFood(Food food, float amount)
+
+		/// <summary>
+		///   Takes a given amount of a food item and adds the nutritional values for that amount.
+		///   <para>
+		///     This method already takes care of the food's nutritional information's reference size.
+		///     If you e.g. eat 20g of a chocolate bar with a "per 100g" food label, pass <c>20</c> in
+		///     <paramref name="amount"/>. If you eat 2 eggs with "per 1 piece" nutritional data, pass <c>2</c>.
+		///   </para>
+		///   <para>
+		///     <c>null</c> values in foods' nutritional data are converted to 0.
+		///   </para>
+		/// </summary>
+		/// <param name="food">The food item to add.</param>
+		/// <param name="amount">The amount of that item to add, in pieces, ml or g.</param>
+		public void AddFood(Food food,float amount)
 		{
 			float scale=amount/food.ReferenceSize.GetScale();
 
@@ -31,7 +51,13 @@ namespace Bulkr.Core.Models
 			Fiber+=GetScaledIncrement(food.Fiber,scale);
 		}
 
-		protected float? GetScaledIncrement(float? addition, float scale)
+		/// <summary>
+		///   Scales a nutritional value, if set.
+		/// </summary>
+		/// <param name="addition">The nutritional value to scale.</param>
+		/// <param name="scale">The factor to scale by.</param>
+		/// <returns>The scaled value, or 0 if the nutritional value was <c>null</c>.</returns>
+		protected float GetScaledIncrement(float? addition,float scale)
 		{
 			return addition!=null ? (float)addition*scale : 0;
 		}

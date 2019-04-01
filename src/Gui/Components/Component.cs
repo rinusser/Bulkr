@@ -9,17 +9,40 @@ using Bulkr.Gui.Utils;
 
 namespace Bulkr.Gui.Components
 {
+	/// <summary>
+	///   Base class for item management interfaces.
+	///   <para>
+	///     The Gtk widgets need to be created separately, then mapped to model fields in <see cref="CreateForm()"/>.
+	///   </para>
+	/// </summary>
 	public abstract class Component<MODEL> where MODEL : Model, new()
 	{
+		/// <summary>The application window form widgets are in.</summary>
 		protected ApplicationWindow Window { get; }
+
+		/// <summary>The model &lt;-&gt; input widget mapping.</summary>
 		protected Form<MODEL> Form { get; set; }
+
+		/// <summary>The currently displayed item.</summary>
 		protected MODEL CurrentItem { get; set; }
+
+		/// <summary>The <see cref="T:Bulkr.Core.Services.Service"/> instance for this component.</summary>
 		protected Service<MODEL> Service { get; set; }
+
+		/// <summary>The currently displayed item number, starting with 1.</summary>
 		protected int CurrentEntryNumber { get; set; }
+
+		/// <summary>The number of items.</summary>
 		protected int TotalCount { get; set; }
+
+		/// <summary>The name prefix for this component's widget names.</summary>
 		private string WidgetNamePrefix { get; }
 
 
+		/// <summary>
+		///   Base constructor. Subclasses classes generally should invoke this.
+		/// </summary>
+		/// <param name="window">The application window the form widgets are in.</param>
 		protected Component(ApplicationWindow window)
 		{
 			Window=window;
@@ -32,10 +55,28 @@ namespace Bulkr.Gui.Components
 		}
 
 
+		/// <summary>
+		///   Subclasses need to create a <see cref="T:Bulkr.Gui.Forms.Form"/> instance with the widget&lt;-&gt;model mapping here.
+		///   <para>
+		///     The base constructor will make a virtual method call to this, make sure not to access unitialized class members.
+		///   </para>
+		/// </summary>
+		/// <returns>The Form instance.</returns>
 		protected abstract Form<MODEL> CreateForm();
+
+		/// <summary>
+		///   Subclasses need to create a <see cref="T:Bulkr.Core.Services.Service"/> instance here.
+		///   <para>
+		///     The base constructor will make a virtual method call to this, make sure not to access unitialized class members.
+		///   </para>
+		/// </summary>
+		/// <returns>The Form instance.</returns>
 		protected abstract Service<MODEL> CreateService();
 
 
+		/// <summary>
+		///   Handler for "New" button: set up everything needed to enter a new item.
+		/// </summary>
 		public void New()
 		{
 			if(CurrentItem.ID>0||TotalCount<1)
@@ -46,6 +87,9 @@ namespace Bulkr.Gui.Components
 			Form.Populate(null);
 		}
 
+		/// <summary>
+		///   Handler for "Revert" button: restores the input form to the last saved state.
+		/// </summary>
 		public void Revert()
 		{
 			if(CurrentItem.ID>0)
@@ -60,6 +104,9 @@ namespace Bulkr.Gui.Components
 			}
 		}
 
+		/// <summary>
+		///   Handler for "Save" button: saves the current item.
+		/// </summary>
 		public void Save()
 		{
 			try
@@ -87,6 +134,9 @@ namespace Bulkr.Gui.Components
 			}
 		}
 
+		/// <summary>
+		///   Handler for "Delete" button: removes the current item.
+		/// </summary>
 		public void Delete()
 		{
 			if(CurrentItem.ID>0)
@@ -99,17 +149,27 @@ namespace Bulkr.Gui.Components
 			NavTo(CurrentEntryNumber);
 		}
 
+		/// <summary>
+		///   Handler for "Next" button: switches to the next item.
+		/// </summary>
 		public void Next()
 		{
 			NavTo(CurrentEntryNumber+1);
 		}
 
+		/// <summary>
+		///   Handler for "Previous" button: switches to the previous item.
+		/// </summary>
 		public void Previous()
 		{
 			NavTo(CurrentEntryNumber-1);
 		}
 
 
+		/// <summary>
+		///   Switches to the nth item.
+		/// </summary>
+		/// <param name="number">The item number to switch to, starting at 1.</param>
 		public void NavTo(int number)
 		{
 			var items=Service.GetAll();
@@ -133,22 +193,38 @@ namespace Bulkr.Gui.Components
 			PopulateWithCurrentItem();
 		}
 
+		/// <summary>
+		///   Adds a log message.
+		///   <para>
+		///     The message will include the generic type's name so log entries can be traced back to their origin.
+		///   </para>
+		/// </summary>
+		/// <param name="message">The message to log.</param>
 		protected void Log(string message)
 		{
 			string prefix=typeof(MODEL).Name;
 			Window.AddLogEntry(string.Format("{0}: {1}",prefix,message));
 		}
 
+		/// <summary>
+		///   Updates the navigation display with the internal navigation state.
+		/// </summary>
 		protected void UpdateNavInfo()
 		{
 			GetFieldLabelWidget("nav").Text=string.Format("{0}/{1}",CurrentEntryNumber,TotalCount);
 		}
 
+		/// <summary>
+		///   Fills form fields with the current item's data.
+		/// </summary>
 		protected void PopulateWithCurrentItem()
 		{
 			Form.Populate(CurrentItem);
 		}
 
+		/// <summary>
+		///   Re-reads the number of stored items.
+		/// </summary>
 		protected void UpdateTotalCount()
 		{
 			TotalCount=Service.GetAll().Count;
@@ -157,26 +233,57 @@ namespace Bulkr.Gui.Components
 		}
 
 
+		/// <summary>
+		///   Fetches a label widget from the component's window.
+		///   <para>
+		///     This only works as long as the widget name follows the standard naming scheme.
+		///   </para>
+		/// </summary>
+		/// <param name="field">The field name to fetch the label for.</param>
+		/// <returns>The label widget.</returns>
 		protected virtual Gtk.Label GetFieldLabelWidget(string field)
 		{
 			return (Gtk.Label)Window.GetWidget(WidgetNamePrefix+field.ToLower()+"_label");
 		}
 
+		/// <summary>
+		///   Fetches a value widget from the component's window.
+		///   <para>
+		///     This only works as long as the widget name follows the standard naming scheme.
+		///   </para>
+		/// </summary>
+		/// <param name="field">The field name to fetch the value widget for.</param>
+		/// <returns>The value widget.</returns>
 		protected Gtk.Widget GetFieldValueWidget(string field)
 		{
 			return Window.GetWidget(WidgetNamePrefix+field.ToLower()+"_value");
 		}
 
+		/// <summary>
+		///   Like <see cref="GetFieldValueWidget"/>, but cast to <c>Gtk.Label</c>.
+		/// </summary>
+		/// <param name="field">The field name to fetch the value widget for.</param>
+		/// <returns>The Gtk.Label widget.</returns>
 		protected Gtk.Label GetFieldValueLabel(string field)
 		{
 			return (Gtk.Label)GetFieldValueWidget(field);
 		}
 
+		/// <summary>
+		///   Like <see cref="GetFieldValueWidget"/>, but cast to <c>Gtk.Entry</c>.
+		/// </summary>
+		/// <param name="field">The field name to fetch the value widget for.</param>
+		/// <returns>The Gtk.Entry widget.</returns>
 		protected Gtk.Entry GetFieldValueInput(string field)
 		{
 			return (Gtk.Entry)GetFieldValueWidget(field);
 		}
 
+		/// <summary>
+		///   Like <see cref="GetFieldValueWidget"/>, but cast to <c>Gtk.ComboBox</c>.
+		/// </summary>
+		/// <param name="field">The field name to fetch the value widget for.</param>
+		/// <returns>The Gtk.ComboBox widget.</returns>
 		protected Gtk.ComboBox GetFieldValueComboBox(string field)
 		{
 			return (Gtk.ComboBox)GetFieldValueWidget(field);

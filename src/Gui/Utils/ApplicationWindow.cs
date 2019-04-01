@@ -3,6 +3,9 @@
 
 namespace Bulkr.Gui.Utils
 {
+	/// <summary>
+	///   Interface for application windows. Implementations can be used as containers of UI components.
+	/// </summary>
 	public interface ApplicationWindow : WidgetFinder, WidgetLogger
 	{
 	}

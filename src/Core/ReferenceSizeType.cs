@@ -4,6 +4,9 @@
 using System;
 namespace Bulkr.Core
 {
+	/// <summary>
+	///   Type for nutritional values' reference size.
+	/// </summary>
 	public enum ReferenceSizeType
 	{
 		_100g,
@@ -11,8 +14,16 @@ namespace Bulkr.Core
 		_1pc,
 	}
 
+	/// <summary>
+	///   Extension methods for <see cref="ReferenceSizeType"/>.
+	/// </summary>
 	public static class ReferenceSizeTypeExtensions
 	{
+		/// <summary>
+		///   Gets the value by which to divide nutritional reference values.
+		/// </summary>
+		/// <param name="referenceSize">The reference size.</param>
+		/// <returns>The scale, e.g. 100 if nutritional value is per 100g.</returns>
 		public static float GetScale(this ReferenceSizeType referenceSize)
 		{
 			switch(referenceSize)

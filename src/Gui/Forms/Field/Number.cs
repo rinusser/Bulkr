@@ -5,12 +5,29 @@ using System;
 
 namespace Bulkr.Gui.Forms.Field
 {
+	/// <summary>
+	///   Field mapping for numeric input.
+	///   <para>
+	///     Only handles <c>float</c> type for now.
+	///   </para>
+	/// </summary>
 	public class Number : Field
 	{
+		/// <summary>
+		///   Constructor for number fields.
+		/// </summary>
+		/// <param name="propertyName">The model property name.</param>
+		/// <param name="widget">The Entry widget.</param>
 		public Number(string propertyName,Gtk.Entry widget) : base(propertyName,widget)
 		{
 		}
 
+
+		/// <summary>
+		///   Takes the Entry widget's contents and puts them into the mapped model property.
+		/// </summary>
+		/// <param name="model">The model to update.</param>
+		/// <exception cref="InputException">If the widget's contents are invalid.</exception>
 		public override void ParseInto(object model)
 		{
 			string input=((Gtk.Entry)Widget).Text.Trim();
@@ -35,6 +52,10 @@ namespace Bulkr.Gui.Forms.Field
 			property.SetValue(model,parsed,null);
 		}
 
+		/// <summary>
+		///   Puts the model's mapped property value into the Entry widget.
+		/// </summary>
+		/// <param name="model">The model to read from.</param>
 		public override void PopulateFrom(object model)
 		{
 			object value=GetModelValue(model);

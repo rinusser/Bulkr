@@ -11,17 +11,32 @@ using Bulkr.Gui.Utils;
 
 namespace Bulkr.Gui.Components
 {
+	/// <summary>
+	///   UI component for managing food items.
+	/// </summary>
 	public class FoodComponent : Component<Food>
 	{
+		/// <summary>
+		///   Basic constructor.
+		/// </summary>
+		/// <param name="window">The application window inputs widgets are in.</param>
 		public FoodComponent(ApplicationWindow window) : base(window)
 		{
 		}
 
+		/// <summary>
+		///   Creates a new FoodService instance. Called automatically by parent constructor.
+		/// </summary>
+		/// <returns>The FoodService instance.</returns>
 		protected override Service<Food> CreateService()
 		{
 			return FoodService.CreatePersistentInstance();
 		}
 
+		/// <summary>
+		///   Creates the Form object for food items. Called automatically by parent constructor.
+		/// </summary>
+		/// <returns>The Form instance with all mapped fields added.</returns>
 		protected override Form<Food> CreateForm()
 		{
 			var referenceSizes=new Dictionary<ReferenceSizeType,string>

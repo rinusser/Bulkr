@@ -5,6 +5,9 @@ using System;
 
 namespace Bulkr.Gui.Utils
 {
+	/// <summary>
+	///   Extension methods to <c>Gtk.ComboBox</c>.
+	/// </summary>
 	public static class ComboBoxExtensions
 	{
 		/// <summary>
