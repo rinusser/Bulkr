@@ -16,7 +16,7 @@ namespace Bulkr.Core_Tests.Services
 
 		protected FoodService CreateServiceInstanceForCurrentTest()
 		{
-			return FoodService.CreateInMemoryInstance(TestContext.CurrentContext.Test.FullName);
+			return FoodService.Create(TestContext.CurrentContext.Test.FullName);
 		}
 
 		[SetUp]

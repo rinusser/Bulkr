@@ -12,22 +12,16 @@ namespace Bulkr.Core.Services
 	public class FoodService : Service<Food>
 	{
 		/// <summary>
-		///   TODO: change to app config
+		///   Instantiates a new <see cref="FoodService"/> instance.
 		/// </summary>
-		/// <param name="name">name</param>
-		/// <returns>in-memory instance</returns>
-		public static FoodService CreateInMemoryInstance(string name)
+		/// <remarks>
+		///   If no name is supplied, the application configuration's default will be used.
+		/// </remarks>
+		/// <returns>The instance.</returns>
+		/// <param name="name">Optional: a database name to use, to e.g. distinguish individual tests.</param>
+		public static FoodService Create(string name = null)
 		{
-			return new FoodService(BulkrContext.CreateInMemoryInstance(name));
-		}
-
-		/// <summary>
-		///   TODO: change to app config
-		/// </summary>
-		/// <returns>persistent instance</returns>
-		public static FoodService CreatePersistentInstance()
-		{
-			return new FoodService(BulkrContext.GetPersistentInstance());
+			return new FoodService(BulkrContext.GetInstance(name));
 		}
 
 

@@ -30,7 +30,7 @@ namespace Bulkr.Gui.Components
 		/// <returns>The FoodService instance.</returns>
 		protected override Service<Food> CreateService()
 		{
-			return FoodService.CreatePersistentInstance();
+			return FoodService.Create();
 		}
 
 		/// <summary>

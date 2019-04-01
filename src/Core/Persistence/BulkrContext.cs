@@ -1,8 +1,11 @@
 ﻿// Copyright 2019 Richard Nusser
 // Licensed under GPLv3 (see http://www.gnu.org/licenses/)
 
-using Bulkr.Core.Models;
+using System.Configuration;
+using System;
 using Microsoft.EntityFrameworkCore;
+
+using Bulkr.Core.Models;
 
 namespace Bulkr.Core.Persistence
 {
@@ -12,7 +15,7 @@ namespace Bulkr.Core.Persistence
 	public class BulkrContext : DbContext
 	{
 		/// <summary>
-		///   Persistance instance, singleton pattern.
+		///   Persistent instance, singleton pattern.
 		/// </summary>
 		private static BulkrContext PersistentInstance { get; set; }
 
@@ -22,25 +25,23 @@ namespace Bulkr.Core.Persistence
 		/// </summary>
 		/// <param name="name">An identifier for the instance, use this to e.g. create separate contexts for tests.</param>
 		/// <returns>The instance.</returns>
-		public static BulkrContext CreateInMemoryInstance(string name)
+		private static BulkrContext CreateInMemoryInstance(string name)
 		{
 			var options=new DbContextOptionsBuilder<BulkrContext>().UseInMemoryDatabase(databaseName:name).Options;
 			return new BulkrContext(options);
 		}
 
 		/// <summary>
-		///   Creates an instance with persistent storage.
-		///   <para>
-		///     This is currently hard-coded to use a SQLite backend.
-		///   </para>
+		///   Returns an instance with SQLite storage. Uses singleton pattern: only one instance will be created.
 		/// </summary>
+		/// <param name="name">The database filename, e.g. "bulkr.sqlite".</param>
 		/// <returns>The instance.</returns>
-		public static BulkrContext GetPersistentInstance()
+		private static BulkrContext GetSQLiteInstance(string name)
 		{
-			if(BulkrContext.PersistentInstance==null)
+			if(PersistentInstance==null)
 			{
 				SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
-				var options=new DbContextOptionsBuilder<BulkrContext>().UseSqlite("Data Source=bulkr.sqlite").Options;
+				var options=new DbContextOptionsBuilder<BulkrContext>().UseSqlite(string.Format("Data Source={0}",name)).Options;
 				PersistentInstance=new BulkrContext(options);
 
 				//TODO BUL-6: make migrations work. Adding MigrationAssembly() in the context builder didn't help, earlier.
@@ -49,6 +50,44 @@ namespace Bulkr.Core.Persistence
 				PersistentInstance.Database.EnsureCreated();
 			}
 			return PersistentInstance;
+		}
+
+
+		/// <summary>
+		///   Returns a <see cref="BulkrContext"/> instance.
+		/// </summary>
+		/// <remarks>
+		///   Takes adapter and database name information from the application configuration, e.g. the target project's
+		///   <c>app.config</c> file.
+		/// </remarks>
+		/// <remarks>
+		///   Currently only SQLite (DbAdapter="sqlite") and in-memory (DbAdapter="inmemory") adapters are handled.
+		/// </remarks>
+		/// <returns>The instance.</returns>
+		/// <param name="name">Optional: a database name with adapter-specific meaning, overriding the DbName setting in app.config.</param>
+		public static BulkrContext GetInstance(string name = null)
+		{
+			string databaseAdapter=ConfigurationManager.AppSettings["DbAdapter"];
+			string databaseName=ConfigurationManager.AppSettings["DbName"];
+
+			if(name!=null)
+				databaseName=name.Trim();
+
+			if(string.IsNullOrWhiteSpace(databaseAdapter))
+				throw new Exception("need to configure database adapter in app.config");
+
+			if(string.IsNullOrWhiteSpace(databaseName))
+				throw new Exception("need to configure database name in app.config or pass it in argument");
+
+			switch(databaseAdapter.ToLower().Trim())
+			{
+				case "sqlite":
+					return GetSQLiteInstance(databaseName);
+				case "inmemory":
+					return CreateInMemoryInstance(databaseName);
+				default:
+					throw new NotImplementedException(string.Format("unhandled database adapter '{0}'",databaseAdapter));
+			}
 		}
 
 

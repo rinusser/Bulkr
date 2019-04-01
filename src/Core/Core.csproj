@@ -135,6 +135,7 @@
       <HintPath>..\..\packages\Microsoft.EntityFrameworkCore.Sqlite.Core.2.2.3\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Sqlite.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
