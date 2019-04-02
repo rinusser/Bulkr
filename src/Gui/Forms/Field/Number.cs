@@ -11,7 +11,7 @@ namespace Bulkr.Gui.Forms.Field
 	///     Only handles <c>float</c> type for now.
 	///   </para>
 	/// </summary>
-	public class Number : Field
+	public class Number<MODEL> : Field<MODEL> where MODEL : class
 	{
 		/// <summary>
 		///   Constructor for number fields.
@@ -24,39 +24,40 @@ namespace Bulkr.Gui.Forms.Field
 
 
 		/// <summary>
-		///   Takes the Entry widget's contents and puts them into the mapped model property.
+		///   Handles validation for number inputs.
 		/// </summary>
-		/// <param name="model">The model to update.</param>
-		/// <exception cref="InputException">If the widget's contents are invalid.</exception>
-		public override void ParseInto(object model)
+		/// <returns>The error message, if any.</returns>
+		protected override string PerformValidation()
 		{
 			string input=((Gtk.Entry)Widget).Text.Trim();
-			float? parsed;
-			var property=model.GetType().GetProperty(PropertyName);
-			if(input.Length<1&&IsNullableIn(model))
-				parsed=null;
-			else
+			var property=GetModelProperty();
+			if(input.Length<1)
 			{
-				try
-				{
-					parsed=float.Parse(input);
-				}
-				catch(FormatException)
-				{
-					throw new InputException(PropertyName,"not a valid number");
-				}
-
-				if(parsed<0)
-					throw new InputException(PropertyName,"cannot be negative");
+				if(!IsNullable())
+					return "cannot be empty";
+				return null;
 			}
-			property.SetValue(model,parsed,null);
+
+			try
+			{
+				var parsed=float.Parse(input);
+				if(parsed<0)
+					return "cannot be negative";
+				ParsedValue=parsed;
+			}
+			catch(FormatException)
+			{
+				return "not a valid number";
+			}
+
+			return null;
 		}
 
 		/// <summary>
 		///   Puts the model's mapped property value into the Entry widget.
 		/// </summary>
 		/// <param name="model">The model to read from.</param>
-		public override void PopulateFrom(object model)
+		public override void PopulateFrom(MODEL model)
 		{
 			object value=GetModelValue(model);
 			if(value!=null&&!(value is float))

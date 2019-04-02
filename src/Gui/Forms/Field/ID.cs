@@ -8,7 +8,7 @@ namespace Bulkr.Gui.Forms.Field
 	/// <summary>
 	///   Field class for (readonly) ID labels.
 	/// </summary>
-	public class ID : Field
+	public class ID<MODEL> : Field<MODEL> where MODEL : class
 	{
 		/// <summary>
 		///   Creates a new ID label instance.
@@ -20,10 +20,19 @@ namespace Bulkr.Gui.Forms.Field
 		}
 
 		/// <summary>
+		///   Does nothing, always succeeds.
+		/// </summary>
+		/// <returns><c>null</c>.</returns>
+		protected override string PerformValidation()
+		{
+			return null;
+		}
+
+		/// <summary>
 		///   Does nothing.
 		/// </summary>
-		/// <param name="model">ignored</param>
-		public override void ParseInto(object model)
+		/// <param name="model">Ignored.</param>
+		public override void WriteIntoModel(MODEL model)
 		{
 		}
 
@@ -31,7 +40,7 @@ namespace Bulkr.Gui.Forms.Field
 		///   Displays the model's ID.
 		/// </summary>
 		/// <param name="model">The model.</param>
-		public override void PopulateFrom(object model)
+		public override void PopulateFrom(MODEL model)
 		{
 			object value=GetModelValue(model);
 			if(value!=null&&!(value is int))

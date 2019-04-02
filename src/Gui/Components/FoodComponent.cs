@@ -47,17 +47,17 @@ namespace Bulkr.Gui.Components
 			};
 
 			return new Form<Food>()
-				.AddField(new ID("ID",GetFieldValueLabel("ID")))
-				.AddField(new Text("Name",GetFieldValueInput("Name"),Text.Option.Required))
-				.AddField(new Text("Brand",GetFieldValueInput("Brand")))
-				.AddField(new DropDown<ReferenceSizeType>("ReferenceSize",GetFieldValueComboBox("ReferenceSize"),referenceSizes))
-				.AddField(new Number("Energy",GetFieldValueInput("Energy")))
-				.AddField(new Number("TotalFat",GetFieldValueInput("TotalFat")))
-				.AddField(new Number("SaturatedFat",GetFieldValueInput("SaturatedFat")))
-				.AddField(new Number("TotalCarbohydrates",GetFieldValueInput("Carbohydrates")))
-				.AddField(new Number("Sugar",GetFieldValueInput("Sugar")))
-				.AddField(new Number("Protein",GetFieldValueInput("Protein")))
-				.AddField(new Number("Fiber",GetFieldValueInput("Fiber")));
+				.AddField(new ID<Food>("ID",GetFieldValueLabel("ID")))
+				.AddField(new Text<Food>("Name",GetFieldValueInput("Name"),Text<Food>.Option.Required))
+				.AddField(new Text<Food>("Brand",GetFieldValueInput("Brand")))
+				.AddField(new DropDown<Food,ReferenceSizeType>("ReferenceSize",GetFieldValueComboBox("ReferenceSize"),referenceSizes))
+				.AddField(new Number<Food>("Energy",GetFieldValueInput("Energy")))
+				.AddField(new Number<Food>("TotalFat",GetFieldValueInput("TotalFat")))
+				.AddField(new Number<Food>("SaturatedFat",GetFieldValueInput("SaturatedFat")))
+				.AddField(new Number<Food>("TotalCarbohydrates",GetFieldValueInput("Carbohydrates")))
+				.AddField(new Number<Food>("Sugar",GetFieldValueInput("Sugar")))
+				.AddField(new Number<Food>("Protein",GetFieldValueInput("Protein")))
+				.AddField(new Number<Food>("Fiber",GetFieldValueInput("Fiber")));
 		}
 	}
 }

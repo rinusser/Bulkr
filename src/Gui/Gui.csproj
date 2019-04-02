@@ -69,7 +69,6 @@
     <Compile Include="Bulkr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Field\Number.cs" />
-    <Compile Include="Forms\Field\InputException.cs" />
     <Compile Include="Forms\Form.cs" />
     <Compile Include="Forms\Field\Field.cs" />
     <Compile Include="Forms\Field\Text.cs" />
@@ -81,6 +80,7 @@
     <Compile Include="Utils\ApplicationWindowExtensions.cs" />
     <Compile Include="Utils\ApplicationWindow.cs" />
     <Compile Include="Utils\ComboBoxExtensions.cs" />
+    <Compile Include="Forms\ValidationError.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

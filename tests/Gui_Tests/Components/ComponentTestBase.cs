@@ -53,21 +53,6 @@ namespace Bulkr.Gui_Tests.Components
 		}
 
 
-		protected void AssertNoErrorsInLog()
-		{
-			foreach(var message in Window.LogMessages)
-				Assert.False(message.ToLower().Contains("error"),message);
-		}
-
-		protected void AssertHasOneErrorInLog()
-		{
-			int count=0;
-			foreach(var message in Window.LogMessages)
-				if(message.ToLower().Contains("error"))
-					count++;
-			Assert.AreEqual(1,count,"should have exactly 1 error message in log");
-		}
-
 		protected List<int> GetStoredIDs()
 		{
 			return CreateService().GetAll().Select(x => x.ID).ToList();

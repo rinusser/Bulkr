@@ -11,7 +11,7 @@ namespace Bulkr.Gui.Forms.Field
 	/// <summary>
 	///   Field class for entering enums in a Gtk ComboBox.
 	/// </summary>
-	public class DropDown<TYPE> : Field
+	public class DropDown<MODEL, TYPE> : Field<MODEL> where MODEL : class
 	{
 		/// <summary>
 		///   The label for <c>null</c> values in dropdown fields.
@@ -61,40 +61,37 @@ namespace Bulkr.Gui.Forms.Field
 		}
 
 		/// <summary>
-		///    Sets the model's mapped property to the currently selected ComboBox entry.
+		///   Performs validation for enum dropdowns.
 		/// </summary>
-		/// <param name="model">The model to update.</param>
-		/// <exception cref="InputException">If the widget's contents are invalid - this usually means there are errors in the code.</exception>
-		public override void ParseInto(object model)
+		/// <returns>The error message, if any.</returns>
+		protected override string PerformValidation()
 		{
-			var property=model.GetType().GetProperty(PropertyName);
 			string input=((Gtk.ComboBox)Widget).ActiveText;
 
 			if(input==NULL_LABEL)
 			{
-				if(!IsNullableIn(model))
-					throw new InputException(PropertyName,"cannot be empty");
-				property.SetValue(model,null,null);
-				return;
+				if(!IsNullable())
+					return "cannot be empty";
+				return null;
 			}
 
 			foreach(KeyValuePair<TYPE,string> entry in Map)
 			{
 				if(entry.Value==input)
 				{
-					property.SetValue(model,entry.Key,null);
-					return;
+					ParsedValue=entry.Key;
+					return null;
 				}
 			}
 
-			throw new InputException(PropertyName,"invalid selection"); //this shouldn't happen
+			return "invalid selection"; //this shouldn't happen
 		}
 
 		/// <summary>
 		///   Changes the ComboBox's current selection to the model's mapped property value.
 		/// </summary>
 		/// <param name="model">The model to read from.</param>
-		public override void PopulateFrom(object model)
+		public override void PopulateFrom(MODEL model)
 		{
 			object value=GetModelValue(model);
 			if(value!=null&&!(value is TYPE))

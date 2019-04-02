@@ -24,7 +24,7 @@ namespace Bulkr.Gui_Tests.Components
 		{
 			var expected=new List<string>
 			{
-				DropDown<TargetEnum>.NULL_LABEL,
+				DropDown<TargetModel,TargetEnum>.NULL_LABEL,
 				TargetComponent.ENUM_LABEL_ONE,
 				TargetComponent.ENUM_LABEL_TWO
 			};

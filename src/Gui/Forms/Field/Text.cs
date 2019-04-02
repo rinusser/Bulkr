@@ -13,7 +13,7 @@ namespace Bulkr.Gui.Forms.Field
 	///     to be required you'll need to pass the <see cref="Option.Required"/> option in the constructor.
 	///   </para>
 	/// </summary>
-	public class Text : Field
+	public class Text<MODEL> : Field<MODEL> where MODEL : class
 	{
 		/// <summary>
 		///   Possible field options.
@@ -43,28 +43,29 @@ namespace Bulkr.Gui.Forms.Field
 
 
 		/// <summary>
-		///   Takes the Entry widget's contents and puts them into the mapped model property.
+		///   Performs validation for string inputs.
 		/// </summary>
-		/// <param name="model">The model to update.</param>
-		/// <exception cref="InputException">If the widget's contents are invalid.</exception>
-		public override void ParseInto(object model)
+		/// <returns>The error message, if any.</returns>
+		protected override string PerformValidation()
 		{
-			string input=((Gtk.Entry)Widget).Text.Trim();
-			var property=model.GetType().GetProperty(PropertyName);
-			if(input.Length<1)
+			string parsed=((Gtk.Entry)Widget).Text.Trim();
+
+			if(parsed.Length<1)
 			{
 				if(Options.Contains(Option.Required))
-					throw new InputException(PropertyName,"cannot be empty");
-				input=null;
+					return "cannot be empty";
+				parsed=null;
 			}
-			property.SetValue(model,input,null);
+
+			ParsedValue=parsed;
+			return null;
 		}
 
 		/// <summary>
 		///   Puts the model's mapped property value into the Entry widget.
 		/// </summary>
 		/// <param name="model">The model to read from.</param>
-		public override void PopulateFrom(object model)
+		public override void PopulateFrom(MODEL model)
 		{
 			object value=GetModelValue(model);
 			if(value!=null&&!(value is string))

@@ -21,9 +21,8 @@ namespace Bulkr.Gui_Tests.Components
 
 			full2.Enter(Window);
 			Assert.AreEqual("",Window.targetmodel_id_value.Text,"(internal check)");
-			Component.Save();
+			Assert.AreEqual(true,Component.Save());
 
-			AssertNoErrorsInLog();
 			Assert.Greater(int.Parse(Window.targetmodel_id_value.Text),0,"item should have gotten an ID when saving");
 
 			var items=CreateService().GetAll();
@@ -38,9 +37,8 @@ namespace Bulkr.Gui_Tests.Components
 
 			Component.New();
 			requiredOnly.Enter(Window);
-			Component.Save();
+			Assert.AreEqual(true,Component.Save());
 
-			AssertNoErrorsInLog();
 			var item=CreateService().GetAll()[0];
 			requiredOnly.TestModel(item);
 		}
@@ -53,9 +51,8 @@ namespace Bulkr.Gui_Tests.Components
 
 			Component.NavTo(1);
 			requiredOnly.Enter(Window);
-			Component.Save();
+			Assert.AreEqual(true,Component.Save());
 
-			AssertNoErrorsInLog();
 			var items=CreateService().GetAll();
 			Assert.AreEqual(1,items.Count,"saving existing item shouldn't have added another");
 			requiredOnly.TestModel(items[0]);
@@ -69,9 +66,8 @@ namespace Bulkr.Gui_Tests.Components
 
 			Component.NavTo(1);
 			full1.Enter(Window);
-			Component.Save();
+			Assert.AreEqual(true,Component.Save());
 
-			AssertNoErrorsInLog();
 			var items=CreateService().GetAll();
 			full1.TestModel(items[0]);
 		}
@@ -84,9 +80,8 @@ namespace Bulkr.Gui_Tests.Components
 			Component.NavTo(1);
 			var full2=TestCase.Full2();
 			full2.Enter(Window);
-			Component.Save();
+			Assert.AreEqual(true,Component.Save());
 
-			AssertNoErrorsInLog();
 			var items=CreateService().GetAll();
 			full2.TestModel(items[0]);
 		}
@@ -96,10 +91,9 @@ namespace Bulkr.Gui_Tests.Components
 		{
 			Component.New();
 			TestCase.RequiredOnly().Enter(Window);
-			Component.Save();
-			Component.Save();
+			Assert.AreEqual(true,Component.Save());
+			Assert.AreEqual(true,Component.Save());
 
-			AssertNoErrorsInLog();
 			Assert.AreEqual(1,CreateService().GetAll().Count);
 		}
 
@@ -136,7 +130,7 @@ namespace Bulkr.Gui_Tests.Components
 
 		private void RunValidationFailureTestWithInputAs(Gtk.ComboBox field,string input)
 		{
-			RunValidationFailureTestWith(() => field.SelectLabel(input??DropDown<TargetEnum>.NULL_LABEL));
+			RunValidationFailureTestWith(() => field.SelectLabel(input??DropDown<TargetModel,TargetEnum>.NULL_LABEL));
 		}
 
 		private void RunValidationFailureTestWithInputAs(Gtk.Entry field,string input)
@@ -149,8 +143,7 @@ namespace Bulkr.Gui_Tests.Components
 			Component.New();
 			TestCase.Full2().Enter(Window);
 			setup();
-			Component.Save();
-			AssertHasOneErrorInLog();
+			Assert.AreEqual(false,Component.Save());
 			Assert.AreEqual(0,CreateService().GetAll().Count,"no item should have been added");
 		}
 	}

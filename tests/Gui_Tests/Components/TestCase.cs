@@ -41,9 +41,9 @@ namespace Bulkr.Gui_Tests.Components
 				RequiredFloat="",
 				RequiredFloatMessage="non-nullable floats should get empty input fields for new items",
 				OptionalFloat="",
-				RequiredEnum=DropDown<TargetEnum>.NULL_LABEL,
+				RequiredEnum=DropDown<TargetModel,TargetEnum>.NULL_LABEL,
 				RequiredEnumMessage="'please select' entry should be selected by default",
-				OptionalEnum=DropDown<TargetEnum>.NULL_LABEL,
+				OptionalEnum=DropDown<TargetModel,TargetEnum>.NULL_LABEL,
 				OptionalEnumMessage="'please select' entry should be selected by default",
 
 				Model=new TargetModel()
@@ -60,7 +60,7 @@ namespace Bulkr.Gui_Tests.Components
 				OptionalFloat="",
 				OptionalFloatMessage="field should be empty for optional floats set to null",
 				RequiredEnum=TargetComponent.ENUM_LABEL_ONE,
-				OptionalEnum=DropDown<TargetEnum>.NULL_LABEL,
+				OptionalEnum=DropDown<TargetModel,TargetEnum>.NULL_LABEL,
 				OptionalEnumMessage="'please select' entry should be selected for null values",
 
 				Model=new TargetModel
@@ -148,8 +148,8 @@ namespace Bulkr.Gui_Tests.Components
 			window.targetmodel_optionalstring_value.Text=OptionalString??"";
 			window.targetmodel_requiredfloat_value.Text=RequiredFloat??"";
 			window.targetmodel_optionalfloat_value.Text=OptionalFloat??"";
-			window.targetmodel_requiredenum_value.SelectLabel(RequiredEnum??DropDown<TargetEnum>.NULL_LABEL);
-			window.targetmodel_optionalenum_value.SelectLabel(OptionalEnum??DropDown<TargetEnum>.NULL_LABEL);
+			window.targetmodel_requiredenum_value.SelectLabel(RequiredEnum??DropDown<TargetModel,TargetEnum>.NULL_LABEL);
+			window.targetmodel_optionalenum_value.SelectLabel(OptionalEnum??DropDown<TargetModel,TargetEnum>.NULL_LABEL);
 		}
 
 		public void TestModel(TargetModel candidate)

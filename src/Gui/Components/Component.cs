@@ -1,10 +1,11 @@
 ﻿// Copyright 2019 Richard Nusser
 // Licensed under GPLv3 (see http://www.gnu.org/licenses/)
 
+using System.Collections.Generic;
+
 using Bulkr.Core.Models;
 using Bulkr.Core.Services;
 using Bulkr.Gui.Forms;
-using Bulkr.Gui.Forms.Field;
 using Bulkr.Gui.Utils;
 
 namespace Bulkr.Gui.Components
@@ -107,31 +108,33 @@ namespace Bulkr.Gui.Components
 		/// <summary>
 		///   Handler for "Save" button: saves the current item.
 		/// </summary>
-		public void Save()
+		/// <returns><c>true</c> if input passed validation and was saved, <c>false</c> otherwise.</returns>
+		public bool Save()
 		{
-			try
+			IList<ValidationError> validationErrors=Form.Validate();
+			if(validationErrors.Count>0)
 			{
-				MODEL item=Form.ParseInto(new MODEL()); //this triggers the exception handler if there are any errors
-				item=Form.ParseInto(CurrentItem); //if validation succeeded: parse data into (tracked) entity
+				foreach(var validationError in validationErrors)
+					Log(string.Format("error in {0}: {1}",validationError.Field,validationError.Reason));
+				return false;
+			}
 
-				if(CurrentItem.ID<1)
-				{
-					CurrentItem=Service.Add(item);
-					UpdateTotalCount();
-					Log(string.Format("added item ID={0}, there are now {1} entries",CurrentItem.ID,TotalCount));
-				}
-				else
-				{
-					item.ID=CurrentItem.ID;
-					CurrentItem=Service.Update(item);
-					Log(string.Format("updated item ID={0}",CurrentItem.ID));
-				}
-				NavTo(CurrentEntryNumber);
-			}
-			catch(InputException ex)
+			var item=Form.ToModel(CurrentItem);
+
+			if(CurrentItem.ID<1)
 			{
-				Log("error adding item: "+ex.Message);
+				CurrentItem=Service.Add(item);
+				UpdateTotalCount();
+				Log(string.Format("added item ID={0}, there are now {1} entries",CurrentItem.ID,TotalCount));
 			}
+			else
+			{
+				item.ID=CurrentItem.ID;
+				CurrentItem=Service.Update(item);
+				Log(string.Format("updated item ID={0}",CurrentItem.ID));
+			}
+			NavTo(CurrentEntryNumber);
+			return true;
 		}
 
 		/// <summary>

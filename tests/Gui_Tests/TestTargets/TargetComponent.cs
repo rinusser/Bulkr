@@ -32,13 +32,13 @@ namespace Bulkr.Gui_Tests.TestTargets
 			};
 
 			return new Form<TargetModel>()
-				.AddField(new ID("ID",window.targetmodel_id_value))
-				.AddField(new Text("RequiredString",window.targetmodel_requiredstring_value,Text.Option.Required))
-				.AddField(new Text("OptionalString",window.targetmodel_optionalstring_value))
-				.AddField(new Number("RequiredFloat",window.targetmodel_requiredfloat_value))
-				.AddField(new Number("OptionalFloat",window.targetmodel_optionalfloat_value))
-				.AddField(new DropDown<TargetEnum>("RequiredEnum",window.targetmodel_requiredenum_value,enumOptions))
-				.AddField(new DropDown<TargetEnum>("OptionalEnum",window.targetmodel_optionalenum_value,enumOptions));
+				.AddField(new ID<TargetModel>("ID",window.targetmodel_id_value))
+				.AddField(new Text<TargetModel>("RequiredString",window.targetmodel_requiredstring_value,Text<TargetModel>.Option.Required))
+				.AddField(new Text<TargetModel>("OptionalString",window.targetmodel_optionalstring_value))
+				.AddField(new Number<TargetModel>("RequiredFloat",window.targetmodel_requiredfloat_value))
+				.AddField(new Number<TargetModel>("OptionalFloat",window.targetmodel_optionalfloat_value))
+				.AddField(new DropDown<TargetModel,TargetEnum>("RequiredEnum",window.targetmodel_requiredenum_value,enumOptions))
+				.AddField(new DropDown<TargetModel,TargetEnum>("OptionalEnum",window.targetmodel_optionalenum_value,enumOptions));
 		}
 
 		protected override Service<TargetModel> CreateService()
