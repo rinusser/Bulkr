@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+
 using Bulkr.Core.Models;
 
 namespace Bulkr.Core.Services
@@ -41,13 +42,22 @@ namespace Bulkr.Core.Services
 
 
 		/// <summary>
+		///   Returns the DbSet, ready for actual use. Override this method if you e.g. need to eager load references.
+		/// </summary>
+		/// <returns>An <see cref="IQueryable"/> instance to use for read accesses.</returns>
+		protected virtual IQueryable<MODEL> GetConfiguredDbSet()
+		{
+			return DbSet;
+		}
+
+		/// <summary>
 		///   Finds an item by ID.
 		/// </summary>
 		/// <param name="id">The ID to look up.</param>
 		/// <returns>The item.</returns>
 		public MODEL GetByID(int id)
 		{
-			return DbSet.Find(id);
+			return GetConfiguredDbSet().First(i => i.ID==id);
 		}
 
 		/// <summary>
@@ -56,7 +66,7 @@ namespace Bulkr.Core.Services
 		/// <returns>The list of stored items.</returns>
 		public IList<MODEL> GetAll()
 		{
-			return DbSet.ToList();
+			return GetConfiguredDbSet().ToList();
 		}
 
 		/// <summary>
@@ -68,6 +78,7 @@ namespace Bulkr.Core.Services
 		public MODEL Add(MODEL item)
 		{
 			item.ID=0;
+			DetachReferences(item);
 			DatabaseContext.Add(item);
 			DatabaseContext.SaveChanges();
 			return item;
@@ -80,6 +91,7 @@ namespace Bulkr.Core.Services
 		/// <returns>The same item.</returns>
 		public MODEL Update(MODEL item)
 		{
+			DetachReferences(item);
 			DatabaseContext.Update(item);
 			DatabaseContext.SaveChanges();
 			return item;
@@ -91,8 +103,17 @@ namespace Bulkr.Core.Services
 		/// <param name="item">The item to delete.</param>
 		public void Delete(MODEL item)
 		{
+			DetachReferences(item);
 			DatabaseContext.Remove(item);
 			DatabaseContext.SaveChanges();
+		}
+
+		/// <summary>
+		///   Override this method if you need to detach entity references before writing an item to the database.
+		/// </summary>
+		/// <param name="item">The item to update.</param>
+		protected virtual void DetachReferences(MODEL item)
+		{
 		}
 	}
 }

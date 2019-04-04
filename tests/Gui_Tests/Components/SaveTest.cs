@@ -17,11 +17,11 @@ namespace Bulkr.Gui_Tests.Components
 		public void TestAddingValidItem()
 		{
 			Component.New();
-			var full2=TestCase.Full2();
+			var full2=TestCaseFactory.Full2();
 
 			full2.Enter(Window);
 			Assert.AreEqual("",Window.targetmodel_id_value.Text,"(internal check)");
-			Assert.AreEqual(true,Component.Save());
+			SaveAndAssertSuccess();
 
 			Assert.Greater(int.Parse(Window.targetmodel_id_value.Text),0,"item should have gotten an ID when saving");
 
@@ -33,11 +33,11 @@ namespace Bulkr.Gui_Tests.Components
 		[Test]
 		public void TestAddingMinimalItem()
 		{
-			var requiredOnly=TestCase.RequiredOnly();
+			var requiredOnly=TestCaseFactory.RequiredOnly();
 
 			Component.New();
 			requiredOnly.Enter(Window);
-			Assert.AreEqual(true,Component.Save());
+			SaveAndAssertSuccess();
 
 			var item=CreateService().GetAll()[0];
 			requiredOnly.TestModel(item);
@@ -46,12 +46,12 @@ namespace Bulkr.Gui_Tests.Components
 		[Test]
 		public void TestSavingWithOptionalsRemoved()
 		{
-			var requiredOnly=TestCase.RequiredOnly();
-			Service.Add(TestCase.Full1().Model);
+			var requiredOnly=TestCaseFactory.RequiredOnly();
+			Service.Add(TestCaseFactory.Full1().Model);
 
 			Component.NavTo(1);
 			requiredOnly.Enter(Window);
-			Assert.AreEqual(true,Component.Save());
+			SaveAndAssertSuccess();
 
 			var items=CreateService().GetAll();
 			Assert.AreEqual(1,items.Count,"saving existing item shouldn't have added another");
@@ -61,12 +61,12 @@ namespace Bulkr.Gui_Tests.Components
 		[Test]
 		public void TestSavingWithOptionalsAdded()
 		{
-			var full1=TestCase.Full1();
-			Service.Add(TestCase.RequiredOnly().Model);
+			var full1=TestCaseFactory.Full1();
+			Service.Add(TestCaseFactory.RequiredOnly().Model);
 
 			Component.NavTo(1);
 			full1.Enter(Window);
-			Assert.AreEqual(true,Component.Save());
+			SaveAndAssertSuccess();
 
 			var items=CreateService().GetAll();
 			full1.TestModel(items[0]);
@@ -75,12 +75,12 @@ namespace Bulkr.Gui_Tests.Components
 		[Test]
 		public void TestSavingWithOptionalsOverwritten()
 		{
-			Service.Add(TestCase.Full1().Model);
+			Service.Add(TestCaseFactory.Full1().Model);
 
 			Component.NavTo(1);
-			var full2=TestCase.Full2();
+			var full2=TestCaseFactory.Full2();
 			full2.Enter(Window);
-			Assert.AreEqual(true,Component.Save());
+			SaveAndAssertSuccess();
 
 			var items=CreateService().GetAll();
 			full2.TestModel(items[0]);
@@ -90,11 +90,20 @@ namespace Bulkr.Gui_Tests.Components
 		public void TestSavingNewTwiceCreatesOnlyOneEntry()
 		{
 			Component.New();
-			TestCase.RequiredOnly().Enter(Window);
-			Assert.AreEqual(true,Component.Save());
-			Assert.AreEqual(true,Component.Save());
+			TestCaseFactory.RequiredOnly().Enter(Window);
+			SaveAndAssertSuccess();
+			SaveAndAssertSuccess();
 
 			Assert.AreEqual(1,CreateService().GetAll().Count);
+		}
+
+		private void SaveAndAssertSuccess()
+		{
+			var result=Component.Save();
+			if(result)
+				Assert.Pass("saved successfully"); //increases assertion count by 1
+
+			Assert.Fail("Unexpected failure of Component.Save():\n  "+string.Join("\n  ",Window.LogMessages));
 		}
 
 
@@ -128,6 +137,12 @@ namespace Bulkr.Gui_Tests.Components
 			RunValidationFailureTestWithInputAs(Window.targetmodel_requiredenum_value,null);
 		}
 
+		[Test]
+		public void TestRequiredServiceDropDownIsRequired()
+		{
+			RunValidationFailureTestWithInputAs(Window.targetmodel_requiredservicedropdown_value,null);
+		}
+
 		private void RunValidationFailureTestWithInputAs(Gtk.ComboBox field,string input)
 		{
 			RunValidationFailureTestWith(() => field.SelectLabel(input??DropDown<TargetModel,TargetEnum>.NULL_LABEL));
@@ -141,7 +156,7 @@ namespace Bulkr.Gui_Tests.Components
 		private void RunValidationFailureTestWith(Action setup)
 		{
 			Component.New();
-			TestCase.Full2().Enter(Window);
+			TestCaseFactory.Full2().Enter(Window);
 			setup();
 			Assert.AreEqual(false,Component.Save());
 			Assert.AreEqual(0,CreateService().GetAll().Count,"no item should have been added");

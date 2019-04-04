@@ -12,9 +12,9 @@ namespace Bulkr.Gui_Tests.Components
 		[SetUp]
 		public void SetUpRepository()
 		{
-			Service.Add(TestCase.Full1().Model);
-			Service.Add(TestCase.RequiredOnly().Model);
-			Service.Add(TestCase.Full1().Model);
+			Service.Add(TestCaseFactory.Full1().Model);
+			Service.Add(TestCaseFactory.RequiredOnly().Model);
+			Service.Add(TestCaseFactory.Full1().Model);
 		}
 
 		[Test]

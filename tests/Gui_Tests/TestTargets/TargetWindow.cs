@@ -24,6 +24,8 @@ namespace Bulkr.Gui_Tests.TestTargets
 		public Gtk.Entry targetmodel_optionalfloat_value;
 		public Gtk.ComboBox targetmodel_requiredenum_value;
 		public Gtk.ComboBox targetmodel_optionalenum_value;
+		public Gtk.ComboBox targetmodel_requiredservicedropdown_value;
+		public Gtk.ComboBox targetmodel_optionalservicedropdown_value;
 		public Gtk.Label targetmodel_nav_label;
 
 		private Gtk.Widget PublicWidget;
@@ -43,6 +45,8 @@ namespace Bulkr.Gui_Tests.TestTargets
 			targetmodel_optionalfloat_value=new Gtk.Entry { Text=UNINITIALIZED_TEXT };
 			targetmodel_requiredenum_value=new Gtk.ComboBox();
 			targetmodel_optionalenum_value=new Gtk.ComboBox();
+			targetmodel_requiredservicedropdown_value=new Gtk.ComboBox();
+			targetmodel_optionalservicedropdown_value=new Gtk.ComboBox();
 			targetmodel_nav_label=new Gtk.Label { Text=UNINITIALIZED_TEXT };
 
 			LogMessages=new List<string>();

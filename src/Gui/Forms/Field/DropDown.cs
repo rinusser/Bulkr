@@ -34,9 +34,10 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="propertyName">The model property name.</param>
 		/// <param name="widget">The Gtk ComboBox.</param>
 		/// <param name="map">The enum to ComboBox label mapping, without any "Please select..." entries.</param>
-		public DropDown(string propertyName,Gtk.ComboBox widget,IDictionary<TYPE,string> map) : base(propertyName,widget)
+		/// <param name="options">Any options for this field.</param>
+		public DropDown(string propertyName,Gtk.ComboBox widget,IDictionary<TYPE,string> map,params Option[] options) : base(propertyName,widget,options)
 		{
-			Map=map;
+			Map=map??new Dictionary<TYPE,string>();
 			FillComboBox();
 		}
 
@@ -96,7 +97,17 @@ namespace Bulkr.Gui.Forms.Field
 			object value=GetModelValue(model);
 			if(value!=null&&!(value is TYPE))
 				throw new Exception("wrong data type"); //TODO: improve
-			((Gtk.ComboBox)Widget).SelectLabel(value!=null ? Map[(TYPE)value] : NULL_LABEL);
+			((Gtk.ComboBox)Widget).SelectLabel(value!=null ? LookUpMappedValueFor((TYPE)value) : NULL_LABEL);
+		}
+
+		/// <summary>
+		///   Find item label for given item. Override this if you e.g. use object keys and don't override .Equals().
+		/// </summary>
+		/// <param name="item">The item to look up.</param>
+		/// <returns>The label to display.</returns>
+		protected virtual string LookUpMappedValueFor(TYPE item)
+		{
+			return Map[item];
 		}
 	}
 }

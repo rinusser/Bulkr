@@ -13,7 +13,9 @@ namespace Bulkr.Gui_Tests.TestTargets
 			return new TargetContext(options);
 		}
 
+
 		public DbSet<TargetModel> TargetSet { get; set; }
+		public DbSet<ReferencedModel> ReferencedSet { get; set; }
 
 
 		private TargetContext(DbContextOptions<TargetContext> options) : base(options)

@@ -12,20 +12,20 @@ namespace Bulkr.Gui_Tests.Components
 		public void TestRevertingNewItemEmptiesForm()
 		{
 			Component.New();
-			TestCase.Full1().Enter(Window);
+			TestCaseFactory.Full1().Enter(Window);
 			Component.Revert();
 
-			TestCase.Empty().TestForm(Window);
+			TestCaseFactory.Empty().TestForm(Window);
 		}
 
 		[Test]
 		public void TestRevertingRequiredOnlyItemResetsForm()
 		{
-			TestCase requiredOnly=TestCase.RequiredOnly();
+			TestCase requiredOnly=TestCaseFactory.RequiredOnly();
 			Service.Add(requiredOnly.Model);
 
 			Component.NavTo(1);
-			TestCase.Full1().Enter(Window);
+			TestCaseFactory.Full1().Enter(Window);
 			Component.Revert();
 
 			requiredOnly.TestForm(Window);
@@ -34,11 +34,11 @@ namespace Bulkr.Gui_Tests.Components
 		[Test]
 		public void TestRevertingFilledItemResetsForm()
 		{
-			TestCase filled=TestCase.Full1();
+			TestCase filled=TestCaseFactory.Full1();
 			Service.Add(filled.Model);
 
 			Component.NavTo(1);
-			TestCase.Full2().Enter(Window);
+			TestCaseFactory.Full2().Enter(Window);
 			Component.Revert();
 
 			filled.TestForm(Window);
@@ -47,7 +47,7 @@ namespace Bulkr.Gui_Tests.Components
 		[Test]
 		public void TestRevertingEmptiedFormRestoresEverything()
 		{
-			TestCase filled=TestCase.Full1();
+			TestCase filled=TestCaseFactory.Full1();
 			Service.Add(filled.Model);
 
 			Component.NavTo(1);

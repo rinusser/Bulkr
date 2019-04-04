@@ -118,6 +118,10 @@
     <Compile Include="Components\RevertTest.cs" />
     <Compile Include="Components\FieldsTest.cs" />
     <Compile Include="Components\DeleteTest.cs" />
+    <Compile Include="TestTargets\ReferencedService.cs" />
+    <Compile Include="TestTargets\ReferencedModel.cs" />
+    <Compile Include="Components\TestCaseFactory.cs" />
+    <Compile Include="TestTargets\TargetComponentContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

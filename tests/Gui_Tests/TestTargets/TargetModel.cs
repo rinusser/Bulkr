@@ -13,5 +13,7 @@ namespace Bulkr.Gui_Tests.TestTargets
 		public float? OptionalFloat { get; set; }
 		public TargetEnum RequiredEnum { get; set; }
 		public TargetEnum? OptionalEnum { get; set; }
+		public ReferencedModel RequiredServiceDropDown { get; set; }
+		public ReferencedModel OptionalServiceDropDown { get; set; }
 	}
 }

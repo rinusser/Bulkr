@@ -40,18 +40,25 @@ namespace Bulkr.Gui.Forms.Field
 		/// </summary>
 		protected object ParsedValue { get; set; }
 
+		/// <summary>
+		///   This field's active options.
+		/// </summary>
+		protected IList<Option> Options { get; set; }
+
 
 		/// <summary>
 		///   Base constructor, handles basics for 1-to-1 mappings.
 		/// </summary>
 		/// <param name="propertyName">The model property name.</param>
 		/// <param name="widget">The Gtk widget.</param>
-		protected Field(string propertyName,Gtk.Widget widget)
+		/// <param name="options">Any options for this field.</param>
+		protected Field(string propertyName,Gtk.Widget widget,Option[] options = null)
 		{
 			PropertyName=propertyName;
 			Widget=widget;
 			ValidationErrors=new List<ValidationError>();
 			ParsedValue=null;
+			Options=options??new Option[] { };
 		}
 
 
@@ -133,9 +140,16 @@ namespace Bulkr.Gui.Forms.Field
 		///   </para>
 		/// </summary>
 		/// <returns><c>true</c> if property is nullable, <c>false</c> otherwise.</returns>
-		protected bool IsNullable()
+		protected virtual bool IsNullable()
 		{
 			return Nullable.GetUnderlyingType(GetModelProperty().PropertyType)!=null;
+		}
+
+		/// <summary>
+		///   Reloads whatever data this field is referencing. Override this method if there's something to reload.
+		/// </summary>
+		public virtual void Reload()
+		{
 		}
 	}
 }

@@ -14,7 +14,7 @@ namespace Bulkr.Gui_Tests.Components
 			Component.New();
 			AssertNavigationIsAt("1/1","navigation should be at 1 of 1 item if table is empty");
 
-			TestCase.Empty().TestForm(Window);
+			TestCaseFactory.Empty().TestForm(Window);
 
 			Component.New();
 			AssertNavigationIsAt("1/1","clicking 'New' twice shouldn't change navigation position");
@@ -23,7 +23,7 @@ namespace Bulkr.Gui_Tests.Components
 		[Test]
 		public void TestClickingNewTwiceShowsCorrectNavigation()
 		{
-			Service.Add(TestCase.RequiredOnly().Model);
+			Service.Add(TestCaseFactory.RequiredOnly().Model);
 			Component.NavTo(1);
 
 			Component.New();

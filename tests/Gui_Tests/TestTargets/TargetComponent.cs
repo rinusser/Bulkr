@@ -16,7 +16,7 @@ namespace Bulkr.Gui_Tests.TestTargets
 		public static readonly string ENUM_LABEL_TWO="twO";
 
 
-		public TargetComponent(TargetWindow window) : base(window)
+		public TargetComponent(TargetComponentContext context) : base(context)
 		{
 		}
 
@@ -31,14 +31,23 @@ namespace Bulkr.Gui_Tests.TestTargets
 				{ TargetEnum.Two,ENUM_LABEL_TWO },
 			};
 
+			var referencedService=((TargetComponentContext)Context).ReferencedService;
+
 			return new Form<TargetModel>()
 				.AddField(new ID<TargetModel>("ID",window.targetmodel_id_value))
-				.AddField(new Text<TargetModel>("RequiredString",window.targetmodel_requiredstring_value,Text<TargetModel>.Option.Required))
+				.AddField(new Text<TargetModel>("RequiredString",window.targetmodel_requiredstring_value,Option.Required))
 				.AddField(new Text<TargetModel>("OptionalString",window.targetmodel_optionalstring_value))
 				.AddField(new Number<TargetModel>("RequiredFloat",window.targetmodel_requiredfloat_value))
 				.AddField(new Number<TargetModel>("OptionalFloat",window.targetmodel_optionalfloat_value))
 				.AddField(new DropDown<TargetModel,TargetEnum>("RequiredEnum",window.targetmodel_requiredenum_value,enumOptions))
-				.AddField(new DropDown<TargetModel,TargetEnum>("OptionalEnum",window.targetmodel_optionalenum_value,enumOptions));
+				.AddField(new DropDown<TargetModel,TargetEnum>("OptionalEnum",window.targetmodel_optionalenum_value,enumOptions))
+				.AddField(new ServiceDropDown<TargetModel,ReferencedModel>("RequiredServiceDropDown",window.targetmodel_requiredservicedropdown_value,referencedService,GetReferencedModelDisplayString,Option.Required))
+				.AddField(new ServiceDropDown<TargetModel,ReferencedModel>("OptionalServiceDropDown",window.targetmodel_optionalservicedropdown_value,referencedService,GetReferencedModelDisplayString));
+		}
+
+		public static string GetReferencedModelDisplayString(ReferencedModel model)
+		{
+			return model.Title;
 		}
 
 		protected override Service<TargetModel> CreateService()

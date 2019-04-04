@@ -26,97 +26,13 @@ namespace Bulkr.Gui_Tests.Components
 		public string RequiredEnumMessage;
 		public string OptionalEnum;
 		public string OptionalEnumMessage;
+		public string RequiredServiceDropDown;
+		public string RequiredServiceDropDownMessage;
+		public string OptionalServiceDropDown;
+		public string OptionalServiceDropDownMessage;
 
 		public TargetModel Model;
 
-
-		public static TestCase Empty()
-		{
-			return new TestCase
-			{
-				ID="",
-				IDMessage="ID should be empty for new items",
-				RequiredString="",
-				OptionalString="",
-				RequiredFloat="",
-				RequiredFloatMessage="non-nullable floats should get empty input fields for new items",
-				OptionalFloat="",
-				RequiredEnum=DropDown<TargetModel,TargetEnum>.NULL_LABEL,
-				RequiredEnumMessage="'please select' entry should be selected by default",
-				OptionalEnum=DropDown<TargetModel,TargetEnum>.NULL_LABEL,
-				OptionalEnumMessage="'please select' entry should be selected by default",
-
-				Model=new TargetModel()
-			};
-		}
-
-		public static TestCase RequiredOnly()
-		{
-			return new TestCase
-			{
-				RequiredString="stringy",
-				OptionalString="",
-				RequiredFloat="0.12",
-				OptionalFloat="",
-				OptionalFloatMessage="field should be empty for optional floats set to null",
-				RequiredEnum=TargetComponent.ENUM_LABEL_ONE,
-				OptionalEnum=DropDown<TargetModel,TargetEnum>.NULL_LABEL,
-				OptionalEnumMessage="'please select' entry should be selected for null values",
-
-				Model=new TargetModel
-				{
-					RequiredString="stringy",
-					RequiredFloat=0.12F,
-					RequiredEnum=TargetEnum.One
-				}
-			};
-		}
-
-		public static TestCase Full1()
-		{
-			return new TestCase
-			{
-				RequiredString="E",
-				OptionalString="B",
-				RequiredFloat="99999.99",
-				OptionalFloat="0.01",
-				RequiredEnum=TargetComponent.ENUM_LABEL_TWO,
-				OptionalEnum=TargetComponent.ENUM_LABEL_ONE,
-
-				Model=new TargetModel
-				{
-					RequiredString="E",
-					OptionalString="B",
-					RequiredFloat=99999.99F,
-					OptionalFloat=0.01F,
-					RequiredEnum=TargetEnum.Two,
-					OptionalEnum=TargetEnum.One
-				}
-			};
-		}
-
-		public static TestCase Full2()
-		{
-			return new TestCase
-			{
-				RequiredString="xx",
-				OptionalString="yy",
-				RequiredFloat="0.1",
-				OptionalFloat="2.3",
-				RequiredEnum=TargetComponent.ENUM_LABEL_ONE,
-				OptionalEnum=TargetComponent.ENUM_LABEL_TWO,
-
-				Model=new TargetModel
-				{
-					RequiredString="xx",
-					OptionalString="yy",
-					RequiredFloat=0.1F,
-					OptionalFloat=2.3F,
-					RequiredEnum=TargetEnum.One,
-					OptionalEnum=TargetEnum.Two,
-				}
-			};
-		}
 
 		public void TestForm(TargetWindow window)
 		{
@@ -140,6 +56,12 @@ namespace Bulkr.Gui_Tests.Components
 
 			if(OptionalEnum!=null)
 				Assert.AreEqual(OptionalEnum,window.targetmodel_optionalenum_value.ActiveText,OptionalEnumMessage);
+
+			if(RequiredServiceDropDown!=null)
+				Assert.AreEqual(RequiredServiceDropDown,window.targetmodel_requiredservicedropdown_value.ActiveText,RequiredServiceDropDownMessage);
+
+			if(OptionalServiceDropDown!=null)
+				Assert.AreEqual(OptionalServiceDropDown,window.targetmodel_optionalservicedropdown_value.ActiveText,OptionalServiceDropDownMessage);
 		}
 
 		public void Enter(TargetWindow window)
@@ -150,6 +72,8 @@ namespace Bulkr.Gui_Tests.Components
 			window.targetmodel_optionalfloat_value.Text=OptionalFloat??"";
 			window.targetmodel_requiredenum_value.SelectLabel(RequiredEnum??DropDown<TargetModel,TargetEnum>.NULL_LABEL);
 			window.targetmodel_optionalenum_value.SelectLabel(OptionalEnum??DropDown<TargetModel,TargetEnum>.NULL_LABEL);
+			window.targetmodel_requiredservicedropdown_value.SelectLabel(RequiredServiceDropDown??DropDown<TargetModel,ReferencedModel>.NULL_LABEL);
+			window.targetmodel_optionalservicedropdown_value.SelectLabel(OptionalServiceDropDown??DropDown<TargetModel,ReferencedModel>.NULL_LABEL);
 		}
 
 		public void TestModel(TargetModel candidate)

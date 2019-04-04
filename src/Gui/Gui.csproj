@@ -81,6 +81,9 @@
     <Compile Include="Utils\ApplicationWindow.cs" />
     <Compile Include="Utils\ComboBoxExtensions.cs" />
     <Compile Include="Forms\ValidationError.cs" />
+    <Compile Include="Forms\Field\ServiceDropDown.cs" />
+    <Compile Include="Forms\Field\Option.cs" />
+    <Compile Include="Components\ComponentContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

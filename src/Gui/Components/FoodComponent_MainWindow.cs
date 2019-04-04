@@ -18,7 +18,7 @@ public partial class MainWindow : ApplicationWindow
 	/// </summary>
 	private void AddFoodComponent()
 	{
-		FoodComponent=new FoodComponent(this);
+		FoodComponent=new FoodComponent(new ComponentContext { Window=this });
 	}
 
 

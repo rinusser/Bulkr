@@ -16,14 +16,18 @@ namespace Bulkr.Gui_Tests.Components
 		protected TargetWindow Window;
 		protected TargetComponent Component;
 		protected TargetService Service;
+		protected ReferencedService ReferencedService;
+		protected TestCaseFactory TestCaseFactory;
 
 
 		[SetUp]
 		public void SetUp()
 		{
 			Window=new TargetWindow();
-			Component=new TargetComponent(Window);
 			Service=CreateService();
+			ReferencedService=ReferencedService.Create(TestContext.CurrentContext.Test.FullName,(TargetContext)Service.DatabaseContext);
+			TestCaseFactory=new TestCaseFactory(ReferencedService);
+			Component=new TargetComponent(new TargetComponentContext { Window=Window,ReferencedService=ReferencedService });
 		}
 
 		protected TargetService CreateService()
@@ -34,7 +38,7 @@ namespace Bulkr.Gui_Tests.Components
 
 		protected void ClearForm()
 		{
-			TestCase.Empty().Enter(Window);
+			TestCaseFactory.Empty().Enter(Window);
 		}
 
 

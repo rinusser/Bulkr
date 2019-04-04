@@ -39,8 +39,9 @@ namespace Bulkr.Gui.Utils
 		/// </summary>
 		/// <param name="comboBox">The ComboBox to select the label in.</param>
 		/// <param name="label">The label to select.</param>
+		/// <param name="ignoreMissing">Whether to ignore labels that can't be found.</param>
 		/// <exception cref="ArgumentException">if the label wasn't found in the dropdown.</exception>
-		public static void SelectLabel(this Gtk.ComboBox comboBox,string label)
+		public static void SelectLabel(this Gtk.ComboBox comboBox,string label,bool ignoreMissing = false)
 		{
 			bool found=false;
 			ForEach(comboBox,(entry,iter) =>
@@ -52,8 +53,8 @@ namespace Bulkr.Gui.Utils
 				return false;
 			});
 
-			if(!found)
-				throw new ArgumentException(string.Format("label {0} not found in ComboBox {1}",label,comboBox.Name));
+			if(!found&&!ignoreMissing)
+				throw new ArgumentException(string.Format("label '{0}' not found in ComboBox '{1}'",label,comboBox.Name));
 		}
 	}
 }

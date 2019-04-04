@@ -18,6 +18,9 @@ namespace Bulkr.Gui.Components
 	/// </summary>
 	public abstract class Component<MODEL> where MODEL : Model, new()
 	{
+		/// <summary>Container for all references the component needs.</summary>
+		protected ComponentContext Context { get; }
+
 		/// <summary>The application window form widgets are in.</summary>
 		protected ApplicationWindow Window { get; }
 
@@ -43,10 +46,17 @@ namespace Bulkr.Gui.Components
 		/// <summary>
 		///   Base constructor. Subclasses classes generally should invoke this.
 		/// </summary>
-		/// <param name="window">The application window the form widgets are in.</param>
-		protected Component(ApplicationWindow window)
+		/// <remarks>
+		///   This will make virtual calls to your <see cref="CreateForm()"/> and <see cref="CreateService()"/> methods.
+		///   If you need access to run-time instances (e.g. additional service instances) that aren't available in those
+		///   virtual methods, you can extend <see cref="ComponentContext"/>, pass it in your subclass's constructor and
+		///   access it it via <see cref="Context"/>.
+		/// </remarks>
+		/// <param name="context">The context for this component, containing at least the application window the form widgets are in.</param>
+		protected Component(ComponentContext context)
 		{
-			Window=window;
+			Context=context;
+			Window=context.Window;
 			CurrentItem=new MODEL();
 			WidgetNamePrefix=typeof(MODEL).Name.ToLower()+"_";
 			Form=CreateForm();
@@ -195,6 +205,15 @@ namespace Bulkr.Gui.Components
 			UpdateNavInfo();
 			PopulateWithCurrentItem();
 		}
+
+		/// <summary>
+		///   Reloads the form, particularly selection options that might have changed since loading the form.
+		/// </summary>
+		public void Reload()
+		{
+			Form.Reload();
+		}
+
 
 		/// <summary>
 		///   Adds a log message.

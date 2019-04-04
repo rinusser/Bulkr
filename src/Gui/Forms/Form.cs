@@ -88,5 +88,14 @@ namespace Bulkr.Gui.Forms
 				field.WriteIntoModel(model);
 			return model;
 		}
+
+		/// <summary>
+		///   Reloads all fields, making them show updated options that might have changed since last loading the form.
+		/// </summary>
+		public void Reload()
+		{
+			foreach(var field in Fields)
+				field.Reload();
+		}
 	}
 }

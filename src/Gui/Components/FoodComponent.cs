@@ -19,8 +19,8 @@ namespace Bulkr.Gui.Components
 		/// <summary>
 		///   Basic constructor.
 		/// </summary>
-		/// <param name="window">The application window inputs widgets are in.</param>
-		public FoodComponent(ApplicationWindow window) : base(window)
+		/// <param name="context">The context for this component.</param>
+		public FoodComponent(ComponentContext context) : base(context)
 		{
 		}
 
@@ -48,7 +48,7 @@ namespace Bulkr.Gui.Components
 
 			return new Form<Food>()
 				.AddField(new ID<Food>("ID",GetFieldValueLabel("ID")))
-				.AddField(new Text<Food>("Name",GetFieldValueInput("Name"),Text<Food>.Option.Required))
+				.AddField(new Text<Food>("Name",GetFieldValueInput("Name"),Option.Required))
 				.AddField(new Text<Food>("Brand",GetFieldValueInput("Brand")))
 				.AddField(new DropDown<Food,ReferenceSizeType>("ReferenceSize",GetFieldValueComboBox("ReferenceSize"),referenceSizes))
 				.AddField(new Number<Food>("Energy",GetFieldValueInput("Energy")))

@@ -16,29 +16,13 @@ namespace Bulkr.Gui.Forms.Field
 	public class Text<MODEL> : Field<MODEL> where MODEL : class
 	{
 		/// <summary>
-		///   Possible field options.
-		/// </summary>
-		public enum Option
-		{
-			Required,
-		}
-
-
-		/// <summary>
-		///   This field's active options.
-		/// </summary>
-		private IList<Option> Options { get; set; }
-
-
-		/// <summary>
 		///   Constructor for string fields.
 		/// </summary>
 		/// <param name="propertyName">The model property name.</param>
 		/// <param name="widget">The Entry widget.</param>
 		/// <param name="options">Mapping options.</param>
-		public Text(string propertyName,Gtk.Entry widget,params Option[] options) : base(propertyName,widget)
+		public Text(string propertyName,Gtk.Entry widget,params Option[] options) : base(propertyName,widget,options)
 		{
-			Options=options;
 		}
 
 
