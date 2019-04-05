@@ -136,6 +136,63 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.ValueTuple">
+      <HintPath>..\..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Abstractions">
+      <HintPath>..\..\packages\FluentMigrator.Abstractions.3.1.3\lib\net461\FluentMigrator.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator">
+      <HintPath>..\..\packages\FluentMigrator.3.1.3\lib\net461\FluentMigrator.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.Core">
+      <HintPath>..\..\packages\FluentMigrator.Runner.Core.3.1.3\lib\net461\FluentMigrator.Runner.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.SQLite">
+      <HintPath>..\..\packages\FluentMigrator.Runner.SQLite.3.1.3\lib\net461\FluentMigrator.Runner.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Extensions.SqlAnywhere">
+      <HintPath>..\..\packages\FluentMigrator.Extensions.SqlAnywhere.3.1.3\lib\net461\FluentMigrator.Extensions.SqlAnywhere.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Extensions.SqlServer">
+      <HintPath>..\..\packages\FluentMigrator.Extensions.SqlServer.3.1.3\lib\net461\FluentMigrator.Extensions.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.Db2">
+      <HintPath>..\..\packages\FluentMigrator.Runner.Db2.3.1.3\lib\net461\FluentMigrator.Runner.Db2.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.Firebird">
+      <HintPath>..\..\packages\FluentMigrator.Runner.Firebird.3.1.3\lib\net461\FluentMigrator.Runner.Firebird.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.Hana">
+      <HintPath>..\..\packages\FluentMigrator.Runner.Hana.3.1.3\lib\net461\FluentMigrator.Runner.Hana.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.Jet">
+      <HintPath>..\..\packages\FluentMigrator.Runner.Jet.3.1.3\lib\net461\FluentMigrator.Runner.Jet.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.MySql">
+      <HintPath>..\..\packages\FluentMigrator.Runner.MySql.3.1.3\lib\net461\FluentMigrator.Runner.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.Oracle">
+      <HintPath>..\..\packages\FluentMigrator.Runner.Oracle.3.1.3\lib\net461\FluentMigrator.Runner.Oracle.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.Postgres">
+      <HintPath>..\..\packages\FluentMigrator.Runner.Postgres.3.1.3\lib\net461\FluentMigrator.Runner.Postgres.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.Redshift">
+      <HintPath>..\..\packages\FluentMigrator.Runner.Redshift.3.1.3\lib\net461\FluentMigrator.Runner.Redshift.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.SqlAnywhere">
+      <HintPath>..\..\packages\FluentMigrator.Runner.SqlAnywhere.3.1.3\lib\net461\FluentMigrator.Runner.SqlAnywhere.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.SqlServer">
+      <HintPath>..\..\packages\FluentMigrator.Runner.SqlServer.3.1.3\lib\net461\FluentMigrator.Runner.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner.SqlServerCe">
+      <HintPath>..\..\packages\FluentMigrator.Runner.SqlServerCe.3.1.3\lib\net461\FluentMigrator.Runner.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentMigrator.Runner">
+      <HintPath>..\..\packages\FluentMigrator.Runner.3.1.3\lib\net461\FluentMigrator.Runner.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,11 +204,14 @@
     <Compile Include="Services\FoodService.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Services\Service.cs" />
+    <Compile Include="Persistence\Migrations\201904052142_AddFoods.cs" />
+    <Compile Include="Persistence\MigrationRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Persistence\" />
     <Folder Include="Services\" />
+    <Folder Include="Persistence\Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -160,4 +220,5 @@
   <Import Project="..\..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.12\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets" Condition="Exists('..\..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.12\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets')" />
   <Import Project="..\..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.12\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets" Condition="Exists('..\..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.12\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets')" />
   <Import Project="..\..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.12\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets" Condition="Exists('..\..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.12\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets')" />
+  <Import Project="..\..\packages\FluentMigrator.Runner.SqlServerCe.3.1.3\build\netstandard2.0\FluentMigrator.Runner.SqlServerCe.targets" Condition="Exists('..\..\packages\FluentMigrator.Runner.SqlServerCe.3.1.3\build\netstandard2.0\FluentMigrator.Runner.SqlServerCe.targets')" />
 </Project>

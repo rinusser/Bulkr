@@ -40,14 +40,15 @@ namespace Bulkr.Core.Persistence
 		{
 			if(PersistentInstance==null)
 			{
+				var connectionString=string.Format("Data Source={0}",name);
 				SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
-				var options=new DbContextOptionsBuilder<BulkrContext>().UseSqlite(string.Format("Data Source={0}",name)).Options;
+
+				MigrationRunner.Run(connectionString);
+
+				var options=new DbContextOptionsBuilder<BulkrContext>().UseSqlite(connectionString).Options;
 				PersistentInstance=new BulkrContext(options);
 
-				//TODO BUL-6: make migrations work. Adding MigrationAssembly() in the context builder didn't help, earlier.
-				//PersistentInstance.Database.Migrate();
-
-				PersistentInstance.Database.EnsureCreated();
+				//PersistentInstance.Database.EnsureCreated(); //run this in an empty schema to compare against migrations
 			}
 			return PersistentInstance;
 		}
