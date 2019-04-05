@@ -1,6 +1,8 @@
 ﻿// Copyright 2019 Richard Nusser
 // Licensed under GPLv3 (see http://www.gnu.org/licenses/)
 
+using System;
+using System.Globalization;
 using System.Reflection;
 using NUnit.Framework;
 
@@ -30,6 +32,12 @@ namespace Bulkr.Gui_Tests.Components
 		public string RequiredServiceDropDownMessage;
 		public string OptionalServiceDropDown;
 		public string OptionalServiceDropDownMessage;
+		public string RequiredDateTimeDate;
+		public string RequiredDateTimeDateMessage;
+		public string RequiredDateTimeHour;
+		public string RequiredDateTimeHourMessage;
+		public string RequiredDateTimeMinute;
+		public string RequiredDateTimeMinuteMessage;
 
 		public TargetModel Model;
 
@@ -62,7 +70,17 @@ namespace Bulkr.Gui_Tests.Components
 
 			if(OptionalServiceDropDown!=null)
 				Assert.AreEqual(OptionalServiceDropDown,window.targetmodel_optionalservicedropdown_value.ActiveText,OptionalServiceDropDownMessage);
+
+			if(RequiredDateTimeDate!=null)
+				Assert.AreEqual(RequiredDateTimeDate,window.targetmodel_requireddatetime_date_value.Date.ToString("yyyy-MM-dd"),RequiredDateTimeDateMessage);
+
+			if(RequiredDateTimeHour!=null)
+				Assert.AreEqual(RequiredDateTimeHour,window.targetmodel_requireddatetime_hour_value.Text,RequiredDateTimeHourMessage);
+
+			if(RequiredDateTimeMinute!=null)
+				Assert.AreEqual(RequiredDateTimeMinute,window.targetmodel_requireddatetime_minute_value.Text,RequiredDateTimeMinuteMessage);
 		}
+
 
 		public void Enter(TargetWindow window)
 		{
@@ -74,13 +92,27 @@ namespace Bulkr.Gui_Tests.Components
 			window.targetmodel_optionalenum_value.SelectLabel(OptionalEnum??DropDown<TargetModel,TargetEnum>.NULL_LABEL);
 			window.targetmodel_requiredservicedropdown_value.SelectLabel(RequiredServiceDropDown??DropDown<TargetModel,ReferencedModel>.NULL_LABEL);
 			window.targetmodel_optionalservicedropdown_value.SelectLabel(OptionalServiceDropDown??DropDown<TargetModel,ReferencedModel>.NULL_LABEL);
+			window.targetmodel_requireddatetime_date_value.Date=RequiredDateTimeDate!=null ? DateTime.ParseExact(RequiredDateTimeDate,"yyyy-MM-dd",CultureInfo.InvariantCulture) : DateTime.Today;
+			window.targetmodel_requireddatetime_hour_value.Text=RequiredDateTimeHour??"";
+			window.targetmodel_requireddatetime_minute_value.Text=RequiredDateTimeMinute??"";
 		}
 
 		public void TestModel(TargetModel candidate)
 		{
 			foreach(PropertyInfo property in candidate.GetType().GetProperties())
-				if(property.Name!="ID")
-					Assert.AreEqual(property.GetValue(Model),property.GetValue(candidate),property.Name);
+			{
+				if(property.Name=="ID")
+					continue;
+				object expected=property.GetValue(Model);
+				object actual=property.GetValue(candidate);
+
+				if(property.PropertyType==typeof(ReferencedModel))
+				{
+					expected=((ReferencedModel)expected)?.ID;
+					actual=((ReferencedModel)actual)?.ID;
+				}
+				Assert.AreEqual(expected,actual,property.Name);
+			}
 		}
 	}
 }

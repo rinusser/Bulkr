@@ -1,6 +1,8 @@
 ﻿// Copyright 2019 Richard Nusser
 // Licensed under GPLv3 (see http://www.gnu.org/licenses/)
 
+using System;
+
 using Bulkr.Core.Models;
 
 namespace Bulkr.Gui_Tests.TestTargets
@@ -15,5 +17,6 @@ namespace Bulkr.Gui_Tests.TestTargets
 		public TargetEnum? OptionalEnum { get; set; }
 		public ReferencedModel RequiredServiceDropDown { get; set; }
 		public ReferencedModel OptionalServiceDropDown { get; set; }
+		public DateTime RequiredDateTime { get; set; }
 	}
 }

@@ -24,7 +24,6 @@ namespace Bulkr.Gui_Tests.Components
 			SaveAndAssertSuccess();
 
 			Assert.Greater(int.Parse(Window.targetmodel_id_value.Text),0,"item should have gotten an ID when saving");
-
 			var items=CreateService().GetAll();
 			Assert.AreEqual(1,items.Count);
 			full2.TestModel(items[0]);
@@ -100,10 +99,10 @@ namespace Bulkr.Gui_Tests.Components
 		private void SaveAndAssertSuccess()
 		{
 			var result=Component.Save();
-			if(result)
-				Assert.Pass("saved successfully"); //increases assertion count by 1
+			if(!result)
+				Assert.Fail("Unexpected failure of Component.Save():\n  "+string.Join("\n  ",Window.LogMessages));
 
-			Assert.Fail("Unexpected failure of Component.Save():\n  "+string.Join("\n  ",Window.LogMessages));
+			Assert.True(true);  //increase assertion count by 1
 		}
 
 
@@ -143,6 +142,20 @@ namespace Bulkr.Gui_Tests.Components
 			RunValidationFailureTestWithInputAs(Window.targetmodel_requiredservicedropdown_value,null);
 		}
 
+		[Test]
+		public void TestRequiredDateTimeHourIsRequiredAndRangeLimited()
+		{
+			foreach(var input in new string[] { "","-1","24" })
+				RunValidationFailureTestWithInputAs(Window.targetmodel_requireddatetime_hour_value,input);
+		}
+
+		[Test]
+		public void TestRequiredDateTimeMinuteIsRequiredAndRangeLimited()
+		{
+			foreach(var input in new string[] { "","-1","60" })
+				RunValidationFailureTestWithInputAs(Window.targetmodel_requireddatetime_minute_value,input);
+		}
+
 		private void RunValidationFailureTestWithInputAs(Gtk.ComboBox field,string input)
 		{
 			RunValidationFailureTestWith(() => field.SelectLabel(input??DropDown<TargetModel,TargetEnum>.NULL_LABEL));
@@ -158,7 +171,7 @@ namespace Bulkr.Gui_Tests.Components
 			Component.New();
 			TestCaseFactory.Full2().Enter(Window);
 			setup();
-			Assert.AreEqual(false,Component.Save());
+			Assert.AreEqual(false,Component.Save(),"saving item should have failed");
 			Assert.AreEqual(0,CreateService().GetAll().Count,"no item should have been added");
 		}
 	}

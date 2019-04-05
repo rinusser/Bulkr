@@ -26,6 +26,9 @@ namespace Bulkr.Gui_Tests.TestTargets
 		public Gtk.ComboBox targetmodel_optionalenum_value;
 		public Gtk.ComboBox targetmodel_requiredservicedropdown_value;
 		public Gtk.ComboBox targetmodel_optionalservicedropdown_value;
+		public Gtk.Calendar targetmodel_requireddatetime_date_value;
+		public Gtk.SpinButton targetmodel_requireddatetime_hour_value;
+		public Gtk.SpinButton targetmodel_requireddatetime_minute_value;
 		public Gtk.Label targetmodel_nav_label;
 
 		private Gtk.Widget PublicWidget;
@@ -47,6 +50,9 @@ namespace Bulkr.Gui_Tests.TestTargets
 			targetmodel_optionalenum_value=new Gtk.ComboBox();
 			targetmodel_requiredservicedropdown_value=new Gtk.ComboBox();
 			targetmodel_optionalservicedropdown_value=new Gtk.ComboBox();
+			targetmodel_requireddatetime_date_value=new Gtk.Calendar();
+			targetmodel_requireddatetime_hour_value=new Gtk.SpinButton(0,23,1);
+			targetmodel_requireddatetime_minute_value=new Gtk.SpinButton(0,59,1);
 			targetmodel_nav_label=new Gtk.Label { Text=UNINITIALIZED_TEXT };
 
 			LogMessages=new List<string>();

@@ -1,6 +1,8 @@
 ﻿// Copyright 2019 Richard Nusser
 // Licensed under GPLv3 (see http://www.gnu.org/licenses/)
 
+using System;
+
 using Bulkr.Gui.Forms.Field;
 using Bulkr.Gui_Tests.TestTargets;
 
@@ -40,6 +42,12 @@ namespace Bulkr.Gui_Tests.Components
 				RequiredServiceDropDownMessage="'please select' entry should be selected by default",
 				OptionalServiceDropDown=DropDown<TargetModel,ReferencedModel>.NULL_LABEL,
 				OptionalServiceDropDownMessage="'please select' entry should be selected by default",
+				RequiredDateTimeDate=DateTime.Today.ToString("yyyy-MM-dd"),
+				RequiredDateTimeDateMessage="datetime date field should default to today",
+				RequiredDateTimeHour="",
+				RequiredDateTimeHourMessage="datetime hour field should be empty by default",
+				RequiredDateTimeMinute="",
+				RequiredDateTimeMinuteMessage="datetime hour field should be empty by default",
 
 				Model=new TargetModel()
 			};
@@ -60,6 +68,9 @@ namespace Bulkr.Gui_Tests.Components
 				RequiredServiceDropDown=ReferencedItem1.Title,
 				OptionalServiceDropDown=DropDown<TargetModel,TargetEnum>.NULL_LABEL,
 				OptionalServiceDropDownMessage="'please select' entry should be selected for null values",
+				RequiredDateTimeDate="2019-04-05",
+				RequiredDateTimeHour="14",
+				RequiredDateTimeMinute="13",
 
 				Model=new TargetModel
 				{
@@ -67,6 +78,7 @@ namespace Bulkr.Gui_Tests.Components
 					RequiredFloat=0.12F,
 					RequiredEnum=TargetEnum.One,
 					RequiredServiceDropDown=ReferencedItem1,
+					RequiredDateTime=new DateTime(2019,4,5,14,13,0),
 				}
 			};
 		}
@@ -83,6 +95,9 @@ namespace Bulkr.Gui_Tests.Components
 				OptionalEnum=TargetComponent.ENUM_LABEL_ONE,
 				RequiredServiceDropDown=ReferencedItem2.Title,
 				OptionalServiceDropDown=ReferencedItem1.Title,
+				RequiredDateTimeDate="2017-12-31",
+				RequiredDateTimeHour="23",
+				RequiredDateTimeMinute="59",
 
 				Model=new TargetModel
 				{
@@ -94,6 +109,7 @@ namespace Bulkr.Gui_Tests.Components
 					OptionalEnum=TargetEnum.One,
 					RequiredServiceDropDown=ReferencedItem2,
 					OptionalServiceDropDown=ReferencedItem1,
+					RequiredDateTime=new DateTime(2017,12,31,23,59,0),
 				}
 			};
 		}
@@ -110,6 +126,9 @@ namespace Bulkr.Gui_Tests.Components
 				OptionalEnum=TargetComponent.ENUM_LABEL_TWO,
 				RequiredServiceDropDown=ReferencedItem1.Title,
 				OptionalServiceDropDown=ReferencedItem2.Title,
+				RequiredDateTimeDate="2020-01-01",
+				RequiredDateTimeHour="00",
+				RequiredDateTimeMinute="00",
 
 				Model=new TargetModel
 				{
@@ -121,6 +140,7 @@ namespace Bulkr.Gui_Tests.Components
 					OptionalEnum=TargetEnum.Two,
 					RequiredServiceDropDown=ReferencedItem1,
 					OptionalServiceDropDown=ReferencedItem2,
+					RequiredDateTime=new DateTime(2020,1,1,0,0,0),
 				}
 			};
 		}

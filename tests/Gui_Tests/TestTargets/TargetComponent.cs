@@ -1,6 +1,7 @@
 ﻿// Copyright 2019 Richard Nusser
 // Licensed under GPLv3 (see http://www.gnu.org/licenses/)
 
+using System;
 using System.Collections.Generic;
 
 using Bulkr.Core.Services;
@@ -42,7 +43,11 @@ namespace Bulkr.Gui_Tests.TestTargets
 				.AddField(new DropDown<TargetModel,TargetEnum>("RequiredEnum",window.targetmodel_requiredenum_value,enumOptions))
 				.AddField(new DropDown<TargetModel,TargetEnum>("OptionalEnum",window.targetmodel_optionalenum_value,enumOptions))
 				.AddField(new ServiceDropDown<TargetModel,ReferencedModel>("RequiredServiceDropDown",window.targetmodel_requiredservicedropdown_value,referencedService,GetReferencedModelDisplayString,Option.Required))
-				.AddField(new ServiceDropDown<TargetModel,ReferencedModel>("OptionalServiceDropDown",window.targetmodel_optionalservicedropdown_value,referencedService,GetReferencedModelDisplayString));
+				.AddField(new ServiceDropDown<TargetModel,ReferencedModel>("OptionalServiceDropDown",window.targetmodel_optionalservicedropdown_value,referencedService,GetReferencedModelDisplayString))
+				.AddField(new DateTime<TargetModel>("RequiredDateTime",
+					window.targetmodel_requireddatetime_date_value,
+					window.targetmodel_requireddatetime_hour_value,
+					window.targetmodel_requireddatetime_minute_value));
 		}
 
 		public static string GetReferencedModelDisplayString(ReferencedModel model)
