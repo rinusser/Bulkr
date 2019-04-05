@@ -26,7 +26,7 @@ namespace Bulkr.Gui_Tests.TestTargets
 		{
 			var window=(TargetWindow)Window;
 
-			var enumOptions=new Dictionary<TargetEnum,string>
+			var enumOptions=new Dictionary<TargetEnum?,string>
 			{
 				{ TargetEnum.One,ENUM_LABEL_ONE },
 				{ TargetEnum.Two,ENUM_LABEL_TWO },
@@ -40,8 +40,8 @@ namespace Bulkr.Gui_Tests.TestTargets
 				.AddField(new Text<TargetModel>("OptionalString",window.targetmodel_optionalstring_value))
 				.AddField(new Number<TargetModel>("RequiredFloat",window.targetmodel_requiredfloat_value))
 				.AddField(new Number<TargetModel>("OptionalFloat",window.targetmodel_optionalfloat_value))
-				.AddField(new DropDown<TargetModel,TargetEnum>("RequiredEnum",window.targetmodel_requiredenum_value,enumOptions))
-				.AddField(new DropDown<TargetModel,TargetEnum>("OptionalEnum",window.targetmodel_optionalenum_value,enumOptions))
+				.AddField(new DropDown<TargetModel,TargetEnum?>("RequiredEnum",window.targetmodel_requiredenum_value,enumOptions))
+				.AddField(new DropDown<TargetModel,TargetEnum?>("OptionalEnum",window.targetmodel_optionalenum_value,enumOptions))
 				.AddField(new ServiceDropDown<TargetModel,ReferencedModel>("RequiredServiceDropDown",window.targetmodel_requiredservicedropdown_value,referencedService,GetReferencedModelDisplayString,Option.Required))
 				.AddField(new ServiceDropDown<TargetModel,ReferencedModel>("OptionalServiceDropDown",window.targetmodel_optionalservicedropdown_value,referencedService,GetReferencedModelDisplayString))
 				.AddField(new DateTime<TargetModel>("RequiredDateTime",

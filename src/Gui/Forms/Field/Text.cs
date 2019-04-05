@@ -13,7 +13,7 @@ namespace Bulkr.Gui.Forms.Field
 	///     to be required you'll need to pass the <see cref="Option.Required"/> option in the constructor.
 	///   </para>
 	/// </summary>
-	public class Text<MODEL> : Field<MODEL> where MODEL : class
+	public class Text<MODEL> : AbstractField<MODEL,string> where MODEL : class
 	{
 		/// <summary>
 		///   Constructor for string fields.
@@ -51,10 +51,8 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="model">The model to read from.</param>
 		public override void PopulateFrom(MODEL model)
 		{
-			object value=GetModelValue(model);
-			if(value!=null&&!(value is string))
-				throw new Exception("wrong data type"); //TODO: improve
-			((Gtk.Entry)Widget).Text=value!=null ? (string)value : "";
+			string value=GetModelValue(model);
+			((Gtk.Entry)Widget).Text=value??"";
 		}
 	}
 }

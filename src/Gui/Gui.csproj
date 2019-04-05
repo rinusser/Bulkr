@@ -70,7 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Field\Number.cs" />
     <Compile Include="Forms\Form.cs" />
-    <Compile Include="Forms\Field\Field.cs" />
+    <Compile Include="Forms\Field\AbstractField.cs" />
     <Compile Include="Forms\Field\Text.cs" />
     <Compile Include="Forms\Field\ID.cs" />
     <Compile Include="Forms\Field\DropDown.cs" />
@@ -85,6 +85,7 @@
     <Compile Include="Forms\Field\Option.cs" />
     <Compile Include="Components\ComponentContext.cs" />
     <Compile Include="Forms\Field\DateTime.cs" />
+    <Compile Include="Forms\Field\Field.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

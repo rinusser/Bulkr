@@ -14,7 +14,7 @@ namespace Bulkr.Gui.Forms.Field
 	/// <remarks>
 	///   Date-only or time-only input not supported at the moment.
 	/// </remarks>
-	public class DateTime<MODEL> : Field<MODEL> where MODEL : class
+	public class DateTime<MODEL> : AbstractField<MODEL,DateTime?> where MODEL : class
 	{
 		/// <summary>
 		///   The widget for date input.
@@ -58,7 +58,7 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="model">The model to take data from.</param>
 		public override void PopulateFrom(MODEL model)
 		{
-			object rawValue=GetModelValue(model);
+			DateTime? rawValue=GetModelValue(model);
 
 			if(rawValue==null)
 			{
@@ -68,8 +68,6 @@ namespace Bulkr.Gui.Forms.Field
 				return;
 			}
 
-			if(!(rawValue is DateTime))
-				throw new Exception("wrong data type"); //TODO: improve
 			DateTime value=(DateTime)rawValue;
 
 			CalendarWidget.Date=value;

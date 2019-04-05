@@ -11,7 +11,7 @@ namespace Bulkr.Gui.Forms.Field
 	///     Only handles <c>float</c> type for now.
 	///   </para>
 	/// </summary>
-	public class Number<MODEL> : Field<MODEL> where MODEL : class
+	public class Number<MODEL> : AbstractField<MODEL,float?> where MODEL : class
 	{
 		/// <summary>
 		///   Constructor for number fields.
@@ -59,9 +59,7 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="model">The model to read from.</param>
 		public override void PopulateFrom(MODEL model)
 		{
-			object value=GetModelValue(model);
-			if(value!=null&&!(value is float))
-				throw new Exception("wrong data type"); //TODO: improve
+			float? value=GetModelValue(model);
 			((Gtk.Entry)Widget).Text=value!=null ? string.Format("{0:0.##}",value) : "";
 		}
 	}

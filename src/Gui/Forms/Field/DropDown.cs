@@ -11,7 +11,7 @@ namespace Bulkr.Gui.Forms.Field
 	/// <summary>
 	///   Field class for entering enums in a Gtk ComboBox.
 	/// </summary>
-	public class DropDown<MODEL, TYPE> : Field<MODEL> where MODEL : class
+	public class DropDown<MODEL, TYPE> : AbstractField<MODEL,TYPE> where MODEL : class
 	{
 		/// <summary>
 		///   The label for <c>null</c> values in dropdown fields.
@@ -94,10 +94,8 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="model">The model to read from.</param>
 		public override void PopulateFrom(MODEL model)
 		{
-			object value=GetModelValue(model);
-			if(value!=null&&!(value is TYPE))
-				throw new Exception("wrong data type"); //TODO: improve
-			((Gtk.ComboBox)Widget).SelectLabel(value!=null ? LookUpMappedValueFor((TYPE)value) : NULL_LABEL);
+			TYPE value=GetModelValue(model);
+			((Gtk.ComboBox)Widget).SelectLabel(value!=null ? LookUpMappedValueFor(value) : NULL_LABEL);
 		}
 
 		/// <summary>

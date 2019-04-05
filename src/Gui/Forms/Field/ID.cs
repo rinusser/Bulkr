@@ -8,7 +8,7 @@ namespace Bulkr.Gui.Forms.Field
 	/// <summary>
 	///   Field class for (readonly) ID labels.
 	/// </summary>
-	public class ID<MODEL> : Field<MODEL> where MODEL : class
+	public class ID<MODEL> : AbstractField<MODEL,int?> where MODEL : class
 	{
 		/// <summary>
 		///   Creates a new ID label instance.
@@ -42,9 +42,7 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="model">The model.</param>
 		public override void PopulateFrom(MODEL model)
 		{
-			object value=GetModelValue(model);
-			if(value!=null&&!(value is int))
-				throw new Exception("wrong data type"); //TODO: improve
+			int? value=GetModelValue(model);
 			int id=value!=null ? (int)value : 0;
 			((Gtk.Label)Widget).Text=id>0 ? id.ToString() : "";
 		}
