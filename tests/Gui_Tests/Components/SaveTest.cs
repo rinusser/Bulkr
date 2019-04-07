@@ -4,7 +4,6 @@
 using NUnit.Framework;
 using System;
 
-using Bulkr.Gui.Forms.Field;
 using Bulkr.Gui.Utils;
 using Bulkr.Gui_Tests.TestTargets;
 
@@ -133,13 +132,13 @@ namespace Bulkr.Gui_Tests.Components
 		[Test]
 		public void TestRequiredEnumIsRequired()
 		{
-			RunValidationFailureTestWithInputAs(Window.targetmodel_requiredenum_value,null);
+			RunValidationFailureTestWithInputAs<TargetEnum>(Window.targetmodel_requiredenum_value,null);
 		}
 
 		[Test]
 		public void TestRequiredServiceDropDownIsRequired()
 		{
-			RunValidationFailureTestWithInputAs(Window.targetmodel_requiredservicedropdown_value,null);
+			RunValidationFailureTestWithInputAs<int>(Window.targetmodel_requiredservicedropdown_value,null);
 		}
 
 		[Test]
@@ -156,9 +155,9 @@ namespace Bulkr.Gui_Tests.Components
 				RunValidationFailureTestWithInputAs(Window.targetmodel_requireddatetime_minute_value,input);
 		}
 
-		private void RunValidationFailureTestWithInputAs(Gtk.ComboBox field,string input)
+		private void RunValidationFailureTestWithInputAs<T>(Gtk.ComboBox field,T? input) where T : struct
 		{
-			RunValidationFailureTestWith(() => field.SelectLabel(input??DropDown<TargetModel,TargetEnum>.NULL_LABEL));
+			RunValidationFailureTestWith(() => field.SelectID(input));
 		}
 
 		private void RunValidationFailureTestWithInputAs(Gtk.Entry field,string input)

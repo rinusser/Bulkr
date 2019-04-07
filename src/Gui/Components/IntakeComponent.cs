@@ -26,7 +26,7 @@ namespace Bulkr.Gui.Components
 		///   Creates a new IntakeService instance. Called automatically by parent constructor.
 		/// </summary>
 		/// <returns>The IntakeService instance.</returns>
-		protected override Service<Intake> CreateService()
+		protected override DatabaseCRUDService<Intake> CreateService()
 		{
 			return IntakeService.Create();
 		}
@@ -46,9 +46,10 @@ namespace Bulkr.Gui.Components
 					GetFieldValueWidget<Gtk.SpinButton>("When_Hour"),
 					GetFieldValueWidget<Gtk.SpinButton>("When_Minute")))
 				.AddField(new Number<Intake>("Amount",GetFieldValueWidget<Gtk.Entry>("Amount")))
-				.AddField(new ServiceDropDown<Intake,Food>("Food",
+				.AddField(new DropDown<Intake,Food,int>("Food",
 					GetFieldValueWidget<Gtk.ComboBox>("Food"),
 					foodService,
+					i => i.ID,
 					GetFoodDisplayString,
 					Option.Required));
 		}

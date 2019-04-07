@@ -203,12 +203,14 @@
     <Compile Include="Persistence\BulkrContext.cs" />
     <Compile Include="Services\FoodService.cs" />
     <Compile Include="Models\Model.cs" />
-    <Compile Include="Services\Service.cs" />
+    <Compile Include="Services\DatabaseCRUDService.cs" />
     <Compile Include="Persistence\Migrations\201904052142_AddFoods.cs" />
     <Compile Include="Persistence\MigrationRunner.cs" />
     <Compile Include="Models\Intake.cs" />
     <Compile Include="Persistence\Migrations\201904060210_AddIntakes.cs" />
     <Compile Include="Services\IntakeService.cs" />
+    <Compile Include="Services\CRUDService.cs" />
+    <Compile Include="Services\EnumService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

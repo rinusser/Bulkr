@@ -1,8 +1,6 @@
 ﻿// Copyright 2019 Richard Nusser
 // Licensed under GPLv3 (see http://www.gnu.org/licenses/)
 
-using System;
-
 namespace Bulkr.Gui.Forms.Field
 {
 	/// <summary>
@@ -42,7 +40,7 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="model">The model.</param>
 		public override void PopulateFrom(MODEL model)
 		{
-			int? value=GetModelValue(model);
+			int? value=GetModelValue<int?>(model);
 			int id=value!=null ? (int)value : 0;
 			((Gtk.Label)Widget).Text=id>0 ? id.ToString() : "";
 		}

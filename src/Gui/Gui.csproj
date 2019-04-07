@@ -73,7 +73,6 @@
     <Compile Include="Forms\Field\AbstractField.cs" />
     <Compile Include="Forms\Field\Text.cs" />
     <Compile Include="Forms\Field\ID.cs" />
-    <Compile Include="Forms\Field\DropDown.cs" />
     <Compile Include="Components\FoodComponent_MainWindow.cs" />
     <Compile Include="Components\IntakeComponent.cs" />
     <Compile Include="Components\Component.cs" />
@@ -81,7 +80,7 @@
     <Compile Include="Utils\ApplicationWindow.cs" />
     <Compile Include="Utils\ComboBoxExtensions.cs" />
     <Compile Include="Forms\ValidationError.cs" />
-    <Compile Include="Forms\Field\ServiceDropDown.cs" />
+    <Compile Include="Forms\Field\DropDown.cs" />
     <Compile Include="Forms\Field\Option.cs" />
     <Compile Include="Components\ComponentContext.cs" />
     <Compile Include="Forms\Field\DateTime.cs" />

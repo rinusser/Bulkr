@@ -7,7 +7,7 @@ using Bulkr.Core.Services;
 
 namespace Bulkr.Gui_Tests.TestTargets
 {
-	public class ReferencedService : Service<ReferencedModel>
+	public class ReferencedService : DatabaseCRUDService<ReferencedModel>
 	{
 		public static ReferencedService Create(string name,TargetContext targetContext)
 		{

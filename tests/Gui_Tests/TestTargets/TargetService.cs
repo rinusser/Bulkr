@@ -8,7 +8,7 @@ using Bulkr.Core.Services;
 
 namespace Bulkr.Gui_Tests.TestTargets
 {
-	public class TargetService : Service<TargetModel>
+	public class TargetService : DatabaseCRUDService<TargetModel>
 	{
 		public static TargetService Create(string name)
 		{

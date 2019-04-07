@@ -10,6 +10,9 @@ namespace Bulkr.Gui_Tests.Components
 {
 	public class TestCaseFactory
 	{
+		private static readonly string DROPDOWN_NULL_LABEL=DropDown<TargetModel,TargetEnum,TargetEnum>.NULL_LABEL;
+
+
 		public ReferencedModel ReferencedItem1 { get; }
 		public ReferencedModel ReferencedItem2 { get; }
 
@@ -35,13 +38,13 @@ namespace Bulkr.Gui_Tests.Components
 				RequiredFloat="",
 				RequiredFloatMessage="non-nullable floats should get empty input fields for new items",
 				OptionalFloat="",
-				RequiredEnum=DropDown<TargetModel,TargetEnum>.NULL_LABEL,
+				RequiredEnum=DROPDOWN_NULL_LABEL,
 				RequiredEnumMessage="'please select' entry should be selected by default",
-				OptionalEnum=DropDown<TargetModel,TargetEnum>.NULL_LABEL,
+				OptionalEnum=DROPDOWN_NULL_LABEL,
 				OptionalEnumMessage="'please select' entry should be selected by default",
-				RequiredServiceDropDown=DropDown<TargetModel,ReferencedModel>.NULL_LABEL,
+				RequiredServiceDropDown=DROPDOWN_NULL_LABEL,
 				RequiredServiceDropDownMessage="'please select' entry should be selected by default",
-				OptionalServiceDropDown=DropDown<TargetModel,ReferencedModel>.NULL_LABEL,
+				OptionalServiceDropDown=DROPDOWN_NULL_LABEL,
 				OptionalServiceDropDownMessage="'please select' entry should be selected by default",
 				RequiredDateTimeDate=now.ToString("yyyy-MM-dd"),
 				RequiredDateTimeDateMessage="datetime date field should default to today",
@@ -64,10 +67,12 @@ namespace Bulkr.Gui_Tests.Components
 				OptionalFloat="",
 				OptionalFloatMessage="field should be empty for optional floats set to null",
 				RequiredEnum=TargetComponent.ENUM_LABEL_ONE,
-				OptionalEnum=DropDown<TargetModel,TargetEnum>.NULL_LABEL,
+				RequiredEnumID=TargetEnum.One,
+				OptionalEnum=DROPDOWN_NULL_LABEL,
 				OptionalEnumMessage="'please select' entry should be selected for null values",
 				RequiredServiceDropDown=ReferencedItem1.Title,
-				OptionalServiceDropDown=DropDown<TargetModel,TargetEnum>.NULL_LABEL,
+				RequiredServiceDropDownID=ReferencedItem1.ID,
+				OptionalServiceDropDown=DROPDOWN_NULL_LABEL,
 				OptionalServiceDropDownMessage="'please select' entry should be selected for null values",
 				RequiredDateTimeDate="2019-04-05",
 				RequiredDateTimeHour="14",
@@ -93,9 +98,13 @@ namespace Bulkr.Gui_Tests.Components
 				RequiredFloat="99999.99",
 				OptionalFloat="0.01",
 				RequiredEnum=TargetComponent.ENUM_LABEL_TWO,
+				RequiredEnumID=TargetEnum.Two,
 				OptionalEnum=TargetComponent.ENUM_LABEL_ONE,
+				OptionalEnumID=TargetEnum.One,
 				RequiredServiceDropDown=ReferencedItem2.Title,
+				RequiredServiceDropDownID=ReferencedItem2.ID,
 				OptionalServiceDropDown=ReferencedItem1.Title,
+				OptionalServiceDropDownID=ReferencedItem1.ID,
 				RequiredDateTimeDate="2017-12-31",
 				RequiredDateTimeHour="23",
 				RequiredDateTimeMinute="59",
@@ -124,9 +133,13 @@ namespace Bulkr.Gui_Tests.Components
 				RequiredFloat="0.1",
 				OptionalFloat="2.3",
 				RequiredEnum=TargetComponent.ENUM_LABEL_ONE,
+				RequiredEnumID=TargetEnum.One,
 				OptionalEnum=TargetComponent.ENUM_LABEL_TWO,
+				OptionalEnumID=TargetEnum.Two,
 				RequiredServiceDropDown=ReferencedItem1.Title,
+				RequiredServiceDropDownID=ReferencedItem1.ID,
 				OptionalServiceDropDown=ReferencedItem2.Title,
+				OptionalServiceDropDownID=ReferencedItem2.ID,
 				RequiredDateTimeDate="2020-01-01",
 				RequiredDateTimeHour="00",
 				RequiredDateTimeMinute="00",

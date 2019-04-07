@@ -58,7 +58,7 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="model">The model to take data from.</param>
 		public override void PopulateFrom(MODEL model)
 		{
-			DateTime value=GetModelValue(model)??DateTime.Now;
+			DateTime value=GetModelValue<DateTime?>(model)??DateTime.Now;
 
 			CalendarWidget.Date=value;
 			HourWidget.Value=value.Hour;

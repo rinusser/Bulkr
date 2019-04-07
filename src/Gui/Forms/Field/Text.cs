@@ -51,7 +51,7 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="model">The model to read from.</param>
 		public override void PopulateFrom(MODEL model)
 		{
-			string value=GetModelValue(model);
+			string value=GetModelValue<string>(model);
 			((Gtk.Entry)Widget).Text=value??"";
 		}
 	}

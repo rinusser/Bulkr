@@ -13,6 +13,9 @@ namespace Bulkr.Gui_Tests.Components
 	[TestFixture]
 	public class ComponentTestBase
 	{
+		protected static readonly string DROPDOWN_NULL_LABEL=DropDown<TargetModel,TargetEnum,TargetEnum>.NULL_LABEL;
+
+
 		protected TargetWindow Window;
 		protected TargetComponent Component;
 		protected TargetService Service;

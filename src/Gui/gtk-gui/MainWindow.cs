@@ -142,14 +142,17 @@ public partial class MainWindow
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString("Bulkr");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+		this.Resizable = false;
+		this.AllowGrow = false;
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox1 = new global::Gtk.VBox();
+		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.notebook1 = new global::Gtk.Notebook();
 		this.notebook1.CanFocus = true;
 		this.notebook1.Name = "notebook1";
-		this.notebook1.CurrentPage = 0;
+		this.notebook1.CurrentPage = 1;
 		// Container child notebook1.Gtk.Notebook+NotebookChild
 		this.food_layout_table = new global::Gtk.Table(((uint)(9)), ((uint)(5)), false);
 		this.food_layout_table.Name = "food_layout_table";

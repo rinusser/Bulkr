@@ -11,6 +11,8 @@
     <property name="MemberName" />
     <property name="Title" translatable="yes">Bulkr</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
@@ -20,7 +22,7 @@
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">0</property>
+            <property name="CurrentPage">1</property>
             <signal name="SwitchPage" handler="OnTabChanged" />
             <child>
               <widget class="Gtk.Table" id="food_layout_table">
@@ -1083,7 +1085,7 @@
                     <property name="BottomAttach">4</property>
                     <property name="LeftAttach">3</property>
                     <property name="RightAttach">4</property>
-                    <property name="AutoSize">True</property>
+                    <property name="AutoSize">False</property>
                     <property name="XOptions">Fill</property>
                     <property name="YOptions">Fill</property>
                     <property name="XExpand">False</property>

@@ -9,7 +9,7 @@ namespace Bulkr.Core.Services
 	/// <summary>
 	///   CRUD Service for managing <see cref="Food"/> items.
 	/// </summary>
-	public class FoodService : Service<Food>
+	public class FoodService : DatabaseCRUDService<Food>
 	{
 		/// <summary>
 		///   Instantiates a new <see cref="FoodService"/> instance.
@@ -17,8 +17,8 @@ namespace Bulkr.Core.Services
 		/// <remarks>
 		///   If no name is supplied, the application configuration's default will be used.
 		/// </remarks>
-		/// <returns>The instance.</returns>
 		/// <param name="name">Optional: a database name to use, to e.g. distinguish individual tests.</param>
+		/// <returns>The instance.</returns>
 		public static FoodService Create(string name = null)
 		{
 			return new FoodService(BulkrContext.GetInstance(name));

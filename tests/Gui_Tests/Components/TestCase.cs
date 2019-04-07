@@ -6,7 +6,6 @@ using System.Globalization;
 using System.Reflection;
 using NUnit.Framework;
 
-using Bulkr.Gui.Forms.Field;
 using Bulkr.Gui.Utils;
 using Bulkr.Gui_Tests.TestTargets;
 
@@ -25,12 +24,16 @@ namespace Bulkr.Gui_Tests.Components
 		public string OptionalFloat;
 		public string OptionalFloatMessage;
 		public string RequiredEnum;
+		public TargetEnum? RequiredEnumID;
 		public string RequiredEnumMessage;
 		public string OptionalEnum;
+		public TargetEnum? OptionalEnumID;
 		public string OptionalEnumMessage;
 		public string RequiredServiceDropDown;
+		public int? RequiredServiceDropDownID;
 		public string RequiredServiceDropDownMessage;
 		public string OptionalServiceDropDown;
+		public int? OptionalServiceDropDownID;
 		public string OptionalServiceDropDownMessage;
 		public string RequiredDateTimeDate;
 		public string RequiredDateTimeDateMessage;
@@ -60,16 +63,16 @@ namespace Bulkr.Gui_Tests.Components
 				Assert.AreEqual(OptionalFloat,window.targetmodel_optionalfloat_value.Text,OptionalFloatMessage);
 
 			if(RequiredEnum!=null)
-				Assert.AreEqual(RequiredEnum,window.targetmodel_requiredenum_value.ActiveText,RequiredEnumMessage);
+				Assert.AreEqual(RequiredEnum,window.targetmodel_requiredenum_value.GetActiveLabel(),RequiredEnumMessage);
 
 			if(OptionalEnum!=null)
-				Assert.AreEqual(OptionalEnum,window.targetmodel_optionalenum_value.ActiveText,OptionalEnumMessage);
+				Assert.AreEqual(OptionalEnum,window.targetmodel_optionalenum_value.GetActiveLabel(),OptionalEnumMessage);
 
 			if(RequiredServiceDropDown!=null)
-				Assert.AreEqual(RequiredServiceDropDown,window.targetmodel_requiredservicedropdown_value.ActiveText,RequiredServiceDropDownMessage);
+				Assert.AreEqual(RequiredServiceDropDown,window.targetmodel_requiredservicedropdown_value.GetActiveLabel(),RequiredServiceDropDownMessage);
 
 			if(OptionalServiceDropDown!=null)
-				Assert.AreEqual(OptionalServiceDropDown,window.targetmodel_optionalservicedropdown_value.ActiveText,OptionalServiceDropDownMessage);
+				Assert.AreEqual(OptionalServiceDropDown,window.targetmodel_optionalservicedropdown_value.GetActiveLabel(),OptionalServiceDropDownMessage);
 
 			if(RequiredDateTimeDate!=null)
 				Assert.AreEqual(RequiredDateTimeDate,window.targetmodel_requireddatetime_date_value.Date.ToString("yyyy-MM-dd"),RequiredDateTimeDateMessage);
@@ -88,10 +91,10 @@ namespace Bulkr.Gui_Tests.Components
 			window.targetmodel_optionalstring_value.Text=OptionalString??"";
 			window.targetmodel_requiredfloat_value.Text=RequiredFloat??"";
 			window.targetmodel_optionalfloat_value.Text=OptionalFloat??"";
-			window.targetmodel_requiredenum_value.SelectLabel(RequiredEnum??DropDown<TargetModel,TargetEnum>.NULL_LABEL);
-			window.targetmodel_optionalenum_value.SelectLabel(OptionalEnum??DropDown<TargetModel,TargetEnum>.NULL_LABEL);
-			window.targetmodel_requiredservicedropdown_value.SelectLabel(RequiredServiceDropDown??DropDown<TargetModel,ReferencedModel>.NULL_LABEL);
-			window.targetmodel_optionalservicedropdown_value.SelectLabel(OptionalServiceDropDown??DropDown<TargetModel,ReferencedModel>.NULL_LABEL);
+			window.targetmodel_requiredenum_value.SelectID(RequiredEnumID);
+			window.targetmodel_optionalenum_value.SelectID(OptionalEnumID);
+			window.targetmodel_requiredservicedropdown_value.SelectID(RequiredServiceDropDownID);
+			window.targetmodel_optionalservicedropdown_value.SelectID(OptionalServiceDropDownID);
 			window.targetmodel_requireddatetime_date_value.Date=RequiredDateTimeDate!=null ? DateTime.ParseExact(RequiredDateTimeDate,"yyyy-MM-dd",CultureInfo.InvariantCulture) : DateTime.Today;
 			window.targetmodel_requireddatetime_hour_value.Text=RequiredDateTimeHour??"";
 			window.targetmodel_requireddatetime_minute_value.Text=RequiredDateTimeMinute??"";

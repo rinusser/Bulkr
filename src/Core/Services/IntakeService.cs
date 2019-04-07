@@ -12,7 +12,7 @@ namespace Bulkr.Core.Services
 	/// <summary>
 	///   CRUD Service for managing <see cref="Intake"/> items.
 	/// </summary>
-	public class IntakeService : Service<Intake>
+	public class IntakeService : DatabaseCRUDService<Intake>
 	{
 		/// <summary>
 		///   Instantiates a new <see cref="IntakeService"/> instance.

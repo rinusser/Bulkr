@@ -46,16 +46,25 @@ namespace Bulkr.Gui_Tests.TestTargets
 			targetmodel_optionalstring_value=new Gtk.Entry { Text=UNINITIALIZED_TEXT };
 			targetmodel_requiredfloat_value=new Gtk.Entry { Text=UNINITIALIZED_TEXT };
 			targetmodel_optionalfloat_value=new Gtk.Entry { Text=UNINITIALIZED_TEXT };
-			targetmodel_requiredenum_value=new Gtk.ComboBox();
-			targetmodel_optionalenum_value=new Gtk.ComboBox();
-			targetmodel_requiredservicedropdown_value=new Gtk.ComboBox();
-			targetmodel_optionalservicedropdown_value=new Gtk.ComboBox();
+			targetmodel_requiredenum_value=CreateComboBox();
+			targetmodel_optionalenum_value=CreateComboBox();
+			targetmodel_requiredservicedropdown_value=CreateComboBox();
+			targetmodel_optionalservicedropdown_value=CreateComboBox();
 			targetmodel_requireddatetime_date_value=new Gtk.Calendar();
 			targetmodel_requireddatetime_hour_value=new Gtk.SpinButton(0,23,1);
 			targetmodel_requireddatetime_minute_value=new Gtk.SpinButton(0,59,1);
 			targetmodel_nav_label=new Gtk.Label { Text=UNINITIALIZED_TEXT };
 
 			LogMessages=new List<string>();
+		}
+
+		private Gtk.ComboBox CreateComboBox()
+		{
+			var comboBox=new Gtk.ComboBox();
+			var cellRenderer=new Gtk.CellRendererText();
+			comboBox.PackStart(cellRenderer,true);
+			comboBox.AddAttribute(cellRenderer,"text",2);
+			return comboBox;
 		}
 
 

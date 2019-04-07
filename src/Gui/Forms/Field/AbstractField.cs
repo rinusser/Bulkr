@@ -121,14 +121,17 @@ namespace Bulkr.Gui.Forms.Field
 		///     Only handles mappings with 1 model property.
 		///   </para>
 		/// </summary>
+		/// <remarks>
+		///   Careful when calling this with a primitive type or struct, it'll return that type's default.
+		/// </remarks>
 		/// <param name="model">The model instance, may be be <c>null</c>.</param>
-		/// <returns>The property value, or <c>null</c> if <paramref name="model"/> is null.</returns>
-		protected PROPERTY GetModelValue(MODEL model)
+		/// <returns>The property value, or the type's default if <paramref name="model"/> is null.</returns>
+		protected T GetModelValue<T>(MODEL model)
 		{
 			if(model==null)
-				return default(PROPERTY);
+				return default(T);
 			var value=GetModelProperty().GetValue(model);
-			return value!=null ? (PROPERTY)value : default(PROPERTY);
+			return value!=null ? (T)value : default(T);
 		}
 
 		/// <summary>

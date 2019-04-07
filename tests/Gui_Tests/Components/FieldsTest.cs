@@ -4,7 +4,6 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 
-using Bulkr.Gui.Forms.Field;
 using Bulkr.Gui.Utils;
 using Bulkr.Gui_Tests.TestTargets;
 
@@ -18,7 +17,7 @@ namespace Bulkr.Gui_Tests.Components
 		{
 			var expected=new List<string>
 			{
-				DropDown<TargetModel,TargetEnum>.NULL_LABEL,
+				DROPDOWN_NULL_LABEL,
 				TargetComponent.ENUM_LABEL_ONE,
 				TargetComponent.ENUM_LABEL_TWO
 			};
@@ -32,7 +31,7 @@ namespace Bulkr.Gui_Tests.Components
 		{
 			var expected=new List<string>
 			{
-				DropDown<TargetModel,TargetEnum>.NULL_LABEL,
+				DROPDOWN_NULL_LABEL,
 				TestCaseFactory.ReferencedItem1.Title,
 				TestCaseFactory.ReferencedItem2.Title,
 			};
@@ -44,9 +43,9 @@ namespace Bulkr.Gui_Tests.Components
 		private void RunDropDownValuesTest(Gtk.ComboBox widget,IList<string> expected)
 		{
 			var actual=new List<string>();
-			widget.ForEach((v,i) =>
+			widget.ForEach((iter,id,model,label) =>
 			{
-				actual.Add((string)v.Val);
+				actual.Add((string)label.Val);
 				return true;
 			});
 
@@ -57,14 +56,14 @@ namespace Bulkr.Gui_Tests.Components
 		public void TestServiceDropDownReload()
 		{
 			Gtk.ComboBox dropdown=Window.targetmodel_requiredservicedropdown_value;
-			dropdown.SelectLabel(TestCaseFactory.ReferencedItem1.Title);
+			dropdown.SelectID<int>(TestCaseFactory.ReferencedItem1.ID);
 			ReferencedService.Add(new ReferencedModel { Title="newly added item" });
 			Component.Reload();
-			Assert.AreEqual(TestCaseFactory.ReferencedItem1.Title,dropdown.ActiveText);
+			Assert.AreEqual(TestCaseFactory.ReferencedItem1.Title,dropdown.GetActiveLabel());
 
 			var expected=new List<string>
 			{
-				DropDown<TargetModel,TargetEnum>.NULL_LABEL,
+				DROPDOWN_NULL_LABEL,
 				TestCaseFactory.ReferencedItem1.Title,
 				TestCaseFactory.ReferencedItem2.Title,
 				"newly added item"
@@ -76,7 +75,7 @@ namespace Bulkr.Gui_Tests.Components
 			expected.RemoveAt(1);
 			RunDropDownValuesTest(dropdown,expected);
 
-			Assert.AreEqual(DropDown<TargetModel,ReferencedModel>.NULL_LABEL,dropdown.ActiveText);
+			Assert.AreEqual(DROPDOWN_NULL_LABEL,dropdown.GetActiveLabel());
 		}
 
 		[Test]

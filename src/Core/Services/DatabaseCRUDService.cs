@@ -10,13 +10,13 @@ using Bulkr.Core.Models;
 namespace Bulkr.Core.Services
 {
 	/// <summary>
-	///   Base class for CRUD services.
+	///   Base class for database CRUD services.
 	///   <para>
 	///     These services implement the common "repository" pattern for simple item management UIs.
 	///     All operations will commit changes immediately.
 	///   </para>
 	/// </summary>
-	public abstract class Service<MODEL> where MODEL : Model, new()
+	public abstract class DatabaseCRUDService<MODEL> : CRUDService<MODEL,int> where MODEL : Model, new()
 	{
 		/// <summary>
 		///   The application's database context.
@@ -34,7 +34,7 @@ namespace Bulkr.Core.Services
 		/// </summary>
 		/// <param name="databaseContext">The database context to use.</param>
 		/// <param name="dbSet">The repository to handle.</param>
-		protected Service(DbContext databaseContext,DbSet<MODEL> dbSet)
+		protected DatabaseCRUDService(DbContext databaseContext,DbSet<MODEL> dbSet)
 		{
 			DatabaseContext=databaseContext;
 			DbSet=dbSet;

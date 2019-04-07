@@ -24,6 +24,10 @@ public partial class MainWindow : ApplicationWindow
 		IntakeComponent=new IntakeComponent(new IntakeComponentContext { Window=this,FoodService=FoodService.Create() });
 
 		intake_layout_table.HeightRequest=food_layout_table.Allocation.Height-3;  //TODO: see if -3 can be calculated instead
+
+		var cellRenderer=(Gtk.CellRendererText)intake_food_value.Cells[0];
+		cellRenderer.WidthChars=20;
+		cellRenderer.Ellipsize=Pango.EllipsizeMode.End;
 	}
 
 
@@ -109,10 +113,7 @@ public partial class MainWindow : ApplicationWindow
 	protected void OnIntakeFoodChanged(object sender,EventArgs e)
 	{
 		var comboBox=(Gtk.ComboBox)sender;
-		Gtk.TreeIter iter;
-		comboBox.GetActiveIter(out iter);
-		GLib.Value current=new GLib.Value();
-		comboBox.Model.GetValue(iter,0,ref current);
+		var food=comboBox.GetActiveModel();
 		//intake_amount_unit.Text=current.Val!=null ? ((Food)current.Val).ReferenceSize.ToString() : ""; //TODO: need BUL-17
 	}
 }

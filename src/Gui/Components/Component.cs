@@ -31,7 +31,7 @@ namespace Bulkr.Gui.Components
 		protected MODEL CurrentItem { get; set; }
 
 		/// <summary>The <see cref="T:Bulkr.Core.Services.Service"/> instance for this component.</summary>
-		protected Service<MODEL> Service { get; set; }
+		protected DatabaseCRUDService<MODEL> Service { get; set; }
 
 		/// <summary>The currently displayed item number, starting with 1.</summary>
 		protected int CurrentEntryNumber { get; set; }
@@ -82,7 +82,7 @@ namespace Bulkr.Gui.Components
 		///   </para>
 		/// </summary>
 		/// <returns>The Form instance.</returns>
-		protected abstract Service<MODEL> CreateService();
+		protected abstract DatabaseCRUDService<MODEL> CreateService();
 
 
 		/// <summary>
