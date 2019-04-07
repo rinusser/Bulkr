@@ -95,7 +95,7 @@ namespace Bulkr.Gui.Components
 			CurrentItem=new MODEL();
 			CurrentEntryNumber=TotalCount;
 			UpdateNavInfo();
-			Form.Populate(null);
+			ClearForm();
 		}
 
 		/// <summary>
@@ -111,7 +111,7 @@ namespace Bulkr.Gui.Components
 			else
 			{
 				CurrentItem=new MODEL();
-				Form.Populate(null);
+				ClearForm();
 			}
 		}
 
@@ -194,16 +194,21 @@ namespace Bulkr.Gui.Components
 			if(items.Count>0)
 			{
 				CurrentItem=items[number-1];
+				TotalCount=items.Count;
 			}
 			else
 			{
 				CurrentItem=new MODEL();
-				number=0;
+				number=1;
+				TotalCount=1;
 			}
-			TotalCount=items.Count;
 			CurrentEntryNumber=number;
 			UpdateNavInfo();
-			PopulateWithCurrentItem();
+
+			if(items.Count>0)
+				PopulateWithCurrentItem();
+			else
+				ClearForm();
 		}
 
 		/// <summary>
@@ -242,6 +247,14 @@ namespace Bulkr.Gui.Components
 		protected void PopulateWithCurrentItem()
 		{
 			Form.Populate(CurrentItem);
+		}
+
+		/// <summary>
+		///   Empties form fields.
+		/// </summary>
+		protected void ClearForm()
+		{
+			Form.Populate(null);
 		}
 
 		/// <summary>

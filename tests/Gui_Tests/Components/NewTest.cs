@@ -32,5 +32,13 @@ namespace Bulkr.Gui_Tests.Components
 			Component.New();
 			AssertNavigationIsAt("2/2","clicking 'New' twice shouldn't change navigation position");
 		}
+
+		[Test]
+		public void TestInitialDisplayWithoutItemsShouldBeEmpty()
+		{
+			Component.NavTo(1);
+			TestCaseFactory.Empty().TestForm(Window);
+			AssertNavigationIsAt("1/1","loading an empty list should default to adding item 1/1");
+		}
 	}
 }

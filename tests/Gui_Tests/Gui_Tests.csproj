@@ -7,6 +7,7 @@
     <RootNamespace>Bulkr.Gui_Tests</RootNamespace>
     <OutputPath>..\..\artifacts\$(RootNamespace)\bin\$(Configuration)</OutputPath>
     <BaseIntermediateOutputPath>..\..\artifacts\$(RootNamespace)\obj\</BaseIntermediateOutputPath>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
