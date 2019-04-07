@@ -617,6 +617,7 @@ public partial class MainWindow
 		// Container child hbox2.Gtk.Box+BoxChild
 		this.intake_amount_unit = new global::Gtk.Label();
 		this.intake_amount_unit.Name = "intake_amount_unit";
+		this.intake_amount_unit.Xalign = 0F;
 		this.hbox2.Add(this.intake_amount_unit);
 		global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.intake_amount_unit]));
 		w40.Position = 1;

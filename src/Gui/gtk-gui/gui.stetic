@@ -858,6 +858,7 @@
                     <child>
                       <widget class="Gtk.Label" id="intake_amount_unit">
                         <property name="MemberName" />
+                        <property name="Xalign">0</property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>

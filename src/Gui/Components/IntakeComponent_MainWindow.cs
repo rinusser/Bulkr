@@ -3,6 +3,7 @@
 
 using System;
 
+using Bulkr.Core;
 using Bulkr.Core.Models;
 using Bulkr.Core.Services;
 using Bulkr.Gui.Components;
@@ -113,7 +114,28 @@ public partial class MainWindow : ApplicationWindow
 	protected void OnIntakeFoodChanged(object sender,EventArgs e)
 	{
 		var comboBox=(Gtk.ComboBox)sender;
-		var food=comboBox.GetActiveModel();
-		//intake_amount_unit.Text=current.Val!=null ? ((Food)current.Val).ReferenceSize.ToString() : ""; //TODO: need BUL-17
+		var referenceSize=((Food)comboBox.GetActiveModel())?.ReferenceSize;
+		intake_amount_unit.Text=GetUnitLabelForReferenceSize(referenceSize);
+	}
+
+	/// <summary>
+	///   Gets the amount unit label for a given reference size.
+	/// </summary>
+	/// <param name="referenceSize">The reference size.</param>
+	/// <returns>The unit label.</returns>
+	protected string GetUnitLabelForReferenceSize(ReferenceSizeType? referenceSize)
+	{
+		switch(referenceSize)
+		{
+			case ReferenceSizeType._100g:
+				return "g";
+			case ReferenceSizeType._100ml:
+				return "ml";
+			case ReferenceSizeType._1pc:
+				return "piece(s)";
+			case null:
+				return "";
+		}
+		throw new NotImplementedException("unhandled reference size");
 	}
 }
