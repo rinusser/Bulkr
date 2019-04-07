@@ -18,6 +18,7 @@ public partial class MainWindow : Gtk.Window, ApplicationWindow
 	{
 		Build();
 		AddFoodComponent();
+		AddIntakeComponent();
 	}
 
 
@@ -44,5 +45,16 @@ public partial class MainWindow : Gtk.Window, ApplicationWindow
 	{
 		string timestamp=DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss] ");
 		textview1.Buffer.Text=textview1.Buffer.Text+timestamp+message+"\n";
+	}
+
+	/// <summary>
+	///   GTK event handler for when another tab was selected.
+	/// </summary>
+	/// <param name="o">O.</param>
+	/// <param name="args">Arguments.</param>
+	protected void OnTabChanged(object o,SwitchPageArgs args)
+	{
+		if(args.PageNum==1)  //TODO find a better way that doesn't require tab index or name
+			IntakeComponent.Reload();
 	}
 }

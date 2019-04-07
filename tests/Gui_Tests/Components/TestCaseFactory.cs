@@ -25,6 +25,7 @@ namespace Bulkr.Gui_Tests.Components
 
 		public TestCase Empty()
 		{
+			var now=DateTime.Now;
 			return new TestCase
 			{
 				ID="",
@@ -42,12 +43,12 @@ namespace Bulkr.Gui_Tests.Components
 				RequiredServiceDropDownMessage="'please select' entry should be selected by default",
 				OptionalServiceDropDown=DropDown<TargetModel,ReferencedModel>.NULL_LABEL,
 				OptionalServiceDropDownMessage="'please select' entry should be selected by default",
-				RequiredDateTimeDate=DateTime.Today.ToString("yyyy-MM-dd"),
+				RequiredDateTimeDate=now.ToString("yyyy-MM-dd"),
 				RequiredDateTimeDateMessage="datetime date field should default to today",
-				RequiredDateTimeHour="",
-				RequiredDateTimeHourMessage="datetime hour field should be empty by default",
-				RequiredDateTimeMinute="",
-				RequiredDateTimeMinuteMessage="datetime hour field should be empty by default",
+				RequiredDateTimeHour=now.ToString("HH"),
+				RequiredDateTimeHourMessage="datetime hour field should default to current hour",
+				RequiredDateTimeMinute=now.ToString("mm"),
+				RequiredDateTimeMinuteMessage="datetime minute field should default to current minute",
 
 				Model=new TargetModel()
 			};

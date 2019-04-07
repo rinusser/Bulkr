@@ -206,6 +206,9 @@
     <Compile Include="Services\Service.cs" />
     <Compile Include="Persistence\Migrations\201904052142_AddFoods.cs" />
     <Compile Include="Persistence\MigrationRunner.cs" />
+    <Compile Include="Models\Intake.cs" />
+    <Compile Include="Persistence\Migrations\201904060210_AddIntakes.cs" />
+    <Compile Include="Services\IntakeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

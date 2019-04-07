@@ -47,17 +47,17 @@ namespace Bulkr.Gui.Components
 			};
 
 			return new Form<Food>()
-				.AddField(new ID<Food>("ID",GetFieldValueLabel("ID")))
-				.AddField(new Text<Food>("Name",GetFieldValueInput("Name"),Option.Required))
-				.AddField(new Text<Food>("Brand",GetFieldValueInput("Brand")))
-				.AddField(new DropDown<Food,ReferenceSizeType>("ReferenceSize",GetFieldValueComboBox("ReferenceSize"),referenceSizes))
-				.AddField(new Number<Food>("Energy",GetFieldValueInput("Energy")))
-				.AddField(new Number<Food>("TotalFat",GetFieldValueInput("TotalFat")))
-				.AddField(new Number<Food>("SaturatedFat",GetFieldValueInput("SaturatedFat")))
-				.AddField(new Number<Food>("TotalCarbohydrates",GetFieldValueInput("Carbohydrates")))
-				.AddField(new Number<Food>("Sugar",GetFieldValueInput("Sugar")))
-				.AddField(new Number<Food>("Protein",GetFieldValueInput("Protein")))
-				.AddField(new Number<Food>("Fiber",GetFieldValueInput("Fiber")));
+				.AddField(new ID<Food>("ID",GetFieldValueWidget<Gtk.Label>("ID")))
+				.AddField(new Text<Food>("Name",GetFieldValueWidget<Gtk.Entry>("Name"),Option.Required))
+				.AddField(new Text<Food>("Brand",GetFieldValueWidget<Gtk.Entry>("Brand")))
+				.AddField(new DropDown<Food,ReferenceSizeType>("ReferenceSize",GetFieldValueWidget<Gtk.ComboBox>("ReferenceSize"),referenceSizes))
+				.AddField(new Number<Food>("Energy",GetFieldValueWidget<Gtk.Entry>("Energy")))
+				.AddField(new Number<Food>("TotalFat",GetFieldValueWidget<Gtk.Entry>("TotalFat")))
+				.AddField(new Number<Food>("SaturatedFat",GetFieldValueWidget<Gtk.Entry>("SaturatedFat")))
+				.AddField(new Number<Food>("TotalCarbohydrates",GetFieldValueWidget<Gtk.Entry>("Carbohydrates")))
+				.AddField(new Number<Food>("Sugar",GetFieldValueWidget<Gtk.Entry>("Sugar")))
+				.AddField(new Number<Food>("Protein",GetFieldValueWidget<Gtk.Entry>("Protein")))
+				.AddField(new Number<Food>("Fiber",GetFieldValueWidget<Gtk.Entry>("Fiber")));
 		}
 	}
 }

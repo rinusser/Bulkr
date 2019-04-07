@@ -58,20 +58,12 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="model">The model to take data from.</param>
 		public override void PopulateFrom(MODEL model)
 		{
-			DateTime? rawValue=GetModelValue(model);
-
-			if(rawValue==null)
-			{
-				CalendarWidget.Date=DateTime.Today;
-				HourWidget.Text="";
-				MinuteWidget.Text="";
-				return;
-			}
-
-			DateTime value=(DateTime)rawValue;
+			DateTime value=GetModelValue(model)??DateTime.Now;
 
 			CalendarWidget.Date=value;
+			HourWidget.Value=value.Hour;
 			HourWidget.Text=string.Format("{0:00}",value.Hour);
+			MinuteWidget.Value=value.Minute;
 			MinuteWidget.Text=string.Format("{0:00}",value.Minute);
 		}
 

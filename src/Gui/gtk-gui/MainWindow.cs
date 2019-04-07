@@ -9,7 +9,7 @@ public partial class MainWindow
 
 	private global::Gtk.Notebook notebook1;
 
-	private global::Gtk.Table table1;
+	private global::Gtk.Table food_layout_table;
 
 	private global::Gtk.Label food_brand_label;
 
@@ -75,6 +75,58 @@ public partial class MainWindow
 
 	private global::Gtk.Label label1;
 
+	private global::Gtk.Table intake_layout_table;
+
+	private global::Gtk.Label food_when_time_label;
+
+	private global::Gtk.HBox hbox1;
+
+	private global::Gtk.SpinButton intake_when_hour_value;
+
+	private global::Gtk.Label label3;
+
+	private global::Gtk.SpinButton intake_when_minute_value;
+
+	private global::Gtk.HBox hbox2;
+
+	private global::Gtk.Entry intake_amount_value;
+
+	private global::Gtk.Label intake_amount_unit;
+
+	private global::Gtk.HBox hbox4;
+
+	private global::Gtk.Button intake_nav_prev1;
+
+	private global::Gtk.Label intake_nav_label;
+
+	private global::Gtk.Button intake_nav_next1;
+
+	private global::Gtk.HButtonBox hbuttonbox2;
+
+	private global::Gtk.Button intake_btn_delete1;
+
+	private global::Gtk.Button intake_btn_new1;
+
+	private global::Gtk.Button intake_btn_reset1;
+
+	private global::Gtk.Button intake_btn_save1;
+
+	private global::Gtk.Label intake_amount_label;
+
+	private global::Gtk.Label intake_food_label;
+
+	private global::Gtk.ComboBox intake_food_value;
+
+	private global::Gtk.Label intake_id_label;
+
+	private global::Gtk.Label intake_id_value;
+
+	private global::Gtk.Calendar intake_when_date_value;
+
+	private global::Gtk.Label label4;
+
+	private global::Gtk.Label label2;
+
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
 
 	private global::Gtk.TextView textview1;
@@ -92,7 +144,6 @@ public partial class MainWindow
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox1 = new global::Gtk.VBox();
-		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.notebook1 = new global::Gtk.Notebook();
@@ -100,281 +151,281 @@ public partial class MainWindow
 		this.notebook1.Name = "notebook1";
 		this.notebook1.CurrentPage = 0;
 		// Container child notebook1.Gtk.Notebook+NotebookChild
-		this.table1 = new global::Gtk.Table(((uint)(9)), ((uint)(5)), false);
-		this.table1.Name = "table1";
-		this.table1.RowSpacing = ((uint)(6));
-		this.table1.ColumnSpacing = ((uint)(6));
-		// Container child table1.Gtk.Table+TableChild
+		this.food_layout_table = new global::Gtk.Table(((uint)(9)), ((uint)(5)), false);
+		this.food_layout_table.Name = "food_layout_table";
+		this.food_layout_table.RowSpacing = ((uint)(6));
+		this.food_layout_table.ColumnSpacing = ((uint)(6));
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_brand_label = new global::Gtk.Label();
 		this.food_brand_label.Name = "food_brand_label";
 		this.food_brand_label.Xalign = 0F;
 		this.food_brand_label.LabelProp = global::Mono.Unix.Catalog.GetString("Brand");
-		this.table1.Add(this.food_brand_label);
-		global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1[this.food_brand_label]));
+		this.food_layout_table.Add(this.food_brand_label);
+		global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_brand_label]));
 		w2.TopAttach = ((uint)(1));
 		w2.BottomAttach = ((uint)(2));
 		w2.XOptions = ((global::Gtk.AttachOptions)(4));
 		w2.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_brand_value = new global::Gtk.Entry();
 		this.food_brand_value.CanFocus = true;
 		this.food_brand_value.Name = "food_brand_value";
 		this.food_brand_value.IsEditable = true;
 		this.food_brand_value.InvisibleChar = '•';
-		this.table1.Add(this.food_brand_value);
-		global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1[this.food_brand_value]));
+		this.food_layout_table.Add(this.food_brand_value);
+		global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_brand_value]));
 		w3.TopAttach = ((uint)(1));
 		w3.BottomAttach = ((uint)(2));
 		w3.LeftAttach = ((uint)(1));
 		w3.RightAttach = ((uint)(2));
 		w3.XOptions = ((global::Gtk.AttachOptions)(4));
 		w3.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_carbohydrates_value = new global::Gtk.Entry();
 		this.food_carbohydrates_value.CanFocus = true;
 		this.food_carbohydrates_value.Name = "food_carbohydrates_value";
 		this.food_carbohydrates_value.IsEditable = true;
 		this.food_carbohydrates_value.InvisibleChar = '•';
-		this.table1.Add(this.food_carbohydrates_value);
-		global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table1[this.food_carbohydrates_value]));
+		this.food_layout_table.Add(this.food_carbohydrates_value);
+		global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_carbohydrates_value]));
 		w4.TopAttach = ((uint)(4));
 		w4.BottomAttach = ((uint)(5));
 		w4.LeftAttach = ((uint)(1));
 		w4.RightAttach = ((uint)(2));
 		w4.XOptions = ((global::Gtk.AttachOptions)(4));
 		w4.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_energy_label = new global::Gtk.Label();
 		this.food_energy_label.Name = "food_energy_label";
 		this.food_energy_label.Xalign = 0F;
 		this.food_energy_label.LabelProp = global::Mono.Unix.Catalog.GetString("Energy");
-		this.table1.Add(this.food_energy_label);
-		global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table1[this.food_energy_label]));
+		this.food_layout_table.Add(this.food_energy_label);
+		global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_energy_label]));
 		w5.TopAttach = ((uint)(2));
 		w5.BottomAttach = ((uint)(3));
 		w5.XOptions = ((global::Gtk.AttachOptions)(4));
 		w5.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_energy_value = new global::Gtk.Entry();
 		this.food_energy_value.CanFocus = true;
 		this.food_energy_value.Name = "food_energy_value";
 		this.food_energy_value.IsEditable = true;
 		this.food_energy_value.InvisibleChar = '•';
-		this.table1.Add(this.food_energy_value);
-		global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1[this.food_energy_value]));
+		this.food_layout_table.Add(this.food_energy_value);
+		global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_energy_value]));
 		w6.TopAttach = ((uint)(2));
 		w6.BottomAttach = ((uint)(3));
 		w6.LeftAttach = ((uint)(1));
 		w6.RightAttach = ((uint)(2));
 		w6.XOptions = ((global::Gtk.AttachOptions)(4));
 		w6.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_fiber_label = new global::Gtk.Label();
 		this.food_fiber_label.Name = "food_fiber_label";
 		this.food_fiber_label.Xalign = 0F;
 		this.food_fiber_label.LabelProp = global::Mono.Unix.Catalog.GetString("Fiber");
-		this.table1.Add(this.food_fiber_label);
-		global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table1[this.food_fiber_label]));
+		this.food_layout_table.Add(this.food_fiber_label);
+		global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_fiber_label]));
 		w7.TopAttach = ((uint)(6));
 		w7.BottomAttach = ((uint)(7));
 		w7.XOptions = ((global::Gtk.AttachOptions)(4));
 		w7.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_fiber_value = new global::Gtk.Entry();
 		this.food_fiber_value.CanFocus = true;
 		this.food_fiber_value.Name = "food_fiber_value";
 		this.food_fiber_value.IsEditable = true;
 		this.food_fiber_value.InvisibleChar = '•';
-		this.table1.Add(this.food_fiber_value);
-		global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table1[this.food_fiber_value]));
+		this.food_layout_table.Add(this.food_fiber_value);
+		global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_fiber_value]));
 		w8.TopAttach = ((uint)(6));
 		w8.BottomAttach = ((uint)(7));
 		w8.LeftAttach = ((uint)(1));
 		w8.RightAttach = ((uint)(2));
 		w8.XOptions = ((global::Gtk.AttachOptions)(4));
 		w8.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_id_label = new global::Gtk.Label();
 		this.food_id_label.Name = "food_id_label";
 		this.food_id_label.Xalign = 0F;
 		this.food_id_label.LabelProp = global::Mono.Unix.Catalog.GetString("ID");
-		this.table1.Add(this.food_id_label);
-		global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.table1[this.food_id_label]));
+		this.food_layout_table.Add(this.food_id_label);
+		global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_id_label]));
 		w9.LeftAttach = ((uint)(3));
 		w9.RightAttach = ((uint)(4));
 		w9.XOptions = ((global::Gtk.AttachOptions)(4));
 		w9.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_id_value = new global::Gtk.Label();
 		this.food_id_value.Name = "food_id_value";
 		this.food_id_value.Xalign = 0F;
-		this.table1.Add(this.food_id_value);
-		global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.table1[this.food_id_value]));
+		this.food_layout_table.Add(this.food_id_value);
+		global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_id_value]));
 		w10.LeftAttach = ((uint)(4));
 		w10.RightAttach = ((uint)(5));
 		w10.XOptions = ((global::Gtk.AttachOptions)(4));
 		w10.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_name_label = new global::Gtk.Label();
 		this.food_name_label.Name = "food_name_label";
 		this.food_name_label.Xalign = 0F;
 		this.food_name_label.LabelProp = global::Mono.Unix.Catalog.GetString("Name");
-		this.table1.Add(this.food_name_label);
-		global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table1[this.food_name_label]));
+		this.food_layout_table.Add(this.food_name_label);
+		global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_name_label]));
 		w11.XOptions = ((global::Gtk.AttachOptions)(4));
 		w11.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_name_value = new global::Gtk.Entry();
 		this.food_name_value.CanFocus = true;
 		this.food_name_value.Name = "food_name_value";
 		this.food_name_value.IsEditable = true;
 		this.food_name_value.InvisibleChar = '•';
-		this.table1.Add(this.food_name_value);
-		global::Gtk.Table.TableChild w12 = ((global::Gtk.Table.TableChild)(this.table1[this.food_name_value]));
+		this.food_layout_table.Add(this.food_name_value);
+		global::Gtk.Table.TableChild w12 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_name_value]));
 		w12.LeftAttach = ((uint)(1));
 		w12.RightAttach = ((uint)(2));
 		w12.XOptions = ((global::Gtk.AttachOptions)(4));
 		w12.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_protein_label = new global::Gtk.Label();
 		this.food_protein_label.Name = "food_protein_label";
 		this.food_protein_label.Xalign = 0F;
 		this.food_protein_label.LabelProp = global::Mono.Unix.Catalog.GetString("Protein");
-		this.table1.Add(this.food_protein_label);
-		global::Gtk.Table.TableChild w13 = ((global::Gtk.Table.TableChild)(this.table1[this.food_protein_label]));
+		this.food_layout_table.Add(this.food_protein_label);
+		global::Gtk.Table.TableChild w13 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_protein_label]));
 		w13.TopAttach = ((uint)(5));
 		w13.BottomAttach = ((uint)(6));
 		w13.XOptions = ((global::Gtk.AttachOptions)(4));
 		w13.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_protein_value = new global::Gtk.Entry();
 		this.food_protein_value.CanFocus = true;
 		this.food_protein_value.Name = "food_protein_value";
 		this.food_protein_value.IsEditable = true;
 		this.food_protein_value.InvisibleChar = '•';
-		this.table1.Add(this.food_protein_value);
-		global::Gtk.Table.TableChild w14 = ((global::Gtk.Table.TableChild)(this.table1[this.food_protein_value]));
+		this.food_layout_table.Add(this.food_protein_value);
+		global::Gtk.Table.TableChild w14 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_protein_value]));
 		w14.TopAttach = ((uint)(5));
 		w14.BottomAttach = ((uint)(6));
 		w14.LeftAttach = ((uint)(1));
 		w14.RightAttach = ((uint)(2));
 		w14.XOptions = ((global::Gtk.AttachOptions)(4));
 		w14.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_referencesize_label = new global::Gtk.Label();
 		this.food_referencesize_label.Name = "food_referencesize_label";
 		this.food_referencesize_label.Xalign = 0F;
 		this.food_referencesize_label.LabelProp = global::Mono.Unix.Catalog.GetString("Reference Size");
-		this.table1.Add(this.food_referencesize_label);
-		global::Gtk.Table.TableChild w15 = ((global::Gtk.Table.TableChild)(this.table1[this.food_referencesize_label]));
+		this.food_layout_table.Add(this.food_referencesize_label);
+		global::Gtk.Table.TableChild w15 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_referencesize_label]));
 		w15.TopAttach = ((uint)(1));
 		w15.BottomAttach = ((uint)(2));
 		w15.LeftAttach = ((uint)(3));
 		w15.RightAttach = ((uint)(4));
 		w15.XOptions = ((global::Gtk.AttachOptions)(4));
 		w15.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_referencesize_value = global::Gtk.ComboBox.NewText();
 		this.food_referencesize_value.Name = "food_referencesize_value";
-		this.table1.Add(this.food_referencesize_value);
-		global::Gtk.Table.TableChild w16 = ((global::Gtk.Table.TableChild)(this.table1[this.food_referencesize_value]));
+		this.food_layout_table.Add(this.food_referencesize_value);
+		global::Gtk.Table.TableChild w16 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_referencesize_value]));
 		w16.TopAttach = ((uint)(1));
 		w16.BottomAttach = ((uint)(2));
 		w16.LeftAttach = ((uint)(4));
 		w16.RightAttach = ((uint)(5));
 		w16.XOptions = ((global::Gtk.AttachOptions)(4));
 		w16.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_saturatedfat_label = new global::Gtk.Label();
 		this.food_saturatedfat_label.Name = "food_saturatedfat_label";
 		this.food_saturatedfat_label.Xalign = 0F;
 		this.food_saturatedfat_label.LabelProp = global::Mono.Unix.Catalog.GetString("Fat (saturated)");
-		this.table1.Add(this.food_saturatedfat_label);
-		global::Gtk.Table.TableChild w17 = ((global::Gtk.Table.TableChild)(this.table1[this.food_saturatedfat_label]));
+		this.food_layout_table.Add(this.food_saturatedfat_label);
+		global::Gtk.Table.TableChild w17 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_saturatedfat_label]));
 		w17.TopAttach = ((uint)(3));
 		w17.BottomAttach = ((uint)(4));
 		w17.LeftAttach = ((uint)(3));
 		w17.RightAttach = ((uint)(4));
 		w17.XOptions = ((global::Gtk.AttachOptions)(4));
 		w17.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_saturatedfat_value = new global::Gtk.Entry();
 		this.food_saturatedfat_value.CanFocus = true;
 		this.food_saturatedfat_value.Name = "food_saturatedfat_value";
 		this.food_saturatedfat_value.IsEditable = true;
 		this.food_saturatedfat_value.InvisibleChar = '•';
-		this.table1.Add(this.food_saturatedfat_value);
-		global::Gtk.Table.TableChild w18 = ((global::Gtk.Table.TableChild)(this.table1[this.food_saturatedfat_value]));
+		this.food_layout_table.Add(this.food_saturatedfat_value);
+		global::Gtk.Table.TableChild w18 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_saturatedfat_value]));
 		w18.TopAttach = ((uint)(3));
 		w18.BottomAttach = ((uint)(4));
 		w18.LeftAttach = ((uint)(4));
 		w18.RightAttach = ((uint)(5));
 		w18.XOptions = ((global::Gtk.AttachOptions)(4));
 		w18.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_sugar_label = new global::Gtk.Label();
 		this.food_sugar_label.Name = "food_sugar_label";
 		this.food_sugar_label.Xalign = 0F;
 		this.food_sugar_label.LabelProp = global::Mono.Unix.Catalog.GetString("Sugar");
-		this.table1.Add(this.food_sugar_label);
-		global::Gtk.Table.TableChild w19 = ((global::Gtk.Table.TableChild)(this.table1[this.food_sugar_label]));
+		this.food_layout_table.Add(this.food_sugar_label);
+		global::Gtk.Table.TableChild w19 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_sugar_label]));
 		w19.TopAttach = ((uint)(4));
 		w19.BottomAttach = ((uint)(5));
 		w19.LeftAttach = ((uint)(3));
 		w19.RightAttach = ((uint)(4));
 		w19.XOptions = ((global::Gtk.AttachOptions)(4));
 		w19.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_sugar_value = new global::Gtk.Entry();
 		this.food_sugar_value.CanFocus = true;
 		this.food_sugar_value.Name = "food_sugar_value";
 		this.food_sugar_value.IsEditable = true;
 		this.food_sugar_value.InvisibleChar = '•';
-		this.table1.Add(this.food_sugar_value);
-		global::Gtk.Table.TableChild w20 = ((global::Gtk.Table.TableChild)(this.table1[this.food_sugar_value]));
+		this.food_layout_table.Add(this.food_sugar_value);
+		global::Gtk.Table.TableChild w20 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_sugar_value]));
 		w20.TopAttach = ((uint)(4));
 		w20.BottomAttach = ((uint)(5));
 		w20.LeftAttach = ((uint)(4));
 		w20.RightAttach = ((uint)(5));
 		w20.XOptions = ((global::Gtk.AttachOptions)(4));
 		w20.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_totalcarbs_label = new global::Gtk.Label();
 		this.food_totalcarbs_label.Name = "food_totalcarbs_label";
 		this.food_totalcarbs_label.Xalign = 0F;
 		this.food_totalcarbs_label.LabelProp = global::Mono.Unix.Catalog.GetString("Carbohydrates (total)");
-		this.table1.Add(this.food_totalcarbs_label);
-		global::Gtk.Table.TableChild w21 = ((global::Gtk.Table.TableChild)(this.table1[this.food_totalcarbs_label]));
+		this.food_layout_table.Add(this.food_totalcarbs_label);
+		global::Gtk.Table.TableChild w21 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_totalcarbs_label]));
 		w21.TopAttach = ((uint)(4));
 		w21.BottomAttach = ((uint)(5));
 		w21.XOptions = ((global::Gtk.AttachOptions)(4));
 		w21.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_totalfat_label = new global::Gtk.Label();
 		this.food_totalfat_label.Name = "food_totalfat_label";
 		this.food_totalfat_label.Xalign = 0F;
 		this.food_totalfat_label.LabelProp = global::Mono.Unix.Catalog.GetString("Fat (total)");
-		this.table1.Add(this.food_totalfat_label);
-		global::Gtk.Table.TableChild w22 = ((global::Gtk.Table.TableChild)(this.table1[this.food_totalfat_label]));
+		this.food_layout_table.Add(this.food_totalfat_label);
+		global::Gtk.Table.TableChild w22 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_totalfat_label]));
 		w22.TopAttach = ((uint)(3));
 		w22.BottomAttach = ((uint)(4));
 		w22.XOptions = ((global::Gtk.AttachOptions)(4));
 		w22.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.food_totalfat_value = new global::Gtk.Entry();
 		this.food_totalfat_value.CanFocus = true;
 		this.food_totalfat_value.Name = "food_totalfat_value";
 		this.food_totalfat_value.IsEditable = true;
 		this.food_totalfat_value.InvisibleChar = '•';
-		this.table1.Add(this.food_totalfat_value);
-		global::Gtk.Table.TableChild w23 = ((global::Gtk.Table.TableChild)(this.table1[this.food_totalfat_value]));
+		this.food_layout_table.Add(this.food_totalfat_value);
+		global::Gtk.Table.TableChild w23 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.food_totalfat_value]));
 		w23.TopAttach = ((uint)(3));
 		w23.BottomAttach = ((uint)(4));
 		w23.LeftAttach = ((uint)(1));
 		w23.RightAttach = ((uint)(2));
 		w23.XOptions = ((global::Gtk.AttachOptions)(4));
 		w23.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.hbox3 = new global::Gtk.HBox();
 		this.hbox3.Name = "hbox3";
 		this.hbox3.Homogeneous = true;
@@ -409,15 +460,15 @@ public partial class MainWindow
 		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.food_nav_next]));
 		w26.Position = 2;
 		w26.Expand = false;
-		this.table1.Add(this.hbox3);
-		global::Gtk.Table.TableChild w27 = ((global::Gtk.Table.TableChild)(this.table1[this.hbox3]));
+		this.food_layout_table.Add(this.hbox3);
+		global::Gtk.Table.TableChild w27 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.hbox3]));
 		w27.TopAttach = ((uint)(8));
 		w27.BottomAttach = ((uint)(9));
 		w27.RightAttach = ((uint)(5));
 		w27.YPadding = ((uint)(4));
 		w27.XOptions = ((global::Gtk.AttachOptions)(1));
 		w27.YOptions = ((global::Gtk.AttachOptions)(4));
-		// Container child table1.Gtk.Table+TableChild
+		// Container child food_layout_table.Gtk.Table+TableChild
 		this.hbuttonbox1 = new global::Gtk.HButtonBox();
 		this.hbuttonbox1.Name = "hbuttonbox1";
 		// Container child hbuttonbox1.Gtk.ButtonBox+ButtonBoxChild
@@ -467,24 +518,304 @@ public partial class MainWindow
 		w31.Position = 3;
 		w31.Expand = false;
 		w31.Fill = false;
-		this.table1.Add(this.hbuttonbox1);
-		global::Gtk.Table.TableChild w32 = ((global::Gtk.Table.TableChild)(this.table1[this.hbuttonbox1]));
+		this.food_layout_table.Add(this.hbuttonbox1);
+		global::Gtk.Table.TableChild w32 = ((global::Gtk.Table.TableChild)(this.food_layout_table[this.hbuttonbox1]));
 		w32.TopAttach = ((uint)(7));
 		w32.BottomAttach = ((uint)(8));
 		w32.RightAttach = ((uint)(5));
 		w32.XOptions = ((global::Gtk.AttachOptions)(0));
 		w32.YOptions = ((global::Gtk.AttachOptions)(4));
-		this.notebook1.Add(this.table1);
+		this.notebook1.Add(this.food_layout_table);
 		// Notebook tab
 		this.label1 = new global::Gtk.Label();
 		this.label1.Name = "label1";
 		this.label1.LabelProp = global::Mono.Unix.Catalog.GetString("Food");
-		this.notebook1.SetTabLabel(this.table1, this.label1);
+		this.notebook1.SetTabLabel(this.food_layout_table, this.label1);
 		this.label1.ShowAll();
+		// Container child notebook1.Gtk.Notebook+NotebookChild
+		this.intake_layout_table = new global::Gtk.Table(((uint)(9)), ((uint)(4)), false);
+		this.intake_layout_table.Name = "intake_layout_table";
+		this.intake_layout_table.RowSpacing = ((uint)(6));
+		this.intake_layout_table.ColumnSpacing = ((uint)(6));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.food_when_time_label = new global::Gtk.Label();
+		this.food_when_time_label.Name = "food_when_time_label";
+		this.food_when_time_label.Xalign = 0F;
+		this.food_when_time_label.LabelProp = global::Mono.Unix.Catalog.GetString("Time");
+		this.intake_layout_table.Add(this.food_when_time_label);
+		global::Gtk.Table.TableChild w34 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.food_when_time_label]));
+		w34.TopAttach = ((uint)(1));
+		w34.BottomAttach = ((uint)(2));
+		w34.LeftAttach = ((uint)(2));
+		w34.RightAttach = ((uint)(3));
+		w34.XOptions = ((global::Gtk.AttachOptions)(4));
+		w34.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.hbox1 = new global::Gtk.HBox();
+		this.hbox1.Name = "hbox1";
+		this.hbox1.Spacing = 6;
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.intake_when_hour_value = new global::Gtk.SpinButton(0D, 100D, 1D);
+		this.intake_when_hour_value.CanFocus = true;
+		this.intake_when_hour_value.Name = "intake_when_hour_value";
+		this.intake_when_hour_value.Adjustment.PageIncrement = 10D;
+		this.intake_when_hour_value.ClimbRate = 1D;
+		this.intake_when_hour_value.Numeric = true;
+		this.hbox1.Add(this.intake_when_hour_value);
+		global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.intake_when_hour_value]));
+		w35.Position = 0;
+		w35.Expand = false;
+		w35.Fill = false;
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.label3 = new global::Gtk.Label();
+		this.label3.Name = "label3";
+		this.label3.LabelProp = global::Mono.Unix.Catalog.GetString(":");
+		this.hbox1.Add(this.label3);
+		global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.label3]));
+		w36.Position = 1;
+		w36.Expand = false;
+		w36.Fill = false;
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.intake_when_minute_value = new global::Gtk.SpinButton(0D, 100D, 1D);
+		this.intake_when_minute_value.CanFocus = true;
+		this.intake_when_minute_value.Name = "intake_when_minute_value";
+		this.intake_when_minute_value.Adjustment.PageIncrement = 10D;
+		this.intake_when_minute_value.ClimbRate = 1D;
+		this.intake_when_minute_value.Numeric = true;
+		this.hbox1.Add(this.intake_when_minute_value);
+		global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.intake_when_minute_value]));
+		w37.Position = 2;
+		w37.Expand = false;
+		w37.Fill = false;
+		this.intake_layout_table.Add(this.hbox1);
+		global::Gtk.Table.TableChild w38 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.hbox1]));
+		w38.TopAttach = ((uint)(1));
+		w38.BottomAttach = ((uint)(2));
+		w38.LeftAttach = ((uint)(3));
+		w38.RightAttach = ((uint)(4));
+		w38.XOptions = ((global::Gtk.AttachOptions)(4));
+		w38.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.hbox2 = new global::Gtk.HBox();
+		this.hbox2.Name = "hbox2";
+		this.hbox2.Spacing = 6;
+		// Container child hbox2.Gtk.Box+BoxChild
+		this.intake_amount_value = new global::Gtk.Entry();
+		this.intake_amount_value.WidthRequest = 67;
+		this.intake_amount_value.CanFocus = true;
+		this.intake_amount_value.Name = "intake_amount_value";
+		this.intake_amount_value.IsEditable = true;
+		this.intake_amount_value.InvisibleChar = '•';
+		this.hbox2.Add(this.intake_amount_value);
+		global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.intake_amount_value]));
+		w39.Position = 0;
+		w39.Expand = false;
+		w39.Fill = false;
+		// Container child hbox2.Gtk.Box+BoxChild
+		this.intake_amount_unit = new global::Gtk.Label();
+		this.intake_amount_unit.Name = "intake_amount_unit";
+		this.hbox2.Add(this.intake_amount_unit);
+		global::Gtk.Box.BoxChild w40 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.intake_amount_unit]));
+		w40.Position = 1;
+		this.intake_layout_table.Add(this.hbox2);
+		global::Gtk.Table.TableChild w41 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.hbox2]));
+		w41.TopAttach = ((uint)(2));
+		w41.BottomAttach = ((uint)(3));
+		w41.LeftAttach = ((uint)(3));
+		w41.RightAttach = ((uint)(4));
+		w41.XOptions = ((global::Gtk.AttachOptions)(4));
+		w41.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.hbox4 = new global::Gtk.HBox();
+		this.hbox4.Name = "hbox4";
+		this.hbox4.Homogeneous = true;
+		this.hbox4.Spacing = 6;
+		// Container child hbox4.Gtk.Box+BoxChild
+		this.intake_nav_prev1 = new global::Gtk.Button();
+		this.intake_nav_prev1.CanFocus = true;
+		this.intake_nav_prev1.Name = "intake_nav_prev1";
+		this.intake_nav_prev1.UseStock = true;
+		this.intake_nav_prev1.UseUnderline = true;
+		this.intake_nav_prev1.Label = "gtk-go-back";
+		this.hbox4.Add(this.intake_nav_prev1);
+		global::Gtk.Box.BoxChild w42 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.intake_nav_prev1]));
+		w42.Position = 0;
+		w42.Expand = false;
+		// Container child hbox4.Gtk.Box+BoxChild
+		this.intake_nav_label = new global::Gtk.Label();
+		this.intake_nav_label.Name = "intake_nav_label";
+		this.intake_nav_label.LabelProp = global::Mono.Unix.Catalog.GetString("0/0");
+		this.hbox4.Add(this.intake_nav_label);
+		global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.intake_nav_label]));
+		w43.Position = 1;
+		w43.Expand = false;
+		// Container child hbox4.Gtk.Box+BoxChild
+		this.intake_nav_next1 = new global::Gtk.Button();
+		this.intake_nav_next1.CanFocus = true;
+		this.intake_nav_next1.Name = "intake_nav_next1";
+		this.intake_nav_next1.UseStock = true;
+		this.intake_nav_next1.UseUnderline = true;
+		this.intake_nav_next1.Label = "gtk-go-forward";
+		this.hbox4.Add(this.intake_nav_next1);
+		global::Gtk.Box.BoxChild w44 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.intake_nav_next1]));
+		w44.Position = 2;
+		w44.Expand = false;
+		this.intake_layout_table.Add(this.hbox4);
+		global::Gtk.Table.TableChild w45 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.hbox4]));
+		w45.TopAttach = ((uint)(8));
+		w45.BottomAttach = ((uint)(9));
+		w45.RightAttach = ((uint)(4));
+		w45.YPadding = ((uint)(4));
+		w45.XOptions = ((global::Gtk.AttachOptions)(1));
+		w45.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.hbuttonbox2 = new global::Gtk.HButtonBox();
+		this.hbuttonbox2.Name = "hbuttonbox2";
+		// Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
+		this.intake_btn_delete1 = new global::Gtk.Button();
+		this.intake_btn_delete1.CanFocus = true;
+		this.intake_btn_delete1.Name = "intake_btn_delete1";
+		this.intake_btn_delete1.UseStock = true;
+		this.intake_btn_delete1.UseUnderline = true;
+		this.intake_btn_delete1.Label = "gtk-delete";
+		this.hbuttonbox2.Add(this.intake_btn_delete1);
+		global::Gtk.ButtonBox.ButtonBoxChild w46 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2[this.intake_btn_delete1]));
+		w46.Expand = false;
+		w46.Fill = false;
+		// Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
+		this.intake_btn_new1 = new global::Gtk.Button();
+		this.intake_btn_new1.CanFocus = true;
+		this.intake_btn_new1.Name = "intake_btn_new1";
+		this.intake_btn_new1.UseStock = true;
+		this.intake_btn_new1.UseUnderline = true;
+		this.intake_btn_new1.Label = "gtk-new";
+		this.hbuttonbox2.Add(this.intake_btn_new1);
+		global::Gtk.ButtonBox.ButtonBoxChild w47 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2[this.intake_btn_new1]));
+		w47.Position = 1;
+		w47.Expand = false;
+		w47.Fill = false;
+		// Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
+		this.intake_btn_reset1 = new global::Gtk.Button();
+		this.intake_btn_reset1.CanFocus = true;
+		this.intake_btn_reset1.Name = "intake_btn_reset1";
+		this.intake_btn_reset1.UseStock = true;
+		this.intake_btn_reset1.UseUnderline = true;
+		this.intake_btn_reset1.Label = "gtk-revert-to-saved";
+		this.hbuttonbox2.Add(this.intake_btn_reset1);
+		global::Gtk.ButtonBox.ButtonBoxChild w48 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2[this.intake_btn_reset1]));
+		w48.Position = 2;
+		w48.Expand = false;
+		w48.Fill = false;
+		// Container child hbuttonbox2.Gtk.ButtonBox+ButtonBoxChild
+		this.intake_btn_save1 = new global::Gtk.Button();
+		this.intake_btn_save1.CanFocus = true;
+		this.intake_btn_save1.Name = "intake_btn_save1";
+		this.intake_btn_save1.UseStock = true;
+		this.intake_btn_save1.UseUnderline = true;
+		this.intake_btn_save1.Label = "gtk-save";
+		this.hbuttonbox2.Add(this.intake_btn_save1);
+		global::Gtk.ButtonBox.ButtonBoxChild w49 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox2[this.intake_btn_save1]));
+		w49.Position = 3;
+		w49.Expand = false;
+		w49.Fill = false;
+		this.intake_layout_table.Add(this.hbuttonbox2);
+		global::Gtk.Table.TableChild w50 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.hbuttonbox2]));
+		w50.TopAttach = ((uint)(7));
+		w50.BottomAttach = ((uint)(8));
+		w50.RightAttach = ((uint)(4));
+		w50.XOptions = ((global::Gtk.AttachOptions)(0));
+		w50.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.intake_amount_label = new global::Gtk.Label();
+		this.intake_amount_label.Name = "intake_amount_label";
+		this.intake_amount_label.Xalign = 0F;
+		this.intake_amount_label.LabelProp = global::Mono.Unix.Catalog.GetString("Amount");
+		this.intake_layout_table.Add(this.intake_amount_label);
+		global::Gtk.Table.TableChild w51 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.intake_amount_label]));
+		w51.TopAttach = ((uint)(2));
+		w51.BottomAttach = ((uint)(3));
+		w51.LeftAttach = ((uint)(2));
+		w51.RightAttach = ((uint)(3));
+		w51.XOptions = ((global::Gtk.AttachOptions)(4));
+		w51.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.intake_food_label = new global::Gtk.Label();
+		this.intake_food_label.Name = "intake_food_label";
+		this.intake_food_label.Xalign = 0F;
+		this.intake_food_label.LabelProp = global::Mono.Unix.Catalog.GetString("Food");
+		this.intake_layout_table.Add(this.intake_food_label);
+		global::Gtk.Table.TableChild w52 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.intake_food_label]));
+		w52.TopAttach = ((uint)(3));
+		w52.BottomAttach = ((uint)(4));
+		w52.LeftAttach = ((uint)(2));
+		w52.RightAttach = ((uint)(3));
+		w52.XOptions = ((global::Gtk.AttachOptions)(4));
+		w52.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.intake_food_value = global::Gtk.ComboBox.NewText();
+		this.intake_food_value.Name = "intake_food_value";
+		this.intake_layout_table.Add(this.intake_food_value);
+		global::Gtk.Table.TableChild w53 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.intake_food_value]));
+		w53.TopAttach = ((uint)(3));
+		w53.BottomAttach = ((uint)(4));
+		w53.LeftAttach = ((uint)(3));
+		w53.RightAttach = ((uint)(4));
+		w53.XOptions = ((global::Gtk.AttachOptions)(4));
+		w53.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.intake_id_label = new global::Gtk.Label();
+		this.intake_id_label.Name = "intake_id_label";
+		this.intake_id_label.Xalign = 0F;
+		this.intake_id_label.LabelProp = global::Mono.Unix.Catalog.GetString("ID");
+		this.intake_layout_table.Add(this.intake_id_label);
+		global::Gtk.Table.TableChild w54 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.intake_id_label]));
+		w54.LeftAttach = ((uint)(2));
+		w54.RightAttach = ((uint)(3));
+		w54.XOptions = ((global::Gtk.AttachOptions)(4));
+		w54.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.intake_id_value = new global::Gtk.Label();
+		this.intake_id_value.Name = "intake_id_value";
+		this.intake_id_value.Xalign = 0F;
+		this.intake_layout_table.Add(this.intake_id_value);
+		global::Gtk.Table.TableChild w55 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.intake_id_value]));
+		w55.LeftAttach = ((uint)(3));
+		w55.RightAttach = ((uint)(4));
+		w55.XOptions = ((global::Gtk.AttachOptions)(4));
+		w55.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.intake_when_date_value = new global::Gtk.Calendar();
+		this.intake_when_date_value.CanFocus = true;
+		this.intake_when_date_value.Name = "intake_when_date_value";
+		this.intake_when_date_value.DisplayOptions = ((global::Gtk.CalendarDisplayOptions)(35));
+		this.intake_layout_table.Add(this.intake_when_date_value);
+		global::Gtk.Table.TableChild w56 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.intake_when_date_value]));
+		w56.BottomAttach = ((uint)(6));
+		w56.XOptions = ((global::Gtk.AttachOptions)(4));
+		w56.YOptions = ((global::Gtk.AttachOptions)(4));
+		// Container child intake_layout_table.Gtk.Table+TableChild
+		this.label4 = new global::Gtk.Label();
+		this.label4.HeightRequest = 49;
+		this.label4.Name = "label4";
+		this.intake_layout_table.Add(this.label4);
+		global::Gtk.Table.TableChild w57 = ((global::Gtk.Table.TableChild)(this.intake_layout_table[this.label4]));
+		w57.TopAttach = ((uint)(6));
+		w57.BottomAttach = ((uint)(7));
+		w57.XOptions = ((global::Gtk.AttachOptions)(4));
+		w57.YOptions = ((global::Gtk.AttachOptions)(4));
+		this.notebook1.Add(this.intake_layout_table);
+		global::Gtk.Notebook.NotebookChild w58 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.intake_layout_table]));
+		w58.Position = 1;
+		// Notebook tab
+		this.label2 = new global::Gtk.Label();
+		this.label2.Name = "label2";
+		this.label2.LabelProp = global::Mono.Unix.Catalog.GetString("Intake");
+		this.notebook1.SetTabLabel(this.intake_layout_table, this.label2);
+		this.label2.ShowAll();
 		this.vbox1.Add(this.notebook1);
-		global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.notebook1]));
-		w34.Position = 0;
-		w34.Fill = false;
+		global::Gtk.Box.BoxChild w59 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.notebook1]));
+		w59.Position = 0;
+		w59.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow();
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -496,8 +827,8 @@ public partial class MainWindow
 		this.textview1.Editable = false;
 		this.GtkScrolledWindow.Add(this.textview1);
 		this.vbox1.Add(this.GtkScrolledWindow);
-		global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
-		w36.Position = 1;
+		global::Gtk.Box.BoxChild w61 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
+		w61.Position = 1;
 		this.Add(this.vbox1);
 		if ((this.Child != null))
 		{
@@ -507,11 +838,21 @@ public partial class MainWindow
 		this.DefaultHeight = 402;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+		this.notebook1.SwitchPage += new global::Gtk.SwitchPageHandler(this.OnTabChanged);
 		this.food_btn_delete.Clicked += new global::System.EventHandler(this.OnFoodDeleteClicked);
 		this.food_btn_new.Clicked += new global::System.EventHandler(this.OnFoodNewClicked);
 		this.food_btn_reset.Clicked += new global::System.EventHandler(this.OnFoodRevertClicked);
 		this.food_btn_save.Clicked += new global::System.EventHandler(this.OnFoodSaveClicked);
 		this.food_nav_prev.Clicked += new global::System.EventHandler(this.OnNavBackClicked);
 		this.food_nav_next.Clicked += new global::System.EventHandler(this.OnNavForwardClicked);
+		this.intake_food_value.Changed += new global::System.EventHandler(this.OnIntakeFoodChanged);
+		this.intake_btn_delete1.Clicked += new global::System.EventHandler(this.OnIntakeDeleteClicked);
+		this.intake_btn_new1.Clicked += new global::System.EventHandler(this.OnIntakeNewClicked);
+		this.intake_btn_reset1.Clicked += new global::System.EventHandler(this.OnIntakeRevertClicked);
+		this.intake_btn_save1.Clicked += new global::System.EventHandler(this.OnIntakeSaveClicked);
+		this.intake_nav_prev1.Clicked += new global::System.EventHandler(this.OnIntakeNavBackClicked);
+		this.intake_nav_next1.Clicked += new global::System.EventHandler(this.OnIntakeNavForwardClicked);
+		this.intake_when_hour_value.Output += new global::Gtk.OutputHandler(this.OnIntakeTimeOutput);
+		this.intake_when_minute_value.Output += new global::Gtk.OutputHandler(this.OnIntakeTimeOutput);
 	}
 }

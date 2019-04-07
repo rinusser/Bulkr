@@ -97,6 +97,11 @@ namespace Bulkr.Core.Persistence
 		/// </summary>
 		public DbSet<Food> Foods { get; set; }
 
+		/// <summary>
+		///   Entity Framework repository for intake entries.
+		/// </summary>
+		public DbSet<Intake> Intakes { get; set; }
+
 
 		/// <summary>
 		///   Basic constructor.

@@ -75,7 +75,7 @@
     <Compile Include="Forms\Field\ID.cs" />
     <Compile Include="Forms\Field\DropDown.cs" />
     <Compile Include="Components\FoodComponent_MainWindow.cs" />
-    <Compile Include="Components\FoodComponent.cs" />
+    <Compile Include="Components\IntakeComponent.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Utils\ApplicationWindowExtensions.cs" />
     <Compile Include="Utils\ApplicationWindow.cs" />
@@ -86,6 +86,9 @@
     <Compile Include="Components\ComponentContext.cs" />
     <Compile Include="Forms\Field\DateTime.cs" />
     <Compile Include="Forms\Field\Field.cs" />
+    <Compile Include="Components\IntakeComponentContext.cs" />
+    <Compile Include="Components\FoodComponent.cs" />
+    <Compile Include="Components\IntakeComponent_MainWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

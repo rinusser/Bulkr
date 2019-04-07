@@ -18,7 +18,10 @@ namespace Bulkr.Gui.Utils
 		/// <returns>The widget field.</returns>
 		public static Gtk.Widget GetWidget(this ApplicationWindow target,string name)
 		{
-			return (Gtk.Widget)target.GetType().GetField(name,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic).GetValue(target);
+			FieldInfo field=target.GetType().GetField(name,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic);
+			if(field==null)
+				throw new System.Exception(string.Format("could not find widget '{0}'",name));
+			return (Gtk.Widget)field.GetValue(target);
 		}
 	}
 }

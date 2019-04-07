@@ -276,39 +276,9 @@ namespace Bulkr.Gui.Components
 		/// </summary>
 		/// <param name="field">The field name to fetch the value widget for.</param>
 		/// <returns>The value widget.</returns>
-		protected Gtk.Widget GetFieldValueWidget(string field)
+		protected T GetFieldValueWidget<T>(string field) where T : Gtk.Widget
 		{
-			return Window.GetWidget(WidgetNamePrefix+field.ToLower()+"_value");
-		}
-
-		/// <summary>
-		///   Like <see cref="GetFieldValueWidget"/>, but cast to <c>Gtk.Label</c>.
-		/// </summary>
-		/// <param name="field">The field name to fetch the value widget for.</param>
-		/// <returns>The Gtk.Label widget.</returns>
-		protected Gtk.Label GetFieldValueLabel(string field)
-		{
-			return (Gtk.Label)GetFieldValueWidget(field);
-		}
-
-		/// <summary>
-		///   Like <see cref="GetFieldValueWidget"/>, but cast to <c>Gtk.Entry</c>.
-		/// </summary>
-		/// <param name="field">The field name to fetch the value widget for.</param>
-		/// <returns>The Gtk.Entry widget.</returns>
-		protected Gtk.Entry GetFieldValueInput(string field)
-		{
-			return (Gtk.Entry)GetFieldValueWidget(field);
-		}
-
-		/// <summary>
-		///   Like <see cref="GetFieldValueWidget"/>, but cast to <c>Gtk.ComboBox</c>.
-		/// </summary>
-		/// <param name="field">The field name to fetch the value widget for.</param>
-		/// <returns>The Gtk.ComboBox widget.</returns>
-		protected Gtk.ComboBox GetFieldValueComboBox(string field)
-		{
-			return (Gtk.ComboBox)GetFieldValueWidget(field);
+			return (T)Window.GetWidget(WidgetNamePrefix+field.ToLower()+"_value");
 		}
 	}
 }
