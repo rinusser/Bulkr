@@ -127,6 +127,10 @@ public partial class MainWindow
 
 	private global::Gtk.Label label2;
 
+	private global::Gtk.Table analysis_layout_table;
+
+	private global::Gtk.Label label5;
+
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
 
 	private global::Gtk.TextView textview1;
@@ -152,7 +156,7 @@ public partial class MainWindow
 		this.notebook1 = new global::Gtk.Notebook();
 		this.notebook1.CanFocus = true;
 		this.notebook1.Name = "notebook1";
-		this.notebook1.CurrentPage = 1;
+		this.notebook1.CurrentPage = 2;
 		// Container child notebook1.Gtk.Notebook+NotebookChild
 		this.food_layout_table = new global::Gtk.Table(((uint)(9)), ((uint)(5)), false);
 		this.food_layout_table.Name = "food_layout_table";
@@ -816,10 +820,24 @@ public partial class MainWindow
 		this.label2.LabelProp = global::Mono.Unix.Catalog.GetString("Intake");
 		this.notebook1.SetTabLabel(this.intake_layout_table, this.label2);
 		this.label2.ShowAll();
+		// Container child notebook1.Gtk.Notebook+NotebookChild
+		this.analysis_layout_table = new global::Gtk.Table(((uint)(1)), ((uint)(1)), false);
+		this.analysis_layout_table.Name = "analysis_layout_table";
+		this.analysis_layout_table.RowSpacing = ((uint)(6));
+		this.analysis_layout_table.ColumnSpacing = ((uint)(6));
+		this.notebook1.Add(this.analysis_layout_table);
+		global::Gtk.Notebook.NotebookChild w59 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1[this.analysis_layout_table]));
+		w59.Position = 2;
+		// Notebook tab
+		this.label5 = new global::Gtk.Label();
+		this.label5.Name = "label5";
+		this.label5.LabelProp = global::Mono.Unix.Catalog.GetString("Analysis");
+		this.notebook1.SetTabLabel(this.analysis_layout_table, this.label5);
+		this.label5.ShowAll();
 		this.vbox1.Add(this.notebook1);
-		global::Gtk.Box.BoxChild w59 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.notebook1]));
-		w59.Position = 0;
-		w59.Fill = false;
+		global::Gtk.Box.BoxChild w60 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.notebook1]));
+		w60.Position = 0;
+		w60.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow();
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -831,8 +849,8 @@ public partial class MainWindow
 		this.textview1.Editable = false;
 		this.GtkScrolledWindow.Add(this.textview1);
 		this.vbox1.Add(this.GtkScrolledWindow);
-		global::Gtk.Box.BoxChild w61 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
-		w61.Position = 1;
+		global::Gtk.Box.BoxChild w62 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.GtkScrolledWindow]));
+		w62.Position = 1;
 		this.Add(this.vbox1);
 		if ((this.Child != null))
 		{

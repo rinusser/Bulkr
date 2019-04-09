@@ -12,7 +12,7 @@ namespace Bulkr.Gui.Components
 	/// <summary>
 	///   UI component for managing food items.
 	/// </summary>
-	public class FoodComponent : Component<Food>
+	public class FoodComponent : CRUDComponent<Food>
 	{
 		/// <summary>
 		///   Basic constructor.

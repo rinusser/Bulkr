@@ -10,7 +10,7 @@ using Bulkr.Gui.Forms;
 
 namespace Bulkr.Gui_Tests.TestTargets
 {
-	public class TargetComponent : Component<TargetModel>
+	public class TargetComponent : CRUDComponent<TargetModel>
 	{
 		public static readonly string ENUM_LABEL_ONE="oNe";
 		public static readonly string ENUM_LABEL_TWO="twO";

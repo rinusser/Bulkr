@@ -11,7 +11,7 @@ namespace Bulkr.Gui.Components
 	/// <summary>
 	///   UI component for managing intake entries.
 	/// </summary>
-	public class IntakeComponent : Component<Intake>
+	public class IntakeComponent : CRUDComponent<Intake>
 	{
 		/// <summary>
 		///   Basic constructor.

@@ -212,6 +212,7 @@
     <Compile Include="Services\IntakeService.cs" />
     <Compile Include="Services\CRUDService.cs" />
     <Compile Include="Services\EnumService.cs" />
+    <Compile Include="Services\TallyService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

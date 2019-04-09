@@ -17,8 +17,11 @@ public partial class MainWindow : Gtk.Window, ApplicationWindow
 	public MainWindow() : base(Gtk.WindowType.Toplevel)
 	{
 		Build();
+		AddLogEntry("finished building main window");
 		AddFoodComponent();
 		AddIntakeComponent();
+		AddAnalysisComponent();
+		AddLogEntry("finished loading UI components");
 	}
 
 
@@ -45,6 +48,7 @@ public partial class MainWindow : Gtk.Window, ApplicationWindow
 	{
 		string timestamp=DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss] ");
 		textview1.Buffer.Text=textview1.Buffer.Text+timestamp+message+"\n";
+		textview1.ScrollToIter(textview1.Buffer.EndIter,0,false,0,0);
 	}
 
 	/// <summary>
@@ -54,7 +58,14 @@ public partial class MainWindow : Gtk.Window, ApplicationWindow
 	/// <param name="args">Arguments.</param>
 	protected void OnTabChanged(object o,SwitchPageArgs args)
 	{
-		if(args.PageNum==1)  //TODO find a better way that doesn't require tab index or name
-			IntakeComponent.Reload();
+		switch(args.PageNum) //TODO find a better way that doesn't require tab index or name
+		{
+			case 1:
+				IntakeComponent.Reload();
+				break;
+			case 2:
+				AnalysisComponent.Reload();
+				break;
+		}
 	}
 }

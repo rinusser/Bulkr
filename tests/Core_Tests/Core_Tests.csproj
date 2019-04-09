@@ -31,6 +31,7 @@
   <ItemGroup>
     <Compile Include="Models\TallyTest.cs" />
     <Compile Include="Services\FoodServiceTest.cs" />
+    <Compile Include="Services\TallyServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
