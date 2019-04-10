@@ -45,12 +45,13 @@ namespace Bulkr.Gui.Forms.Field
 		///   Constructor for CRUD service &lt; - &gt; ComboBox mappings.
 		/// </summary>
 		/// <param name="propertyName">The model property name.</param>
-		/// <param name="widget">The Gtk ComboBox.</param>
+		/// <param name="widget">The GTK ComboBox.</param>
+		/// <param name="labelWidget">The GTK label widget for this field.</param>
 		/// <param name="service">The service to load data from.</param>
 		/// <param name="idMapper">Mapper function turning items into IDs for internal tracking.</param>
 		/// <param name="labelMapper">Mapper function turning items into text labels for the dropdown.</param>
 		/// <param name="options">Any options for this field (currently <see cref="Option.Required"/> only.</param>
-		public DropDown(string propertyName,Gtk.ComboBox widget,CRUDService<TYPE,ID> service,Func<TYPE,ID> idMapper,Func<TYPE,string> labelMapper,params Option[] options) : base(propertyName,widget,options)
+		public DropDown(string propertyName,Gtk.ComboBox widget,Gtk.Label labelWidget,CRUDService<TYPE,ID> service,Func<TYPE,ID> idMapper,Func<TYPE,string> labelMapper,params Option[] options) : base(propertyName,widget,labelWidget,options)
 		{
 			Service=service;
 			IdMapper=idMapper;
@@ -113,7 +114,7 @@ namespace Bulkr.Gui.Forms.Field
 		///   Changes the ComboBox's current selection to the model's mapped property value.
 		/// </summary>
 		/// <param name="model">The model to read from.</param>
-		public override void PopulateFrom(MODEL model)
+		protected override void PerformPopulateFrom(MODEL model)
 		{
 			object value=GetModelValue<object>(model);  //can't use generic TYPE parameter: this needs to be nullable, unconditionally
 			((Gtk.ComboBox)Widget).SelectID(value!=null ? (ID?)IdMapper((TYPE)value) : null);

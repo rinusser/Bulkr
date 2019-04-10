@@ -158,5 +158,24 @@ namespace Bulkr.Gui_Tests.Components
 				}
 			};
 		}
+
+		public TestCase AllInvalid()
+		{
+			return new TestCase
+			{
+				RequiredString="",
+				OptionalString="",                 //can't be invalid
+				RequiredFloat="a",
+				OptionalFloat="b",
+				RequiredEnumID=null,
+				OptionalEnumID=null,               //can't be invalid
+				RequiredServiceDropDownID=null,
+				OptionalServiceDropDownID=null,    //can't be invalid
+				RequiredDateTimeDate="2019-04-05", //can't be invalid
+				RequiredDateTimeHour="14",         //can't be invalid
+				RequiredDateTimeMinute="13",       //can't be invalid
+				Model=null,
+			};
+		}
 	}
 }

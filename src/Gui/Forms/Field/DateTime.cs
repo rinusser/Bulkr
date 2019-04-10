@@ -14,6 +14,10 @@ namespace Bulkr.Gui.Forms.Field
 	/// <remarks>
 	///   Date-only or time-only input not supported at the moment.
 	/// </remarks>
+	/// <remarks>
+	///   This field class doesn't support error styling, as there's currently no way for users to actually enter
+	///   invalid data.
+	/// </remarks>
 	public class DateTime<MODEL> : AbstractField<MODEL,DateTime?> where MODEL : class
 	{
 		/// <summary>
@@ -39,7 +43,7 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="calendarWidget">The input widget for the date.</param>
 		/// <param name="hourWidget">The input widget for the hour.</param>
 		/// <param name="minuteWidget">The input widget for the minute.</param>
-		public DateTime(string propertyName,Gtk.Calendar calendarWidget,Gtk.SpinButton hourWidget,Gtk.SpinButton minuteWidget) : base(propertyName,calendarWidget)
+		public DateTime(string propertyName,Gtk.Calendar calendarWidget,Gtk.SpinButton hourWidget,Gtk.SpinButton minuteWidget) : base(propertyName,calendarWidget,null)
 		{
 			CalendarWidget=calendarWidget;
 			HourWidget=hourWidget;
@@ -56,7 +60,7 @@ namespace Bulkr.Gui.Forms.Field
 		///   Fills input widgets with data from a model instance.
 		/// </summary>
 		/// <param name="model">The model to take data from.</param>
-		public override void PopulateFrom(MODEL model)
+		protected override void PerformPopulateFrom(MODEL model)
 		{
 			DateTime value=GetModelValue<DateTime?>(model)??DateTime.Now;
 

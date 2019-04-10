@@ -12,8 +12,8 @@ namespace Bulkr.Gui.Forms.Field
 		///   Creates a new ID label instance.
 		/// </summary>
 		/// <param name="propertyName">The ID property's name.</param>
-		/// <param name="widget">The ID label widget.</param>
-		public ID(string propertyName,Gtk.Label widget) : base(propertyName,widget)
+		/// <param name="widget">The GTK label widget to display IDs in.</param>
+		public ID(string propertyName,Gtk.Label widget) : base(propertyName,widget,null)
 		{
 		}
 
@@ -38,7 +38,7 @@ namespace Bulkr.Gui.Forms.Field
 		///   Displays the model's ID.
 		/// </summary>
 		/// <param name="model">The model.</param>
-		public override void PopulateFrom(MODEL model)
+		protected override void PerformPopulateFrom(MODEL model)
 		{
 			int? value=GetModelValue<int?>(model);
 			int id=value!=null ? (int)value : 0;

@@ -22,9 +22,19 @@ namespace Bulkr.Gui.Forms.Field
 		public string PropertyName { get; }
 
 		/// <summary>
-		///   The Gtk widget to enter data into.
+		///   The GTK widget to enter data into.
 		/// </summary>
 		public Gtk.Widget Widget { get; }
+
+		/// <summary>
+		///   The GTK label for this field.
+		/// </summary>
+		public Gtk.Label Label { get; }
+
+		/// <summary>
+		///   The last validity style set: <c>true</c> if there were no errors, <c>false</c> otherwise.
+		/// </summary>
+		protected bool LastValidityStyleSet { get; set; }
 
 		/// <summary>
 		///   The list of validation errors.
@@ -41,28 +51,68 @@ namespace Bulkr.Gui.Forms.Field
 		/// </summary>
 		protected IList<Option> Options { get; set; }
 
+		/// <summary>
+		///   The regular background color for the input widget.
+		/// </summary>
+		protected Gdk.Color RegularInputBackgroundColor { get; set; }
+
+		/// <summary>
+		///   The regular base color for the input widget.
+		/// </summary>
+		protected Gdk.Color RegularInputBaseColor { get; set; }
+
+		/// <summary>
+		///   The regular foreground color for the label widget.
+		/// </summary>
+		protected Gdk.Color RegularLabelForegroundColor { get; set; }
+
+		/// <summary>
+		///   The error background color for the input widget.
+		/// </summary>
+		protected Gdk.Color ErrorInputBackgroundColor { get; set; } = new Gdk.Color(255,128,128);
+
+		/// <summary>
+		///   The error base color for the input widget.
+		/// </summary>
+		protected Gdk.Color ErrorInputBaseColor { get; set; } = new Gdk.Color(255,192,192);
+
+		/// <summary>
+		///   The error foreground color for the label widget.
+		/// </summary>
+		protected Gdk.Color ErrorLabelForegroundColor { get; set; } = new Gdk.Color(255,0,0);
+
 
 		/// <summary>
 		///   Base constructor, handles basics for 1-to-1 mappings.
 		/// </summary>
 		/// <param name="propertyName">The model property name.</param>
-		/// <param name="widget">The Gtk widget.</param>
+		/// <param name="widget">The GTK input widget.</param>
+		/// <param name="labelWidget">The GTK label widget for this field.</param>
 		/// <param name="options">Any options for this field.</param>
-		protected AbstractField(string propertyName,Gtk.Widget widget,Option[] options = null)
+		protected AbstractField(string propertyName,Gtk.Widget widget,Gtk.Label labelWidget,Option[] options = null)
 		{
 			PropertyName=propertyName;
 			Widget=widget;
+			Label=labelWidget;
 			ValidationErrors=new List<ValidationError>();
 			ParsedValue=default(PROPERTY);
 			Options=options??new Option[] { };
+
+			RegularInputBackgroundColor=widget.Style.Background(Gtk.StateType.Normal);
+			RegularInputBaseColor=widget.Style.Base(Gtk.StateType.Normal);
+			if(labelWidget!=null)
+				RegularLabelForegroundColor=labelWidget.Style.Foreground(Gtk.StateType.Normal);
 		}
 
 
 		/// <summary>
-		///   Fills the mapped Gtk widget with data from the model.
+		///   Implement this: this method should take data from the passed model instance and put it into input widgets.
 		/// </summary>
+		/// <remarks>
+		///   This gets called by <see cref="PopulateFrom(MODEL)"/> which resets the widget's styling for you.
+		/// </remarks>
 		/// <param name="model">The model instance to take data from.</param>
-		abstract public void PopulateFrom(MODEL model);
+		abstract protected void PerformPopulateFrom(MODEL model);
 
 		/// <summary>
 		///   Implement this to perform input validation.
@@ -79,6 +129,31 @@ namespace Bulkr.Gui.Forms.Field
 		/// <returns>An error message, or <c>null</c>.</returns>
 		abstract protected string PerformValidation();
 
+
+		/// <summary>
+		///   Fills the mapped GTK widget with data from the model.
+		/// </summary>
+		/// <param name="model">The model instance to take data from.</param>
+		public void PopulateFrom(MODEL model)
+		{
+			StyleWidgetWithValidity(true);
+			PerformPopulateFrom(model);
+		}
+
+		/// <summary>
+		///   Styles the input and label widgets with the given validity state.
+		/// </summary>
+		/// <param name="valid"><c>true</c> if input is valid, <c>false</c>otherwise.</param>
+		protected virtual void StyleWidgetWithValidity(bool valid = true)
+		{
+			Widget.ModifyBg(Gtk.StateType.Normal,valid ? RegularInputBackgroundColor : ErrorInputBackgroundColor);
+			Widget.ModifyBase(Gtk.StateType.Normal,valid ? RegularInputBaseColor : ErrorInputBaseColor);
+
+			Label?.ModifyFg(Gtk.StateType.Normal,valid ? RegularLabelForegroundColor : ErrorLabelForegroundColor);
+
+			LastValidityStyleSet=valid;
+		}
+
 		/// <summary>
 		///   Validates mapped input widgets' contents.
 		/// </summary>
@@ -90,6 +165,9 @@ namespace Bulkr.Gui.Forms.Field
 			string errorMessage=PerformValidation();
 			if(errorMessage!=null)
 				ValidationErrors.Add(new ValidationError(PropertyName,errorMessage));
+
+			StyleWidgetWithValidity(ValidationErrors.Count<1);
+
 			return ValidationErrors;
 		}
 
@@ -151,6 +229,24 @@ namespace Bulkr.Gui.Forms.Field
 		/// </summary>
 		public virtual void Reload()
 		{
+		}
+
+		/// <summary>
+		///   Returns this field's <see cref="PropertyName"/>.
+		/// </summary>
+		/// <returns>The name.</returns>
+		public string GetName()
+		{
+			return PropertyName;
+		}
+
+		/// <summary>
+		///   Gets the last validity style set.
+		/// </summary>
+		/// <returns><c>true</c>, if last styling was for valid data, <c>false</c> if data was invalid.</returns>
+		public bool GetLastValidityStyleSet()
+		{
+			return LastValidityStyleSet;
 		}
 	}
 }

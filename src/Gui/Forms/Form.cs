@@ -97,5 +97,19 @@ namespace Bulkr.Gui.Forms
 			foreach(var field in Fields)
 				field.Reload();
 		}
+
+		/// <summary>
+		///   Fetches a field by name.
+		/// </summary>
+		/// <param name="name">The name to look for.</param>
+		/// <returns>The form field.</returns>
+		/// <exception cref="System.ArgumentException">If the form field can't be found.</exception>
+		public Field.Field<MODEL> GetField(string name)
+		{
+			foreach(var field in Fields)
+				if(field.GetName()==name)
+					return field;
+			throw new System.ArgumentException(string.Format("could not find form field '{0}'",name));
+		}
 	}
 }

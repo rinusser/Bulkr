@@ -20,8 +20,9 @@ namespace Bulkr.Gui.Forms.Field
 		/// </summary>
 		/// <param name="propertyName">The model property name.</param>
 		/// <param name="widget">The Entry widget.</param>
+		/// <param name="labelWidget">The GTK label widget for this field.</param>
 		/// <param name="options">Mapping options.</param>
-		public Text(string propertyName,Gtk.Entry widget,params Option[] options) : base(propertyName,widget,options)
+		public Text(string propertyName,Gtk.Entry widget,Gtk.Label labelWidget,params Option[] options) : base(propertyName,widget,labelWidget,options)
 		{
 		}
 
@@ -49,7 +50,7 @@ namespace Bulkr.Gui.Forms.Field
 		///   Puts the model's mapped property value into the Entry widget.
 		/// </summary>
 		/// <param name="model">The model to read from.</param>
-		public override void PopulateFrom(MODEL model)
+		protected override void PerformPopulateFrom(MODEL model)
 		{
 			string value=GetModelValue<string>(model);
 			((Gtk.Entry)Widget).Text=value??"";

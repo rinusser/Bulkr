@@ -32,6 +32,17 @@ namespace Bulkr.Gui.Forms.Field
 		///   See <see cref="AbstractField{MODEL,PROPERTY}.Reload()"/>.
 		/// </summary>
 		void Reload();
-	}
 
+		/// <summary>
+		///   Returns the field's name.
+		/// </summary>
+		/// <returns>The name.</returns>
+		string GetName();
+
+		/// <summary>
+		///   Returns the last validity status set. Mainly useful for automated tests.
+		/// </summary>
+		/// <returns><c>true</c> if there were no errors, <c>false</c> otherwise.</returns>
+		bool GetLastValidityStyleSet();
+	}
 }

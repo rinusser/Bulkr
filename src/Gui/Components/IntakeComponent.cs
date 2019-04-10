@@ -45,9 +45,10 @@ namespace Bulkr.Gui.Components
 					GetFieldValueWidget<Gtk.Calendar>("When_Date"),
 					GetFieldValueWidget<Gtk.SpinButton>("When_Hour"),
 					GetFieldValueWidget<Gtk.SpinButton>("When_Minute")))
-				.AddField(new Number<Intake>("Amount",GetFieldValueWidget<Gtk.Entry>("Amount")))
+				.AddField(new Number<Intake>("Amount",GetFieldValueWidget<Gtk.Entry>("Amount"),GetFieldLabelWidget("Amount")))
 				.AddField(new DropDown<Intake,Food,int>("Food",
 					GetFieldValueWidget<Gtk.ComboBox>("Food"),
+					GetFieldLabelWidget("Food"),
 					foodService,
 					i => i.ID,
 					GetFoodDisplayString,

@@ -39,21 +39,22 @@ namespace Bulkr.Gui.Components
 		{
 			return new Form<Food>()
 				.AddField(new ID<Food>("ID",GetFieldValueWidget<Gtk.Label>("ID")))
-				.AddField(new Text<Food>("Name",GetFieldValueWidget<Gtk.Entry>("Name"),Option.Required))
-				.AddField(new Text<Food>("Brand",GetFieldValueWidget<Gtk.Entry>("Brand")))
+				.AddField(new Text<Food>("Name",GetFieldValueWidget<Gtk.Entry>("Name"),GetFieldLabelWidget("Name"),Option.Required))
+				.AddField(new Text<Food>("Brand",GetFieldValueWidget<Gtk.Entry>("Brand"),GetFieldLabelWidget("Brand")))
 				.AddField(new DropDown<Food,ReferenceSizeType,ReferenceSizeType>("ReferenceSize",
 					GetFieldValueWidget<Gtk.ComboBox>("ReferenceSize"),
+					GetFieldLabelWidget("ReferenceSize"),
 					new EnumService<ReferenceSizeType,ReferenceSizeType>(),
 					i => i,                     //ID mapper
 					GetReferenceSizeTypeLabel,  //label mapper
 					Option.Required))
-				.AddField(new Number<Food>("Energy",GetFieldValueWidget<Gtk.Entry>("Energy")))
-				.AddField(new Number<Food>("TotalFat",GetFieldValueWidget<Gtk.Entry>("TotalFat")))
-				.AddField(new Number<Food>("SaturatedFat",GetFieldValueWidget<Gtk.Entry>("SaturatedFat")))
-				.AddField(new Number<Food>("TotalCarbohydrates",GetFieldValueWidget<Gtk.Entry>("Carbohydrates")))
-				.AddField(new Number<Food>("Sugar",GetFieldValueWidget<Gtk.Entry>("Sugar")))
-				.AddField(new Number<Food>("Protein",GetFieldValueWidget<Gtk.Entry>("Protein")))
-				.AddField(new Number<Food>("Fiber",GetFieldValueWidget<Gtk.Entry>("Fiber")));
+				.AddField(new Number<Food>("Energy",GetFieldValueWidget<Gtk.Entry>("Energy"),GetFieldLabelWidget("Energy")))
+				.AddField(new Number<Food>("TotalFat",GetFieldValueWidget<Gtk.Entry>("TotalFat"),GetFieldLabelWidget("TotalFat")))
+				.AddField(new Number<Food>("SaturatedFat",GetFieldValueWidget<Gtk.Entry>("SaturatedFat"),GetFieldLabelWidget("SaturatedFat")))
+				.AddField(new Number<Food>("TotalCarbohydrates",GetFieldValueWidget<Gtk.Entry>("Carbohydrates"),GetFieldLabelWidget("Carbohydrates")))
+				.AddField(new Number<Food>("Sugar",GetFieldValueWidget<Gtk.Entry>("Sugar"),GetFieldLabelWidget("Sugar")))
+				.AddField(new Number<Food>("Protein",GetFieldValueWidget<Gtk.Entry>("Protein"),GetFieldLabelWidget("Protein")))
+				.AddField(new Number<Food>("Fiber",GetFieldValueWidget<Gtk.Entry>("Fiber"),GetFieldLabelWidget("Fiber")));
 		}
 
 		/// <summary>

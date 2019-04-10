@@ -29,29 +29,33 @@ namespace Bulkr.Gui_Tests.TestTargets
 
 			return new Form<TargetModel>()
 				.AddField(new ID<TargetModel>("ID",window.targetmodel_id_value))
-				.AddField(new Text<TargetModel>("RequiredString",window.targetmodel_requiredstring_value,Option.Required))
-				.AddField(new Text<TargetModel>("OptionalString",window.targetmodel_optionalstring_value))
-				.AddField(new Number<TargetModel>("RequiredFloat",window.targetmodel_requiredfloat_value))
-				.AddField(new Number<TargetModel>("OptionalFloat",window.targetmodel_optionalfloat_value))
+				.AddField(new Text<TargetModel>("RequiredString",window.targetmodel_requiredstring_value,window.targetmodel_requiredstring_label,Option.Required))
+				.AddField(new Text<TargetModel>("OptionalString",window.targetmodel_optionalstring_value,window.targetmodel_optionalstring_label))
+				.AddField(new Number<TargetModel>("RequiredFloat",window.targetmodel_requiredfloat_value,window.targetmodel_requiredfloat_label))
+				.AddField(new Number<TargetModel>("OptionalFloat",window.targetmodel_optionalfloat_value,window.targetmodel_optionalfloat_label))
 				.AddField(new DropDown<TargetModel,TargetEnum,TargetEnum>("RequiredEnum",
 					window.targetmodel_requiredenum_value,
+					window.targetmodel_requiredenum_label,
 					new EnumService<TargetEnum,TargetEnum>(),
 					i => i,
 					GetTargetEnumDisplayString,
 					Option.Required))
 				.AddField(new DropDown<TargetModel,TargetEnum?,TargetEnum>("OptionalEnum",
 					window.targetmodel_optionalenum_value,
+					window.targetmodel_optionalenum_label,
 					new EnumService<TargetEnum?,TargetEnum>(),
 					i => i??default(TargetEnum),
 					GetTargetEnumDisplayString))
 				.AddField(new DropDown<TargetModel,ReferencedModel,int>("RequiredServiceDropDown",
 					window.targetmodel_requiredservicedropdown_value,
+					window.targetmodel_requiredservicedropdown_label,
 					referencedService,
 					i => i.ID,
 					GetReferencedModelDisplayString,
 					Option.Required))
 				.AddField(new DropDown<TargetModel,ReferencedModel,int>("OptionalServiceDropDown",
 					window.targetmodel_optionalservicedropdown_value,
+					window.targetmodel_optionalservicedropdown_label,
 					referencedService,
 					i => i.ID,
 					GetReferencedModelDisplayString))
@@ -87,6 +91,12 @@ namespace Bulkr.Gui_Tests.TestTargets
 		protected override DatabaseCRUDService<TargetModel> CreateService()
 		{
 			return TargetService.Create(NUnit.Framework.TestContext.CurrentContext.Test.FullName);
+		}
+
+
+		public Form<TargetModel> GetForm()
+		{
+			return Form;
 		}
 	}
 }
