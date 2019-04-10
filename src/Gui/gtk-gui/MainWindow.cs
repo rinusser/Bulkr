@@ -145,6 +145,7 @@ public partial class MainWindow
 		this.AddAccelGroup(this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString("Bulkr");
+		this.Icon = global::Gdk.Pixbuf.LoadFromResource("Bulkr.Gui.resources.icon64.png");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		this.Resizable = false;
 		this.AllowGrow = false;
