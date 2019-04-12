@@ -3,6 +3,8 @@
 
 using System.Collections.Generic;
 
+using Bulkr.Core.Models;
+
 namespace Bulkr.Gui.Forms
 {
 	/// <summary>
@@ -11,7 +13,7 @@ namespace Bulkr.Gui.Forms
 	///     Each mapping is contained in one of the <see cref="T:Bulkr.Gui.Forms.Field"/> classes.
 	///   </para>
 	/// </summary>
-	public class Form<MODEL> where MODEL : class, new()
+	public class Form<MODEL> where MODEL : Model, new()
 	{
 		/// <summary>
 		///   The list of mapped fields.

@@ -4,7 +4,6 @@
 using System;
 
 using Bulkr.Core.Services;
-using Bulkr.Gui.Forms.Field;
 using Bulkr.Gui.Components;
 using Bulkr.Gui.Forms;
 
@@ -23,46 +22,30 @@ namespace Bulkr.Gui_Tests.TestTargets
 
 		protected override Form<TargetModel> CreateForm()
 		{
-			var window=(TargetWindow)Window;
-
 			var referencedService=((TargetComponentContext)Context).ReferencedService;
 
-			return new Form<TargetModel>()
-				.AddField(new ID<TargetModel>("ID",window.targetmodel_id_value))
-				.AddField(new Text<TargetModel>("RequiredString",window.targetmodel_requiredstring_value,window.targetmodel_requiredstring_label,Option.Required))
-				.AddField(new Text<TargetModel>("OptionalString",window.targetmodel_optionalstring_value,window.targetmodel_optionalstring_label))
-				.AddField(new Number<TargetModel>("RequiredFloat",window.targetmodel_requiredfloat_value,window.targetmodel_requiredfloat_label))
-				.AddField(new Number<TargetModel>("OptionalFloat",window.targetmodel_optionalfloat_value,window.targetmodel_optionalfloat_label))
-				.AddField(new DropDown<TargetModel,TargetEnum,TargetEnum>("RequiredEnum",
-					window.targetmodel_requiredenum_value,
-					window.targetmodel_requiredenum_label,
-					new EnumService<TargetEnum,TargetEnum>(),
-					i => i,
-					GetTargetEnumDisplayString,
-					Option.Required))
-				.AddField(new DropDown<TargetModel,TargetEnum?,TargetEnum>("OptionalEnum",
-					window.targetmodel_optionalenum_value,
-					window.targetmodel_optionalenum_label,
-					new EnumService<TargetEnum?,TargetEnum>(),
-					i => i??default(TargetEnum),
-					GetTargetEnumDisplayString))
-				.AddField(new DropDown<TargetModel,ReferencedModel,int>("RequiredServiceDropDown",
-					window.targetmodel_requiredservicedropdown_value,
-					window.targetmodel_requiredservicedropdown_label,
-					referencedService,
-					i => i.ID,
-					GetReferencedModelDisplayString,
-					Option.Required))
-				.AddField(new DropDown<TargetModel,ReferencedModel,int>("OptionalServiceDropDown",
-					window.targetmodel_optionalservicedropdown_value,
-					window.targetmodel_optionalservicedropdown_label,
-					referencedService,
-					i => i.ID,
-					GetReferencedModelDisplayString))
-				.AddField(new DateTime<TargetModel>("RequiredDateTime",
-					window.targetmodel_requireddatetime_date_value,
-					window.targetmodel_requireddatetime_hour_value,
-					window.targetmodel_requireddatetime_minute_value));
+			return new FormBuilder<TargetModel>()
+				.InComponent(this)
+				.AddIDField("ID")
+				.AddTextField("RequiredString")
+					.Required()
+				.AddTextField("OptionalString")
+				.AddNumberField("RequiredFloat")
+				.AddNumberField("OptionalFloat")
+				.AddDropDownField<TargetEnum,TargetEnum>("RequiredEnum")
+					.WithLabelMapper(GetTargetEnumDisplayString)
+					.Required()
+				.AddDropDownField<TargetEnum?,TargetEnum>("OptionalEnum")
+					.WithLabelMapper(GetTargetEnumDisplayString)
+				.AddDropDownField<ReferencedModel,int>("RequiredServiceDropDown")
+					.WithService(referencedService)
+					.WithLabelMapper(GetReferencedModelDisplayString)
+					.Required()
+				.AddDropDownField<ReferencedModel,int>("OptionalServiceDropDown")
+					.WithService(referencedService)
+					.WithLabelMapper(GetReferencedModelDisplayString)
+				.AddDateTimeField("RequiredDateTime")
+				.Build();
 		}
 
 		public static string GetReferencedModelDisplayString(ReferencedModel model)

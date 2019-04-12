@@ -63,6 +63,7 @@
     <Reference Include="OxyPlot.GtkSharp">
       <HintPath>..\..\packages\OxyPlot.GtkSharp.1.0.0\lib\net45\OxyPlot.GtkSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -99,6 +100,15 @@
     <Compile Include="Components\AnalysisComponent.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\AnalysisComponent_MainWindow.cs" />
+    <Compile Include="Forms\Field\AbstractFieldBuilder.cs" />
+    <Compile Include="Forms\Field\IDBuilder.cs" />
+    <Compile Include="Forms\Field\TextBuilder.cs" />
+    <Compile Include="Forms\Field\NumberBuilder.cs" />
+    <Compile Include="Forms\Field\DropDownBuilder.cs" />
+    <Compile Include="Forms\Field\DateTimeBuilder.cs" />
+    <Compile Include="Forms\Field\FieldBuilderFactory.cs" />
+    <Compile Include="Forms\Field\FieldBuilder.cs" />
+    <Compile Include="Forms\FormBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

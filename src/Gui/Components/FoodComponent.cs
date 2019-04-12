@@ -5,7 +5,6 @@ using Bulkr.Core;
 using Bulkr.Core.Models;
 using Bulkr.Core.Services;
 using Bulkr.Gui.Forms;
-using Bulkr.Gui.Forms.Field;
 
 namespace Bulkr.Gui.Components
 {
@@ -37,24 +36,23 @@ namespace Bulkr.Gui.Components
 		/// <returns>The Form instance with all mapped fields added.</returns>
 		protected override Form<Food> CreateForm()
 		{
-			return new Form<Food>()
-				.AddField(new ID<Food>("ID",GetFieldValueWidget<Gtk.Label>("ID")))
-				.AddField(new Text<Food>("Name",GetFieldValueWidget<Gtk.Entry>("Name"),GetFieldLabelWidget("Name"),Option.Required))
-				.AddField(new Text<Food>("Brand",GetFieldValueWidget<Gtk.Entry>("Brand"),GetFieldLabelWidget("Brand")))
-				.AddField(new DropDown<Food,ReferenceSizeType,ReferenceSizeType>("ReferenceSize",
-					GetFieldValueWidget<Gtk.ComboBox>("ReferenceSize"),
-					GetFieldLabelWidget("ReferenceSize"),
-					new EnumService<ReferenceSizeType,ReferenceSizeType>(),
-					i => i,                     //ID mapper
-					GetReferenceSizeTypeLabel,  //label mapper
-					Option.Required))
-				.AddField(new Number<Food>("Energy",GetFieldValueWidget<Gtk.Entry>("Energy"),GetFieldLabelWidget("Energy")))
-				.AddField(new Number<Food>("TotalFat",GetFieldValueWidget<Gtk.Entry>("TotalFat"),GetFieldLabelWidget("TotalFat")))
-				.AddField(new Number<Food>("SaturatedFat",GetFieldValueWidget<Gtk.Entry>("SaturatedFat"),GetFieldLabelWidget("SaturatedFat")))
-				.AddField(new Number<Food>("TotalCarbohydrates",GetFieldValueWidget<Gtk.Entry>("Carbohydrates"),GetFieldLabelWidget("Carbohydrates")))
-				.AddField(new Number<Food>("Sugar",GetFieldValueWidget<Gtk.Entry>("Sugar"),GetFieldLabelWidget("Sugar")))
-				.AddField(new Number<Food>("Protein",GetFieldValueWidget<Gtk.Entry>("Protein"),GetFieldLabelWidget("Protein")))
-				.AddField(new Number<Food>("Fiber",GetFieldValueWidget<Gtk.Entry>("Fiber"),GetFieldLabelWidget("Fiber")));
+			return new FormBuilder<Food>()
+				.InComponent(this)
+				.AddIDField("ID")
+				.AddTextField("Name")
+					.Required()
+				.AddTextField("Brand")
+				.AddDropDownField<ReferenceSizeType,ReferenceSizeType>("ReferenceSize")
+					.WithLabelMapper(GetReferenceSizeTypeLabel)
+					.Required()
+				.AddNumberField("Energy")
+				.AddNumberField("TotalFat")
+				.AddNumberField("SaturatedFat")
+				.AddNumberField("TotalCarbohydrates")
+				.AddNumberField("Sugar")
+				.AddNumberField("Protein")
+				.AddNumberField("Fiber")
+				.Build();
 		}
 
 		/// <summary>

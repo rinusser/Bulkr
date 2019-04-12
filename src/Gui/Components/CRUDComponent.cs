@@ -268,7 +268,7 @@ namespace Bulkr.Gui.Components
 		/// </summary>
 		/// <param name="field">The field name to fetch the label for.</param>
 		/// <returns>The label widget.</returns>
-		protected virtual Gtk.Label GetFieldLabelWidget(string field)
+		public virtual Gtk.Label GetFieldLabelWidget(string field)
 		{
 			return (Gtk.Label)Window.GetWidget(WidgetNamePrefix+field.ToLower()+"_label");
 		}
@@ -281,7 +281,7 @@ namespace Bulkr.Gui.Components
 		/// </summary>
 		/// <param name="field">The field name to fetch the value widget for.</param>
 		/// <returns>The value widget.</returns>
-		protected T GetFieldValueWidget<T>(string field) where T : Gtk.Widget
+		public T GetFieldValueWidget<T>(string field) where T : Gtk.Widget
 		{
 			return (T)Window.GetWidget(WidgetNamePrefix+field.ToLower()+"_value");
 		}

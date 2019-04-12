@@ -4,7 +4,6 @@
 using Bulkr.Core.Models;
 using Bulkr.Core.Services;
 using Bulkr.Gui.Forms;
-using Bulkr.Gui.Forms.Field;
 
 namespace Bulkr.Gui.Components
 {
@@ -37,22 +36,16 @@ namespace Bulkr.Gui.Components
 		/// <returns>The Form instance with all mapped fields added.</returns>
 		protected override Form<Intake> CreateForm()
 		{
-			var foodService=((IntakeComponentContext)Context).FoodService;
-
-			return new Form<Intake>()
-				.AddField(new ID<Intake>("ID",GetFieldValueWidget<Gtk.Label>("ID")))
-				.AddField(new DateTime<Intake>("When",
-					GetFieldValueWidget<Gtk.Calendar>("When_Date"),
-					GetFieldValueWidget<Gtk.SpinButton>("When_Hour"),
-					GetFieldValueWidget<Gtk.SpinButton>("When_Minute")))
-				.AddField(new Number<Intake>("Amount",GetFieldValueWidget<Gtk.Entry>("Amount"),GetFieldLabelWidget("Amount")))
-				.AddField(new DropDown<Intake,Food,int>("Food",
-					GetFieldValueWidget<Gtk.ComboBox>("Food"),
-					GetFieldLabelWidget("Food"),
-					foodService,
-					i => i.ID,
-					GetFoodDisplayString,
-					Option.Required));
+			return new FormBuilder<Intake>()
+				.InComponent(this)
+				.AddIDField("ID")
+				.AddDateTimeField("When")
+				.AddNumberField("Amount")
+				.AddDropDownField<Food,int>("Food")
+					.WithService(((IntakeComponentContext)Context).FoodService)
+					.WithLabelMapper(GetFoodDisplayString)
+					.Required()
+				.Build();
 		}
 
 		/// <summary>
