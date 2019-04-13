@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Bulkr.Gui.Forms.Field
@@ -149,9 +150,26 @@ namespace Bulkr.Gui.Forms.Field
 			Widget.ModifyBg(Gtk.StateType.Normal,valid ? RegularInputBackgroundColor : ErrorInputBackgroundColor);
 			Widget.ModifyBase(Gtk.StateType.Normal,valid ? RegularInputBaseColor : ErrorInputBaseColor);
 
+			UpdateTooltip(Widget,valid);
+			UpdateTooltip(Label,valid);
+
 			Label?.ModifyFg(Gtk.StateType.Normal,valid ? RegularLabelForegroundColor : ErrorLabelForegroundColor);
 
 			LastValidityStyleSet=valid;
+		}
+
+		/// <summary>
+		///   Sets the target widget's tooltip, or clears it, depending on whether there are any input errors.
+		/// </summary>
+		/// <param name="target">The input/label widget to set a tooltip for.</param>
+		/// <param name="valid">Whether the input is valid.</param>
+		protected virtual void UpdateTooltip(Gtk.Widget target,bool valid)
+		{
+			if(target==null)
+				return;
+			target.HasTooltip=!valid;
+			if(!valid)
+				target.TooltipMarkup="<span foreground='red'>"+string.Join("\n",ValidationErrors.Select(e => e.Reason))+"</span>";
 		}
 
 		/// <summary>

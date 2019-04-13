@@ -146,7 +146,15 @@ namespace Bulkr.Gui_Tests.Components
 				var formField=Component.GetForm().GetField(field.Name);
 				var actual=!formField.GetLastValidityStyleSet();
 				Assert.AreEqual(GetErrorStateString(expected),GetErrorStateString(actual),string.Format("{0}, {1}",field.Name,message));
+
+				AssertHasTooltip(expected,Component.GetFieldValueWidget<Gtk.Widget>(field.Name),"input",field.Name,message);
+				AssertHasTooltip(expected,Component.GetFieldLabelWidget(field.Name),"label",field.Name,message);
 			}
+		}
+
+		protected void AssertHasTooltip(bool expected,Gtk.Widget subject,string description,string fieldName,string message)
+		{
+			Assert.AreEqual(expected,subject.HasTooltip,string.Format("{0} {1} tooltip, {2}",fieldName,description,message));
 		}
 
 		protected string GetErrorStateString(bool errorState)

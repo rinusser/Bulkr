@@ -116,8 +116,7 @@ namespace Bulkr.Gui.Components
 			IList<ValidationError> validationErrors=Form.Validate();
 			if(validationErrors.Count>0)
 			{
-				foreach(var validationError in validationErrors)
-					Log(string.Format("error in {0}: {1}",validationError.Field,validationError.Reason));
+				Log(string.Format("could not save item: there were {0} error(s)",validationErrors.Count));
 				return false;
 			}
 
