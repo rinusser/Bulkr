@@ -27,6 +27,7 @@ namespace Bulkr.Core_Tests.Models
 			Assert.AreEqual(212,tally.TotalCarbohydrates,DEFAULT_TOLERANCE);
 			Assert.AreEqual(47.96,tally.Sugar,DEFAULT_TOLERANCE);
 			Assert.AreEqual(7.08,tally.Protein,DEFAULT_TOLERANCE);
+			Assert.AreEqual(3.14,tally.Salt,DEFAULT_TOLERANCE);
 			Assert.AreEqual(5.1,tally.Fiber,DEFAULT_TOLERANCE);
 		}
 
@@ -65,6 +66,7 @@ namespace Bulkr.Core_Tests.Models
 				TotalCarbohydrates=211,
 				Sugar=47,
 				Protein=7,
+				Salt=3,
 				Fiber=5
 			};
 		}
@@ -80,6 +82,7 @@ namespace Bulkr.Core_Tests.Models
 				TotalCarbohydrates=50,
 				Sugar=48,
 				Protein=4,
+				Salt=7,
 				Fiber=5
 			};
 		}

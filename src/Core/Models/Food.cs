@@ -22,5 +22,10 @@ namespace Bulkr.Core.Models
 		///   The reference amount the nutritional values are for, e.g. per 100g.
 		/// </summary>
 		public ReferenceSizeType ReferenceSize { get; set; }
+
+		/// <summary>
+		///   Any comments relevant to this particular entry.
+		/// </summary>
+		public string Comments { get; set; }
 	}
 }

@@ -13,6 +13,15 @@ offer analyses of the data you put in.
 
 The code is written and tested with Mono and uses Gtk# for the GUI, so it should run on Windows, Linux and macOS.
 
+### Nutrition Data
+
+The nutrition data handled in this application currently follows EU regulations. In particular:
+* *Salt* is tracked (in grams), instead of sodium.
+* Dietary *Fiber* values are not included in the amount of total carbohydrates.
+* The arrangement of UI elements resembles EU nutrition facts labels.
+
+Other values or label stylings may be implemented later, once the core functionality is done.
+
 
 # Requirements
 

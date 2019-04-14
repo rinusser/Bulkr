@@ -213,6 +213,7 @@
     <Compile Include="Services\CRUDService.cs" />
     <Compile Include="Services\EnumService.cs" />
     <Compile Include="Services\TallyService.cs" />
+    <Compile Include="Persistence\Migrations\201904141000_AddFoodDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

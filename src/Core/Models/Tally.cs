@@ -26,6 +26,7 @@ namespace Bulkr.Core.Models
 			TotalCarbohydrates=0;
 			Sugar=0;
 			Protein=0;
+			Salt=0;
 			Fiber=0;
 		}
 
@@ -65,6 +66,7 @@ namespace Bulkr.Core.Models
 			TotalCarbohydrates+=GetScaledIncrement(data.TotalCarbohydrates,scale);
 			Sugar+=GetScaledIncrement(data.Sugar,scale);
 			Protein+=GetScaledIncrement(data.Protein,scale);
+			Salt+=GetScaledIncrement(data.Salt,scale);
 			Fiber+=GetScaledIncrement(data.Fiber,scale);
 
 			return this;

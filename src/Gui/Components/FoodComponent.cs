@@ -51,7 +51,9 @@ namespace Bulkr.Gui.Components
 				.AddNumberField("TotalCarbohydrates")
 				.AddNumberField("Sugar")
 				.AddNumberField("Protein")
+				.AddNumberField("Salt")
 				.AddNumberField("Fiber")
+				.AddTextField("Comments")
 				.Build();
 		}
 

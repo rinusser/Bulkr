@@ -48,6 +48,15 @@ namespace Bulkr.Core.Models
 		public float? Protein { get; set; }
 
 		/// <summary>
+		///   Amount of salt, in grams.
+		/// </summary>
+		/// <note>
+		///   This value is in accordance with current EU guidelines, Salt = Sodium * 2.5.
+		/// </note>
+		/// <value>The salt.</value>
+		public float? Salt { get; set; }
+
+		/// <summary>
 		///   Amount of fiber, in grams.
 		/// </summary>
 		public float? Fiber { get; set; }
