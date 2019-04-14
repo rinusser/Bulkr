@@ -101,7 +101,7 @@ namespace Bulkr.Gui.Forms.Field
 
 			if(selection==null)
 			{
-				if(!IsNullable())
+				if(IsRequired())
 					return "cannot be empty";
 				return null;
 			}
@@ -118,15 +118,6 @@ namespace Bulkr.Gui.Forms.Field
 		{
 			object value=GetModelValue<object>(model);  //can't use generic TYPE parameter: this needs to be nullable, unconditionally
 			((Gtk.ComboBox)Widget).SelectID(value!=null ? (ID?)IdMapper((TYPE)value) : null);
-		}
-
-		/// <summary>
-		///   Custom nullable check for referenced items, since object references in C# are always nullable.
-		/// </summary>
-		/// <returns><c>true</c> if item can be <c>null</c>, <c>false</c> otherwise.</returns>
-		protected override bool IsNullable()
-		{
-			return !Options.Contains(Option.Required);
 		}
 	}
 }

@@ -97,7 +97,7 @@ namespace Bulkr.Gui.Forms.Field
 			Label=labelWidget;
 			ValidationErrors=new List<ValidationError>();
 			ParsedValue=default(PROPERTY);
-			Options=options??new Option[] { };
+			Options=options!=null ? options.ToList() : new List<Option>();
 
 			RegularInputBackgroundColor=widget.Style.Background(Gtk.StateType.Normal);
 			RegularInputBaseColor=widget.Style.Base(Gtk.StateType.Normal);
@@ -237,9 +237,18 @@ namespace Bulkr.Gui.Forms.Field
 		///   </para>
 		/// </summary>
 		/// <returns><c>true</c> if property is nullable, <c>false</c> otherwise.</returns>
-		protected virtual bool IsNullable()
+		protected bool IsNullable()
 		{
 			return Nullable.GetUnderlyingType(GetModelProperty().PropertyType)!=null;
+		}
+
+		/// <summary>
+		///   Checks if the <see cref="Option.Required"/> option was set.
+		/// </summary>
+		/// <returns><c>true</c> if it was.</returns>
+		protected bool IsRequired()
+		{
+			return Options.Contains(Option.Required);
 		}
 
 		/// <summary>

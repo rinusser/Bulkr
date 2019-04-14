@@ -21,6 +21,8 @@ namespace Bulkr.Gui.Forms.Field
 		/// <param name="labelWidget">The GTK label widget for this field.</param>
 		public Number(string propertyName,Gtk.Entry widget,Gtk.Label labelWidget) : base(propertyName,widget,labelWidget)
 		{
+			if(!IsNullable())
+				Options.Add(Option.Required);
 		}
 
 
@@ -34,7 +36,7 @@ namespace Bulkr.Gui.Forms.Field
 			var property=GetModelProperty();
 			if(input.Length<1)
 			{
-				if(!IsNullable())
+				if(IsRequired())
 					return "cannot be empty";
 				return null;
 			}

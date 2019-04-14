@@ -37,7 +37,7 @@ namespace Bulkr.Gui.Forms.Field
 
 			if(parsed.Length<1)
 			{
-				if(Options.Contains(Option.Required))
+				if(IsRequired())
 					return "cannot be empty";
 				parsed=null;
 			}
